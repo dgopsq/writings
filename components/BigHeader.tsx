@@ -57,6 +57,20 @@ const BigHeader: React.SFC = () => {
           letter-spacing: 0.01em;
           font-size: 1.4em;
         }
+
+        @media all and (max-width: 42em) {
+          .wrapper h1 {
+            font-size: 1em;
+          }
+
+          .wrapper h2 {
+            font-size: 3em;
+          }
+
+          .wrapper h3 {
+            font-size: 0.8em;
+          }
+        }
       `}</style>
     </>
   )

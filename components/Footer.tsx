@@ -8,7 +8,7 @@ const Footer: React.SFC = () => {
       <div className='wrapper'>
         <Layout>
           <div className='flex'>
-            <div>
+            <div className='flex-item'>
               <a href='mailto:hello@dgopsq.space' className='social'>
                 Email
               </a>
@@ -22,7 +22,7 @@ const Footer: React.SFC = () => {
               </a>
             </div>
 
-            <div>
+            <div className='flex-item'>
               <div className='copyright'>© 2020 Diego Pasquali</div>
             </div>
           </div>
@@ -37,8 +37,14 @@ const Footer: React.SFC = () => {
 
         .flex {
           display: flex;
+          flex-wrap: wrap;
           flex-direction: row;
           justify-content: space-between;
+          align-items: center;
+        }
+
+        .flex-item {
+          text-align: center;
         }
 
         .social {
@@ -59,6 +65,16 @@ const Footer: React.SFC = () => {
         .copyright {
           font-size: 0.8em;
           color: rgba(0, 0, 0, 0.4);
+        }
+
+        @media all and (max-width: 42em) {
+          .flex-item {
+            flex-basis: 100%;
+          }
+
+          .flex-item:not(:first-child) {
+            margin-top: 1em;
+          }
         }
       `}</style>
     </>
