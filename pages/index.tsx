@@ -1,13 +1,26 @@
 import { colors } from '../theme'
+import Posts from '../components/Posts'
+import Layout from '../components/Layout'
+import Footer from '../components/Footer'
 
-export default function Home() {
+const Home = () => {
   return (
     <>
-      <div className='main'>
+      <header className='main'>
         <h1>Diego Pasquali</h1>
         <h2>DGOPSQ</h2>
         <h3>Frontend engineer and tech enthusiast</h3>
+      </header>
+
+      <div className='posts'>
+        <Posts />
       </div>
+
+      <footer className='footer'>
+        <Layout>
+          <Footer />
+        </Layout>
+      </footer>
 
       <style jsx>{`
         .main {
@@ -52,7 +65,18 @@ export default function Home() {
           letter-spacing: 0.01em;
           font-size: 1.4em;
         }
+
+        .posts {
+          padding: 7em 0em;
+        }
+
+        .footer {
+          padding: 2em 0em;
+          background: ${colors.footerBackground};
+        }
       `}</style>
     </>
   )
 }
+
+export default Home
