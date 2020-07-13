@@ -64,7 +64,7 @@ const Footer: React.SFC = () => {
 
         .copyright {
           font-size: 0.8em;
-          color: rgba(0, 0, 0, 0.4);
+          color: rgba(0, 0, 0, 0.8);
         }
 
         @media all and (max-width: 42em) {
