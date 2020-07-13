@@ -15,6 +15,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
 
         <style>{`
+          html {
+            font-size: 100%;
+          }
+
           body {
             font-family: 'Open Sans', sans-serif;
           }
