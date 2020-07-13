@@ -9,7 +9,7 @@ const BigHeader: React.SFC = () => {
         <Layout>
           <h1>Diego Pasquali</h1>
           <h2>DGOPSQ</h2>
-          <h3>Frontend engineer and tech enthusiast</h3>
+          <h3>Full stack engineer and tech enthusiast</h3>
         </Layout>
       </div>
 
