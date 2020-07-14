@@ -59,6 +59,10 @@ const BigHeader: React.SFC = () => {
         }
 
         @media all and (max-width: 42em) {
+          .wrapper {
+            height: 70vh;
+          }
+
           .wrapper h1 {
             font-size: 1em;
           }
