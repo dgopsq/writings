@@ -34,15 +34,21 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel='stylesheet'
         />
 
-        <TypographyStyle typography={typography} />
-
         <style>{`
+          html,
+          body {
+            padding: 0em;
+            margin: 0em;
+          }
+
           @media all and (max-width: 42em) {
             body {
               font-size: 90%;
             }
           }
         `}</style>
+
+        <TypographyStyle typography={typography} />
       </Head>
 
       <Component {...pageProps} />
