@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import Seo from '../components/Seo'
 import { init, trackPages } from 'insights-js'
 import { INSIGHTS_TOKEN } from '../utils/configs'
+import { TypographyStyle } from 'react-typography'
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -32,6 +33,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           href='https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans:wght@400;700&display=swap'
           rel='stylesheet'
         />
+
+        <TypographyStyle typography={typography} />
 
         <style>{`
           @media all and (max-width: 42em) {

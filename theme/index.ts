@@ -16,20 +16,6 @@ export const typography = new Typography({
   includeNormalize: true,
   headerColor: colors.primary,
   bodyColor: colors.black,
-  googleFonts: [
-    {
-      name: 'Open Sans',
-      styles: ['400', '700'],
-    },
-    {
-      name: 'Abril Fatface',
-      styles: ['400'],
-    },
-    {
-      name: 'Source Code Pro',
-      styles: ['400'],
-    },
-  ],
 })
 
 export function getHeaderFontFamily() {
