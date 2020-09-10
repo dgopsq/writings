@@ -21,7 +21,7 @@ const Posts: React.SFC<Props> = ({ posts }) => {
           <ul className='posts'>
             {posts.map((post) => (
               <li className='posts-item' key={post.slug}>
-                <Link href={`/posts/[slug]`} as={`/posts/${post.slug}`}>
+                <Link href={`/blog/[slug]`} as={`/blog/${post.slug}`}>
                   <a>
                     <PostTitle
                       value={post.frontmatter.title}

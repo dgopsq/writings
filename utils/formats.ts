@@ -11,5 +11,5 @@ export function formatDate(d: Date): string {
 }
 
 export function generatePostUrl(slug: string): string {
-  return `${BASE_URL}/posts/${slug}`
+  return `${BASE_URL}/blog/${slug}`
 }
