@@ -3,13 +3,14 @@ import Head from 'next/head'
 import { typography } from '../theme'
 import { useEffect } from 'react'
 import Seo from '../components/Seo'
-import { init } from 'insights-js'
+import { init, trackPages } from 'insights-js'
 import { INSIGHTS_TOKEN } from '../utils/configs'
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     // Insights
     init(INSIGHTS_TOKEN, { ignoreErrors: true })
+    trackPages()
 
     // Typography.js
     typography.injectStyles()
