@@ -7,7 +7,7 @@ const Layout: React.SFC = (props) => {
 
       <style jsx>{`
         .wrapper {
-          max-width: 60em;
+          max-width: 53em;
           margin: 0 auto;
           padding: 0em 2em;
         }

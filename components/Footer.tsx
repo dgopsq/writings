@@ -1,5 +1,5 @@
 import React from 'react'
-import { colors } from '../theme'
+import { colors, typography, getHeaderFontFamily } from '../theme'
 import Layout from './Layout'
 
 const Footer: React.SFC = () => {
@@ -32,7 +32,9 @@ const Footer: React.SFC = () => {
       <style jsx>{`
         .wrapper {
           padding: 2em 0em;
-          background: ${colors.footerBackground};
+          background: ${colors.lightGrey};
+
+          font-family: ${getHeaderFontFamily()};
         }
 
         .flex {
@@ -50,7 +52,7 @@ const Footer: React.SFC = () => {
         .social {
           text-transform: uppercase;
           color: ${colors.primary};
-          font-size: 0.8em;
+          font-size: 0.7em;
           text-decoration: none;
         }
 
@@ -63,7 +65,7 @@ const Footer: React.SFC = () => {
         }
 
         .copyright {
-          font-size: 0.8em;
+          font-size: 0.7em;
           color: rgba(0, 0, 0, 0.8);
         }
 

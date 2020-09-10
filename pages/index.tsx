@@ -1,10 +1,14 @@
-import { colors } from '../theme'
 import Posts from '../components/Posts'
 import Layout from '../components/Layout'
 import Footer from '../components/Footer'
 import BigHeader from '../components/BigHeader'
+import { getPosts, Post } from '../lib/posts'
 
-const Home = () => {
+type Props = {
+  posts: Array<Post>
+}
+
+const Home: React.SFC<Props> = ({ posts }) => {
   return (
     <>
       <header className='header'>
@@ -13,7 +17,7 @@ const Home = () => {
 
       <div className='posts'>
         <Layout>
-          <Posts />
+          <Posts posts={posts} />
         </Layout>
       </div>
 
@@ -28,6 +32,16 @@ const Home = () => {
       `}</style>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const posts = getPosts()
+
+  return {
+    props: {
+      posts,
+    },
+  }
 }
 
 export default Home

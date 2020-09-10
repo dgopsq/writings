@@ -39,7 +39,7 @@ const BigHeader: React.SFC = () => {
           text-transform: uppercase;
           font-weight: 700;
           letter-spacing: 0.2em;
-          font-size: 1.7em;
+          font-size: 1.4em;
         }
 
         .wrapper h2 {
@@ -47,7 +47,7 @@ const BigHeader: React.SFC = () => {
 
           font-family: 'Abril Fatface', cursive;
           letter-spacing: 0.1em;
-          font-size: 8em;
+          font-size: 6em;
         }
 
         .wrapper h3 {
@@ -55,7 +55,7 @@ const BigHeader: React.SFC = () => {
 
           font-weight: 400;
           letter-spacing: 0.01em;
-          font-size: 1.4em;
+          font-size: 1.1em;
         }
 
         @media all and (max-width: 42em) {

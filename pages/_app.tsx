@@ -1,22 +1,31 @@
 import { AppProps } from 'next/app'
 import Head from 'next/head'
-import 'normalize.css'
+import { typography } from '../theme'
+import { useEffect } from 'react'
+import Seo from '../components/Seo'
+import { init } from 'insights-js'
+import { INSIGHTS_TOKEN } from '../utils/configs'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    // Insights
+    init(INSIGHTS_TOKEN, { ignoreErrors: true })
+
+    // Typography.js
+    typography.injectStyles()
+  }, [])
+
   return (
     <>
       <Head>
-        <title>dgopsq</title>
         <link
           rel='icon'
           href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>'
         />
 
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-        <meta
-          name='description'
-          content='Diego Pasquali, full stack engineer and tech enthusiast.'
-        />
+
+        <Seo />
 
         <link
           href='https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans:wght@400;700&display=swap'
@@ -24,12 +33,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
 
         <style>{`
-          html {
-            font-size: 100%;
-          }
-
-          body {
-            font-family: 'Open Sans', sans-serif;
+          @media all and (max-width: 42em) {
+            body {
+              font-size: 90%;
+            }
           }
         `}</style>
       </Head>
