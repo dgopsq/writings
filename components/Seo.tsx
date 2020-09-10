@@ -1,5 +1,6 @@
 import React from 'react'
 import { BASE_URL, DEFAULT_TITLE, DEFAULT_DESCRIPTION } from '../utils/configs'
+import Head from 'next/head'
 
 type Props = {
   title?: string
@@ -22,7 +23,7 @@ const Seo: React.SFC<Props> = ({
   const computedUrl = url || BASE_URL
 
   return (
-    <>
+    <Head>
       <title key='baseTitle'>{computedTitle}</title>
       <meta
         key='baseDescription'
@@ -57,8 +58,10 @@ const Seo: React.SFC<Props> = ({
       />
       <meta key='twImage' name='twitter:image' content={computedImage} />
 
-      {canonical ? <link rel='canonical' href={canonical} /> : undefined}
-    </>
+      {canonical ? (
+        <link key='canonical' rel='canonical' href={canonical} />
+      ) : undefined}
+    </Head>
   )
 }
 

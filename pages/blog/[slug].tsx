@@ -19,14 +19,12 @@ const SinglePost: React.SFC<Props> = ({ post }) => {
 
   return (
     <>
-      <Head>
-        <Seo
-          title={`${DEFAULT_TITLE} - ${post.frontmatter.title}`}
-          description={post.frontmatter.description}
-          url={generatePostUrl(post.slug)}
-          canonical={generatePostUrl(post.slug)}
-        />
-      </Head>
+      <Seo
+        title={`${DEFAULT_TITLE} - ${post.frontmatter.title}`}
+        description={post.frontmatter.description}
+        url={generatePostUrl(post.slug)}
+        canonical={generatePostUrl(post.slug)}
+      />
 
       <header className='header'>
         <SmallHeader />

@@ -17,6 +17,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <Seo />
+
       <Head>
         <link
           rel='icon'
@@ -24,8 +26,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
 
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-
-        <Seo />
 
         <link
           href='https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans:wght@400;700&display=swap'
