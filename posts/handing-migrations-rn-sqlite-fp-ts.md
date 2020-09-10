@@ -81,10 +81,10 @@ The `setup` function is what we precedently called "Migration manager". This fun
 ```tsx
 const sqliteMigrations: ISQLiteMigrations = {
   0: `CREATE TABLE IF NOT EXISTS articles (
-		    id INTEGER PRIMARY KEY,
-		    title TEXT NOT NULL,
-				body TEXT NOT NULL
-		  );`,
+        id INTEGER PRIMARY KEY,
+        title TEXT NOT NULL,
+        body TEXT NOT NULL
+      );`,
 }
 ```
 
