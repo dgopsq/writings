@@ -20,7 +20,7 @@ const SinglePost: React.SFC<Props> = ({ post }) => {
   return (
     <>
       <Seo
-        title={`${DEFAULT_TITLE} - ${post.frontmatter.title}`}
+        title={`${post.frontmatter.title} — ${DEFAULT_TITLE}`}
         description={post.frontmatter.description}
         url={generatePostUrl(post.slug)}
         canonical={generatePostUrl(post.slug)}
