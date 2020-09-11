@@ -10,8 +10,7 @@ export const IS_TEST = process.env.NODE_ENV === 'test'
  * Meta configs
  */
 
-export const DEFAULT_TITLE =
-  process.env.NEXT_PUBLIC_DEFAULT_TITLE || 'Diego Pasquali'
+export const DEFAULT_TITLE = process.env.NEXT_PUBLIC_DEFAULT_TITLE || 'dgopsq'
 
 export const DEFAULT_DESCRIPTION =
   process.env.NEXT_PUBLIC_DEFAULT_DESCRIPTION ||
