@@ -111,9 +111,9 @@ This is going to create a `__migrations` table with an `id` column, a `version` 
 ```tsx
 // Decoder that represents a single migration
 migrationsDecoder = Decoder.type({
-	id: Decoder.number,
-	version: Decoder.number,
-	executed_at: Decoder.string,
+  id: Decoder.number,
+  version: Decoder.number,
+  executed_at: Decoder.string,
 })
 
 // ...
@@ -129,29 +129,26 @@ At this point we need to check the migrations to execute (if any) using the last
 
 ```tsx
 private getUnexecutedMigrations = (migrations: ISQLiteMigrations) => (
-    maybeLastMigration: Option.Option<number>,
-  ): Array<number> =>
-    pipe(
-      // Transform the migrations object into an
-      // array of versions `Array<number>`
-      // and sort it
-      Array.map(Number)(Object.keys(migrations)),
-      Array.sort(ordNumber),
-
-      // If there's a stored migration, return
-      // only the migrations after that one, otherwise
-      // return all the migrations
-      (migrationsVersions) =>
-        pipe(
-          maybeLastMigration,
-          Option.fold(
-            () => migrationsVersions,
-            (lastMigration) =>
-              Array.dropLeft(migrationsVersions.indexOf(lastMigration) + 1)(
-                migrationsVersions,
-              ),
-          ),
+  maybeLastMigration: Option.Option<number>,
+): Array<number> =>
+  pipe(
+    Array.map(Number)(Object.keys(migrations)),
+    Array.sort(ordNumber),
+    (migrationsVersions) =>
+      pipe(
+        maybeLastMigration,
+        Option.fold(
+          () => migrationsVersions,
+          (lastMigration) =>
+            // Remove the left part of the migrations array from
+            // the last migration executed (this is a _very_ unsafe
+            // way to calculate migrations)
+            Array.dropLeft(migrationsVersions.indexOf(lastMigration) + 1)(
+              migrationsVersions,
+            ),
         ),
+      ),
+  )
 ```
 
 It's worth noting that `Array`, `Option` and `pipe` are all modules / functions contained into fp-ts. `Array` is just a convenient FP way to handle native JavaScript arrays, `Option` is the monad that handle the effect of optionality (the `Maybe` in [Haskell](https://wiki.haskell.org/Maybe)) and `pipe` is just an helper to chain functions from left to right.
