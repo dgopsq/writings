@@ -140,9 +140,6 @@ private getUnexecutedMigrations = (migrations: ISQLiteMigrations) => (
         Option.fold(
           () => migrationsVersions,
           (lastMigration) =>
-            // Remove the left part of the migrations array from
-            // the last migration executed (this is a _very_ unsafe
-            // way to calculate migrations)
             Array.dropLeft(migrationsVersions.indexOf(lastMigration) + 1)(
               migrationsVersions,
             ),
