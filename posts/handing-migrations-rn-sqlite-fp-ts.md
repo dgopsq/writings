@@ -32,7 +32,7 @@ This simple procedure allow us to have a **versioned database** really easy to u
 
 ## Expo SQLite and the Storage algebra
 
-Before writing the implementation of our migrations we need a bit of background! One of the many modules that Expo makes available to us is [expo-sqlite](https://docs.expo.io/versions/latest/sdk/sqlite/), which is a mobile implementation of an SQLite database. The usability is quite simple (although I struggled a bit to understand where actually was the database file created inside the simulator 😾) but I didn't like so much the APIs. For this reason I wrote a simple _Algebra_ (which is an abstract collection of functions and values, if you are coming from the _Object Oriented Programming_ you can think of it as an _Interface_) to "wrap" them:
+Before writing the implementation of our migrations we need a bit of background! One of the many modules that Expo makes available to us is [expo-sqlite](https://docs.expo.io/versions/latest/sdk/sqlite/), which is a mobile implementation of an SQLite database. The usability is quite simple (although I struggled a bit to understand where actually was the database file created inside the simulator 😾) but I didn't like so much the APIs. For this reason I wrote a simple [_Algebra_](https://typelevel.org/blog/2019/02/06/algebraic-api-design.html) (which is an abstract collection of functions and values, if you are coming from the _Object Oriented Programming_ you can think of it as an _Interface_) to "wrap" them:
 
 ```tsx
 interface IStorageAlgebra {
