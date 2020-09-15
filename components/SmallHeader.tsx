@@ -10,7 +10,7 @@ const SmallHeader: React.SFC = () => {
         <Layout>
           <Link href='/'>
             <a>
-              <h1>DGOPSQ</h1>
+              <span>DGOPSQ</span>
             </a>
           </Link>
         </Layout>
@@ -26,7 +26,9 @@ const SmallHeader: React.SFC = () => {
           text-decoration: none;
         }
 
-        .wrapper h1 {
+        .wrapper span {
+          display: block;
+
           margin: 0em;
           padding: 1em;
 
