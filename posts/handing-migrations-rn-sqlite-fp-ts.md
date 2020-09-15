@@ -25,14 +25,14 @@ Let us begin with a small example to understand migrations: imagine to have an e
 - `V2__create_posts_table.sql`
 - `V3__create_comments_table.sql`
 
-When we call Gigi, he'll start handling these migrations by checking his notebook for the last migration he executed on the database. In this first case he will see that his notebook is empty, thus he will start executing all the migrations one-by-one, and at the end he's going to write that the last executed migration is `V3__create_comments_table.sql`.
-The next day we add a `V4__delete_comments_table.sql` query into the list, we call Gigi and he'll start the usual procedure, but this time he knows that he does't have to execute all the migrations again, but just the ones after `V3__create_comments_table.sql`, so he starts executing the remaining SQL queries, and at the end he writes the new latest query in his notebook.
+When we call Gigi, he'll start handling these migrations by checking his notebook for the last migration he executed on the database. In this first case he will notice that his notebook is empty, thus he will start executing all the migrations one-by-one, and at the end he's going to write that the last executed migration is `V3__create_comments_table.sql`.
+The next day we add a `V4__delete_comments_table.sql` query into the list, we call Gigi and he'll start the usual procedure, but this time he knows that he does't have to execute all the migrations again, but just the ones after `V3__create_comments_table.sql`, so he starts executing the remaining SQL queries, and at the end he will replace the latest query in his notebook.
 
-This simple procedure allow us to have a **versioned database** really easy to update and manage even when we don't really have a direct access (and this is our case!). What we are going to do here is _implement this feature from scratch using fp-ts_ with the advantage of an FP implementation and a light code (libraries like TypeORM are quite big sometimes 😕).
+This simple procedure allow us to have a **versioned database** really easy to update and manage even when we don't really have a direct access (and this is our case!). What we are going to do here is _implement this feature from scratch using fp-ts_ with the advantage of an FP implementation and a light codebase (libraries like TypeORM are quite big sometimes 😕).
 
 ## Expo SQLite and the Storage algebra
 
-Before writing the implementation of our migrations we need a bit of background! One of the many modules that Expo makes available to us is [expo-sqlite](https://docs.expo.io/versions/latest/sdk/sqlite/), which is a mobile implementation of an SQLite database. The usability is quite simple (although I struggled a bit to understand where actually was the database file created inside the simulator 😾) but I didn't like so much the APIs. For this reason I wrote a simple [_Algebra_](https://typelevel.org/blog/2019/02/06/algebraic-api-design.html) (which is an abstract collection of functions and values, if you are coming from the _Object Oriented Programming_ you can think of it as an _Interface_) to "wrap" them:
+Before writing the implementation of our migrations we need a bit of background! One of the many modules that Expo makes available to us is [expo-sqlite](https://docs.expo.io/versions/latest/sdk/sqlite/), which is a mobile implementation of an SQLite database. The usage is quite simple (although I struggled a bit to understand where actually was the database file created inside the simulator 😾) but I didn't like so much the APIs. For this reason I wrote a simple [_Algebra_](https://typelevel.org/blog/2019/02/06/algebraic-api-design.html) (which is an abstract collection of functions and values, if you are coming from the _Object Oriented Programming_ you can think of it as an _Interface_) to "wrap" them:
 
 ```tsx
 interface IStorageAlgebra {
@@ -76,7 +76,7 @@ What we are going to do now is implement the `setup` function, which will be exe
 
 ## The migrations manager
 
-The `setup` function is what we precedently called "Migration manager". This function is divided into three main parts: **Bootstrap**, **Check**, and **Execution**. Before delving a bit deeper we should point out how the list of migrations is implemented inside this project:
+The `setup` function is what we precedently called "Migration manager". This function is divided into three main parts: **Bootstrap**, **Check**, and **Execution**. Before delving deeper we should point out how the list of migrations is implemented inside this project:
 
 ```tsx
 const sqliteMigrations: ISQLiteMigrations = {
@@ -90,11 +90,11 @@ const sqliteMigrations: ISQLiteMigrations = {
 
 Quite simple, isn't it? It's just a JavaScript object with the version number as the key, and the query to execute as the value.
 
-Not that we know how the migrations are structured, let's analyse the `setup` function!
+Now that we know how the migrations are structured, let's analyse the `setup` function!
 
 ### Bootstrap
 
-In the Bootstrap we are merely creating the `__migration` table (the place in which we are going to store the executed migrations) if it's not already present, and we are retrieving the last executed migration. The code for this part is quite simple:
+In the _Bootstrap_ we are merely creating the `__migration` table (the place in which we are going to store the executed migrations) if it's not already present, and we are retrieving the last executed migration. The code for this part is quite simple:
 
 ```tsx
 this.executeQuery(`
@@ -125,7 +125,7 @@ this.retrieveQuery(this.migrationsDecoder)(`
 
 ### Check
 
-At this point we need to check the migrations to execute (if any) using the last migration retrieved. For this task we are going to create a specific helper function named `getUnexecutedMigrations` that takes all the migrations plus an optional last migration, and returns a list of unexecuted migrations:
+At this point we need to _Check_ the migrations to execute (if any) using the last migration retrieved. For this task we are going to create a specific helper function named `getUnexecutedMigrations` that takes all the migrations plus an optional last migration, and returns a list of unexecuted migrations:
 
 ```tsx
 private getUnexecutedMigrations = (migrations: ISQLiteMigrations) => (
@@ -152,7 +152,7 @@ It's worth noting that `Array`, `Option` and `pipe` are all modules / functions 
 
 ### Execution
 
-The last section to analyse is the execution. Here, as the name probably suggests, we are going to execute all the remaining migrations. For each migration executed we need to add a line to the `__migrations` table, so it's important to execute both queries in a single transaction, to assure the database consistency:
+The last section to analyse is the _Execution_. Here, as the name probably suggests, we are going to execute all the remaining migrations. For each migration executed we need to add a line into the `__migrations` table, so it's important to execute both queries in a single transaction, to assure the database consistency:
 
 ```tsx
 // Here we are managing the array of non-executed
@@ -214,6 +214,6 @@ public setup = (): TaskEither.TaskEither<IDatabaseError, number> =>
   )
 ```
 
-All the explained parts are joined through a `pipe` with `TaskEither.chain` as the "link". Since `TaskEither` is a monad we can compose it using its `flatmap` function (which is just renamed here into `chain`). The last two functions are a bit obscure: `Array.array.sequence(TaskEither.taskEither)` takes an `Array<TaskEither<E, A>>` and returns a `TaskEither<E, Array<A>>`. We are using it to "merge" all the successful results of the various async computations into a single `TaskEither` that we are going to `map` into a `undefined` because we don't actually need any result.
+All the explained parts are joined through a `pipe` with `TaskEither.chain` as the "link". Since `TaskEither` is a monad we can compose it using its `flatmap` function (which is just renamed here into `chain`). The last two functions are a bit obscure: `Array.array.sequence(TaskEither.taskEither)` takes an `Array<TaskEither<E, A>>` and returns a `TaskEither<E, Array<A>>`. We are using it to "merge" all the successful results of the various async computations into a single `TaskEither` that we are going to `map` into an `undefined` because we don't actually need any result.
 
 That's all! 🙋‍♂️
