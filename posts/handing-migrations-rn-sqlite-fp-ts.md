@@ -26,13 +26,13 @@ Let us begin with a small example to understand migrations: imagine to have an e
 - `V3__create_comments_table.sql`
 
 When we call Gigi, he'll start handling these migrations by checking his notebook for the last migration he executed on the database. In this first case he will see that his notebook is empty, thus he will start executing all the migrations one-by-one, and at the end he's going to write that the last executed migration is `V3__create_comments_table.sql`.
-The next day we add a `V4__delete_comments_table.sql` query in the list, we call Gigi and he'll start the usual procedure, but this time he knows that he does't have to execute all the migrations again, but just the ones after `V3__create_comments_table.sql`, so he starts executing the remaining SQL queries, and at the end he writes the new latest query in his notebook.
+The next day we add a `V4__delete_comments_table.sql` query into the list, we call Gigi and he'll start the usual procedure, but this time he knows that he does't have to execute all the migrations again, but just the ones after `V3__create_comments_table.sql`, so he starts executing the remaining SQL queries, and at the end he writes the new latest query in his notebook.
 
 This simple procedure allow us to have a **versioned database** really easy to update and manage even when we don't really have a direct access (and this is our case!). What we are going to do here is _implement this feature from scratch using fp-ts_ with the advantage of an FP implementation and a light code (libraries like TypeORM are quite big sometimes 😕).
 
 ## Expo SQLite and the Storage algebra
 
-Before writing the implementation of our migrations we need a bit of background! One of the many modules that Expo makes available to us is [expo-sqlite](https://docs.expo.io/versions/latest/sdk/sqlite/), which is a mobile implementation of an SQLite database. The usability is quite simple (although I struggled a bit to understand where actually was the database file created inside the simulator 😾) but I didn't like so much the APIs. For this reason I wrote a simple _Algebra_ (which is an abstract collection of functions and values, if you are coming from the _Object Oriented Programming_ you can think of it as an _Interface_) to "wrap" them:
+Before writing the implementation of our migrations we need a bit of background! One of the many modules that Expo makes available to us is [expo-sqlite](https://docs.expo.io/versions/latest/sdk/sqlite/), which is a mobile implementation of an SQLite database. The usability is quite simple (although I struggled a bit to understand where actually was the database file created inside the simulator 😾) but I didn't like so much the APIs. For this reason I wrote a simple [_Algebra_](https://typelevel.org/blog/2019/02/06/algebraic-api-design.html) (which is an abstract collection of functions and values, if you are coming from the _Object Oriented Programming_ you can think of it as an _Interface_) to "wrap" them:
 
 ```tsx
 interface IStorageAlgebra {
