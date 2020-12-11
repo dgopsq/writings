@@ -10,7 +10,7 @@
     "generateSitemap": "ts-node -O '{\"module\":\"commonjs\"}' generateSitemap.ts"
   },
   "dependencies": {
-    "next": "9.4.4",
+    "next": "^10.0.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-syntax-highlighter": "^13.5.3",
