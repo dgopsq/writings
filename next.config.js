@@ -1,4 +1,8 @@
 module.exports = {
   exportTrailingSlash: false,
-  optimizeFonts: true,
+
+  experimental: {
+    optimizeFonts: true,
+    optimizeImages: true,
+  },
 }
