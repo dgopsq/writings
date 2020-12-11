@@ -25,8 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
         <link
           href='https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans:wght@400;700&display=swap'
-          rel='preload'
-          as='style'
+          rel='stylesheet'
         />
 
         <style>{`
