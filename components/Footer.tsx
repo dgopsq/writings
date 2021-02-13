@@ -23,7 +23,7 @@ const Footer: React.SFC = () => {
             </div>
 
             <div className='flex-item'>
-              <div className='copyright'>© 2020 Diego Pasquali</div>
+              <div className='copyright'>© 2021 Diego Pasquali</div>
             </div>
           </div>
         </Layout>
