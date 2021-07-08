@@ -8,7 +8,7 @@ const BigHeader: React.FC = () => {
         <Layout>
           <h1>Diego Pasquali</h1>
           <h2>DGOPSQ</h2>
-          <h3>Full stack engineer and tech enthusiast</h3>
+          <h3>Software Engineer and tech enthusiast</h3>
         </Layout>
       </div>
 
