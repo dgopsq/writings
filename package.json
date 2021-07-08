@@ -7,8 +7,7 @@
     "compile": "tsc --noEmit",
     "build": "NODE_ENV=production yarn compile && next build && next export",
     "start": "next start",
-    "deploy": "NODE_ENV=production yarn build && gh-pages -d out -a",
-    "generateSitemap": "ts-node -O '{\"module\":\"commonjs\"}' generateSitemap.ts"
+    "deploy": "NODE_ENV=production yarn build && gh-pages -d out -a"
   },
   "dependencies": {
     "next": "^11.0.1",
