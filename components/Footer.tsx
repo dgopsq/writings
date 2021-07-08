@@ -10,15 +10,30 @@ const Footer: React.FC = () => {
         <Layout>
           <div className='flex'>
             <div className='flex-item'>
-              <a href='mailto:hello@dgopsq.space' className='social'>
-                Email
+              <a
+                href='https://www.linkedin.com/in/dgopsq/'
+                target='_blank'
+                rel='noopener'
+                className='social'
+              >
+                LinkedIn
               </a>
 
-              <a href='https://twitter.com/dgopsq' className='social'>
+              <a
+                href='https://twitter.com/dgopsq'
+                target='_blank'
+                rel='noopener'
+                className='social'
+              >
                 Twitter
               </a>
 
-              <a href='https://github.com/dgopsq' className='social'>
+              <a
+                href='https://github.com/dgopsq'
+                target='_blank'
+                rel='noopener'
+                className='social'
+              >
                 Github
               </a>
             </div>
