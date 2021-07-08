@@ -8,7 +8,7 @@ type Props = {
   posts: Array<Post>
 }
 
-const Home: React.SFC<Props> = ({ posts }) => {
+const Home: React.FC<Props> = ({ posts }) => {
   return (
     <>
       <header className='header'>

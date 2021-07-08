@@ -1,9 +1,8 @@
-import React from 'react'
 import { colors } from '../theme'
 import Layout from './Layout'
 import Link from 'next/link'
 
-const SmallHeader: React.SFC = () => {
+const SmallHeader: React.FC = () => {
   return (
     <>
       <div className='wrapper'>

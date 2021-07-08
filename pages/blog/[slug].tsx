@@ -1,4 +1,3 @@
-import React from 'react'
 import { getPostsSlugs, getSinglePost, Post } from '../../lib/posts'
 import Markdown from '../../components/Markdown'
 import Layout from '../../components/Layout'
@@ -14,7 +13,7 @@ type Props = {
   post?: Post
 }
 
-const SinglePost: React.SFC<Props> = ({ post }) => {
+const SinglePost: React.FC<Props> = ({ post }) => {
   if (!post) return null
 
   return (

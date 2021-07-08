@@ -1,4 +1,3 @@
-import React from 'react'
 import { formatDate } from '../utils/formats'
 import { colors, getHeaderFontFamily } from '../theme'
 
@@ -8,7 +7,7 @@ type Props = {
   big?: boolean
 }
 
-const PostTitle: React.SFC<Props> = ({ value, date, big }) => {
+const PostTitle: React.FC<Props> = ({ value, date, big }) => {
   const postDate = formatDate(date)
 
   return (

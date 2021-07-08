@@ -1,6 +1,4 @@
-import React from 'react'
-
-const Layout: React.SFC = (props) => {
+const Layout: React.FC = (props) => {
   return (
     <>
       <div className='wrapper'>{props.children}</div>

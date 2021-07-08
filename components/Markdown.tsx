@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { typography, colors } from '../theme'
 import Code from './Code'
@@ -7,10 +6,10 @@ type Props = {
   source: string
 }
 
-const Markdown: React.SFC<Props> = ({ source }) => {
+const Markdown: React.FC<Props> = ({ source }) => {
   return (
     <>
-      <ReactMarkdown source={source} renderers={{ code: Code }} />
+      <ReactMarkdown components={{ code: Code }} children={source} />
 
       <style global jsx>{`
         a,

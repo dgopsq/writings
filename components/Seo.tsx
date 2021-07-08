@@ -1,4 +1,3 @@
-import React from 'react'
 import { BASE_URL, DEFAULT_TITLE, DEFAULT_DESCRIPTION } from '../utils/configs'
 import Head from 'next/head'
 
@@ -10,7 +9,7 @@ type Props = {
   canonical?: string
 }
 
-const Seo: React.SFC<Props> = ({
+const Seo: React.FC<Props> = ({
   title,
   description,
   image,

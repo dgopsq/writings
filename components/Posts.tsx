@@ -1,15 +1,13 @@
-import React from 'react'
 import Link from 'next/link'
 import { Post } from '../lib/posts'
 import { getHeaderFontFamily } from '../theme'
-import { formatDate } from '../utils/formats'
 import PostTitle from './PostTitle'
 
 type Props = {
   posts: Array<Post>
 }
 
-const Posts: React.SFC<Props> = ({ posts }) => {
+const Posts: React.FC<Props> = ({ posts }) => {
   return (
     <>
       <div className='wrapper'>

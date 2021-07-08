@@ -1,8 +1,9 @@
-import React from 'react'
 import { colors, typography, getHeaderFontFamily } from '../theme'
 import Layout from './Layout'
 
-const Footer: React.SFC = () => {
+const Footer: React.FC = () => {
+  const year = new Date().getFullYear()
+
   return (
     <>
       <div className='wrapper'>
@@ -23,7 +24,7 @@ const Footer: React.SFC = () => {
             </div>
 
             <div className='flex-item'>
-              <div className='copyright'>© 2021 Diego Pasquali</div>
+              <div className='copyright'>© {year} Diego Pasquali</div>
             </div>
           </div>
         </Layout>

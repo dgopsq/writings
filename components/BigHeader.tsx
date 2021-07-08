@@ -1,8 +1,7 @@
-import React from 'react'
 import { colors } from '../theme'
 import Layout from './Layout'
 
-const BigHeader: React.SFC = () => {
+const BigHeader: React.FC = () => {
   return (
     <>
       <div className='wrapper'>
