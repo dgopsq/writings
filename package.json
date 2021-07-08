@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "NODE_ENV=production next build && next export",
+    "compile": "tsc --noEmit",
+    "build": "NODE_ENV=production yarn compile && next build && next export",
     "start": "next start",
     "deploy": "NODE_ENV=production yarn build && gh-pages -d out -a",
     "generateSitemap": "ts-node -O '{\"module\":\"commonjs\"}' generateSitemap.ts"
