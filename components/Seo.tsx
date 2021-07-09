@@ -1,6 +1,6 @@
 import { BASE_URL, DEFAULT_TITLE, DEFAULT_DESCRIPTION } from '../utils/configs'
 import Head from 'next/head'
-import { Article, Person } from 'schema-dts'
+import { Article, Person, WebSite } from 'schema-dts'
 import { jsonLdScriptProps } from 'react-schemaorg'
 
 type Props = {
@@ -93,14 +93,24 @@ const Seo: React.FC<Props> = ({
         })}
       />
 
+      <script
+        {...jsonLdScriptProps<WebSite>({
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          '@id': `${BASE_URL}/#website`,
+          author: {
+            '@id': `${BASE_URL}/#person`,
+          },
+        })}
+      />
+
       {isPost ? (
         <script
           {...jsonLdScriptProps<Article>({
             '@context': 'https://schema.org',
             '@type': 'TechArticle',
             mainEntityOfPage: {
-              '@type': 'WebPage',
-              '@id': 'https://google.com/article',
+              '@id': `${BASE_URL}/#website`,
             },
             headline: computedTitle,
             datePublished: date.toISOString(),
