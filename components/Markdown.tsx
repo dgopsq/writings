@@ -1,5 +1,7 @@
 import ReactMarkdown from 'react-markdown'
+import RemarkHint from 'remark-hint'
 import { typography, colors } from '../theme'
+import { BASE_URL } from '../utils/configs'
 import Code from './Code'
 
 type Props = {
@@ -9,7 +11,11 @@ type Props = {
 const Markdown: React.FC<Props> = ({ source }) => {
   return (
     <>
-      <ReactMarkdown components={{ code: Code }} children={source} />
+      <ReactMarkdown
+        components={{ code: Code }}
+        remarkPlugins={[RemarkHint]}
+        children={source}
+      />
 
       <style global jsx>{`
         a,
@@ -39,6 +45,18 @@ const Markdown: React.FC<Props> = ({ source }) => {
 
           margin-top: ${typography.rhythm(1)} !important;
           margin-bottom: ${typography.rhythm(1)} !important;
+        }
+
+        .hint {
+          padding: 1em;
+        }
+
+        .hint.tip {
+          background-color: ${colors.lightPrimary};
+          border-radius: 0.25em;
+          border-top-left-radius: 0em;
+          border-bottom-left-radius: 0em;
+          border-left: 4px solid ${colors.primary};
         }
       `}</style>
     </>

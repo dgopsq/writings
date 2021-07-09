@@ -48,7 +48,7 @@ const PostTitle: React.FC<Props> = ({ value, date, big, tags }) => {
         .post-title {
           color: ${colors.primary};
           font-weight: bolder;
-          line-height: 1.3;
+          line-height: 1.4;
         }
 
         h1.post-title {
@@ -64,7 +64,7 @@ const PostTitle: React.FC<Props> = ({ value, date, big, tags }) => {
           font-size: 0.75em;
           font-family: ${getHeaderFontFamily()};
 
-          margin-top: 0.7em;
+          margin-top: 1em;
         }
 
         .post-date.big {
@@ -72,7 +72,7 @@ const PostTitle: React.FC<Props> = ({ value, date, big, tags }) => {
         }
 
         .post-tags {
-          margin-top: 0.6em;
+          margin-top: 0.8em;
           display: flex;
           flex-direction: row;
         }
