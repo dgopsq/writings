@@ -74,7 +74,7 @@ const Seo: React.FC<Props> = ({
         {...jsonLdScriptProps<Person>({
           '@context': 'https://schema.org',
           '@type': 'Person',
-          '@id': 'https://dgopsq.space/#person',
+          '@id': `${BASE_URL}/#person`,
           name: 'Diego Pasquali',
           alumniOf: {
             '@type': 'CollegeOrUniversity',
@@ -89,6 +89,7 @@ const Seo: React.FC<Props> = ({
             'React Native',
             'Functional Programming',
           ],
+          jobTitle: 'Software Engineer',
         })}
       />
 
@@ -103,8 +104,9 @@ const Seo: React.FC<Props> = ({
             },
             headline: computedTitle,
             datePublished: date.toISOString(),
+            image: [computedImage],
             author: {
-              '@id': 'https://dgopsq.space/#person',
+              '@id': `${BASE_URL}/#person`,
             },
           })}
         />
