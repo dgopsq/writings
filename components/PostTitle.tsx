@@ -5,19 +5,30 @@ type Props = {
   value: string
   date: Date
   big?: boolean
+  tags?: Array<string>
 }
 
-const PostTitle: React.FC<Props> = ({ value, date, big }) => {
+const PostTitle: React.FC<Props> = ({ value, date, big, tags }) => {
   const postDate = formatDate(date)
 
   return (
     <>
       <div>
-        {big ? (
-          <h1 className='post-title'>{value}</h1>
-        ) : (
-          <h2 className='post-title'>{value}</h2>
-        )}
+        <div>
+          {big ? (
+            <h1 className='post-title'>{value}</h1>
+          ) : (
+            <h2 className='post-title'>{value}</h2>
+          )}
+        </div>
+
+        {tags ? (
+          <div className={`post-tags ${big ? 'big' : ''}`}>
+            {tags.map((tag) => (
+              <span className='post-tag'>{tag}</span>
+            ))}
+          </div>
+        ) : undefined}
 
         <time
           className={`post-date ${big ? 'big' : ''}`}
@@ -58,6 +69,27 @@ const PostTitle: React.FC<Props> = ({ value, date, big }) => {
 
         .post-date.big {
           font-size: 1em;
+        }
+
+        .post-tags {
+          margin-top: 0.6em;
+          display: flex;
+          flex-direction: row;
+        }
+
+        .post-tags.big {
+          margin-top: 0.9em;
+        }
+
+        .post-tag {
+          font-size: 0.6em;
+          padding: 0.2em 0.5em;
+          color: ${colors.primary};
+          font-family: ${getHeaderFontFamily()};
+          background-color: ${colors.lightGrey};
+          border-radius: 0.3em;
+
+          margin-right: 0.5em;
         }
 
         @media all and (max-width: 42em) {

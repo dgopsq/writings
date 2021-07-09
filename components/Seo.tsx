@@ -1,5 +1,7 @@
 import { BASE_URL, DEFAULT_TITLE, DEFAULT_DESCRIPTION } from '../utils/configs'
 import Head from 'next/head'
+import { Article, Person } from 'schema-dts'
+import { jsonLdScriptProps } from 'react-schemaorg'
 
 type Props = {
   title?: string
@@ -7,6 +9,8 @@ type Props = {
   image?: string
   url?: string
   canonical?: string
+  tags?: Array<string>
+  date?: Date
 }
 
 const Seo: React.FC<Props> = ({
@@ -15,11 +19,14 @@ const Seo: React.FC<Props> = ({
   image,
   url,
   canonical,
+  tags,
+  date,
 }) => {
   const computedImage = image || `${BASE_URL}/thumbnail.png`
   const computedTitle = title || DEFAULT_TITLE
   const computedDescription = description || DEFAULT_DESCRIPTION
   const computedUrl = url || BASE_URL
+  const isPost = !!tags && !!date
 
   return (
     <Head>
@@ -59,6 +66,48 @@ const Seo: React.FC<Props> = ({
 
       {canonical ? (
         <link key='canonical' rel='canonical' href={canonical} />
+      ) : undefined}
+
+      {tags ? <meta name='keywords' content={tags.join(', ')} /> : undefined}
+
+      <script
+        {...jsonLdScriptProps<Person>({
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          '@id': 'https://dgopsq.space/#person',
+          name: 'Diego Pasquali',
+          alumniOf: {
+            '@type': 'CollegeOrUniversity',
+            name: ['University of Camerino'],
+          },
+          knowsAbout: [
+            'Software',
+            'Computer Science',
+            'Frontend',
+            'JavaScript',
+            'React',
+            'React Native',
+            'Functional Programming',
+          ],
+        })}
+      />
+
+      {isPost ? (
+        <script
+          {...jsonLdScriptProps<Article>({
+            '@context': 'https://schema.org',
+            '@type': 'TechArticle',
+            mainEntityOfPage: {
+              '@type': 'WebPage',
+              '@id': 'https://google.com/article',
+            },
+            headline: computedTitle,
+            datePublished: date.toISOString(),
+            author: {
+              '@id': 'https://dgopsq.space/#person',
+            },
+          })}
+        />
       ) : undefined}
     </Head>
   )

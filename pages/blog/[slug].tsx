@@ -16,6 +16,8 @@ type Props = {
 const SinglePost: React.FC<Props> = ({ post }) => {
   if (!post) return null
 
+  const postDate = new Date(post.frontmatter.date)
+
   return (
     <>
       <Seo
@@ -23,6 +25,8 @@ const SinglePost: React.FC<Props> = ({ post }) => {
         description={post.frontmatter.description}
         url={generatePostUrl(post.slug)}
         canonical={generatePostUrl(post.slug)}
+        tags={post.frontmatter.tags}
+        date={postDate}
       />
 
       <header className='header'>
@@ -33,7 +37,8 @@ const SinglePost: React.FC<Props> = ({ post }) => {
         <Layout>
           <PostTitle
             value={post.frontmatter.title}
-            date={new Date(post.frontmatter.date)}
+            date={postDate}
+            tags={post.frontmatter.tags}
             big
           />
 

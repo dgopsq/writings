@@ -8,6 +8,7 @@ export type Post = {
     date: string
     title: string
     description: string
+    tags: Array<string>
   }
 }
 
@@ -30,6 +31,11 @@ function slugToFilename(slug: string) {
   return `${slug}.md`
 }
 
+function parseTags(tags: string, divisor: string = ',') {
+  const parsedTags = tags.split(divisor).map((t) => t.trim())
+  return parsedTags
+}
+
 function parsePostFile(filename: string): Post {
   const markdownWithMetadata = fs
     .readFileSync(`${contentDir}/${filename}`)
@@ -41,6 +47,8 @@ function parsePostFile(filename: string): Post {
 
   const slug = filenameToSlug(filename)
 
+  const tags = parseTags(data.tags || '')
+
   return {
     slug,
     content,
@@ -49,6 +57,7 @@ function parsePostFile(filename: string): Post {
       date,
       title,
       description,
+      tags,
     },
   }
 }

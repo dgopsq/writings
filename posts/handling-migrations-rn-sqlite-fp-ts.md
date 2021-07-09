@@ -2,6 +2,7 @@
 title: Handling migrations in React Native with SQLite and fp-ts
 description: Recently, in one of my side projects, I had to use expo-sqlite to manage a small client-side database in a React Native app, while using the awesome fp-ts. I don't know if I will ever be able to ship that app, but at least I'm gonna use the experience I earned in (I hope) a good way 🙂.
 date: 2020-09-15
+tags: Functional Programming, React Native, Expo, TypeScript
 ---
 
 Recently, in one of my side projects, I had to use [expo-sqlite](https://docs.expo.io/versions/latest/sdk/sqlite/) to manage a small client-side database in a **React Native** app, while using the awesome [fp-ts](https://github.com/gcanti/fp-ts). I don't know if I will ever be able to ship that app, but at least I'm gonna use the experience I earned in (I hope) a good way 🙂.
