@@ -108,6 +108,7 @@ const Seo: React.FC<Props> = ({
             author: {
               '@id': `${BASE_URL}/#person`,
             },
+            keywords: tags.join(', '),
           })}
         />
       ) : undefined}
