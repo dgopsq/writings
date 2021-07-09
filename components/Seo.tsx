@@ -1,6 +1,6 @@
 import { BASE_URL, DEFAULT_TITLE, DEFAULT_DESCRIPTION } from '../utils/configs'
 import Head from 'next/head'
-import { Article, Person, WebSite } from 'schema-dts'
+import { Article, Person, WebPage, WebSite } from 'schema-dts'
 import { jsonLdScriptProps } from 'react-schemaorg'
 
 type Props = {
@@ -121,7 +121,21 @@ const Seo: React.FC<Props> = ({
             keywords: tags.join(', '),
           })}
         />
-      ) : undefined}
+      ) : (
+        <script
+          {...jsonLdScriptProps<WebPage>({
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            mainEntityOfPage: {
+              '@id': `${BASE_URL}/#website`,
+            },
+            author: {
+              '@id': `${BASE_URL}/#person`,
+            },
+            headline: computedTitle,
+          })}
+        />
+      )}
     </Head>
   )
 }
