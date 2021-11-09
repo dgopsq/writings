@@ -43,7 +43,7 @@ function parsePostFile(filename: string): Post {
 
   const { data, content } = matter(markdownWithMetadata)
   const { title, description } = data
-  const date = data.date.toISOString()
+  const date = new Date(data.date).toISOString()
 
   const slug = filenameToSlug(filename)
 
