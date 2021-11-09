@@ -23,7 +23,7 @@ const Posts: React.FC<Props> = ({ posts }) => {
                   <a>
                     <PostTitle
                       value={post.frontmatter.title}
-                      date={new Date(post.frontmatter.website_date)}
+                      date={new Date(post.frontmatter.date)}
                       tags={post.frontmatter.tags}
                     />
                   </a>
