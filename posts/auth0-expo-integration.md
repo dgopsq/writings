@@ -20,7 +20,7 @@ Personally I'm quite positive using these technologies while building a new appl
 
 When in our team decided to use Auth0 and Expo the first thing I did was check for the compatibility. Expo is awesome to build applications using React Native, but it's a bit of a walled garden: features like the _Cloud Building_ and _over-the-air updates_ are specific for the **Managed Workflow** and will work out of the box just using supported Expo modules. When we need to _eject_ an Expo app to use a particular React Native library or because we need to go a bit more "low level" we are talking about the **Bare Workflow** ([here](https://docs.expo.io/introduction/managed-vs-bare/) you can find more details about this topic).
 
-!> With the new [EAS Build](https://docs.expo.io/build/introduction/) this requirement has been removed. We can build a React Native application in the cloud and have over-the-air updates even in **Bare Workflows**, although it's still a preview feature.
+> With the new [EAS Build](https://docs.expo.io/build/introduction/) this requirement has been removed. We can build a React Native application in the cloud and have over-the-air updates even in **Bare Workflows**, although it's still a preview feature.
 
 Turns out that Auth0 is not _effectively_ supported by Expo. When there's not an `expo-something` module and the library to integrate needs a `pod install` ([here the link](https://auth0.com/docs/quickstart/native/react-native/00-login) to the Auth0 React Native SDK) usually we can conclude that we'll have to eject our application from the magical Expo garden.
 

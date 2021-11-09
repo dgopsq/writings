@@ -47,10 +47,13 @@ const Markdown: React.FC<Props> = ({ source }) => {
           margin-bottom: ${typography.rhythm(1)} !important;
         }
 
+        blockquote,
         .hint {
           padding: 1em;
+          margin-left: 0em;
         }
 
+        blockquote,
         .hint.tip {
           background-color: ${colors.lightPrimary};
           border-radius: 0.25em;
