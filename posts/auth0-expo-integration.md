@@ -1,7 +1,7 @@
 ---
 title: Using Auth0 with Expo in the Managed Workflow
 description: How to use the Auth0 React Native SDK in a managed Expo application without ejecting from the Expo ecosystem.
-date: 2021-07-09
+website_date: 2021-07-09
 tags: Expo, React Native, Auth0, Authentication
 published: true
 canonical_url: https://www.dgopsq.space/blog/auth0-expo-integration

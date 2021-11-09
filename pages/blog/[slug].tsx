@@ -16,7 +16,7 @@ type Props = {
 const SinglePost: React.FC<Props> = ({ post }) => {
   if (!post) return null
 
-  const postDate = new Date(post.frontmatter.date)
+  const postDate = new Date(post.frontmatter.website_date)
 
   return (
     <>

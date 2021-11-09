@@ -5,7 +5,7 @@ export type Post = {
   slug: string
   content: string | null
   frontmatter: {
-    date: string
+    website_date: string
     title: string
     description: string
     tags: Array<string>
@@ -54,7 +54,7 @@ function parsePostFile(filename: string): Post {
     content,
 
     frontmatter: {
-      date,
+      website_date: date,
       title,
       description,
       tags,
@@ -68,8 +68,8 @@ export function getPosts(): Array<Post> {
     .map(parsePostFile)
     .sort(
       (a, b) =>
-        new Date(b.frontmatter.date).getTime() -
-        new Date(a.frontmatter.date).getTime(),
+        new Date(b.frontmatter.website_date).getTime() -
+        new Date(a.frontmatter.website_date).getTime(),
     )
 
   return posts
