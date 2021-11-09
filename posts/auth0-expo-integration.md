@@ -75,7 +75,7 @@ Even if we can't use the SDK for a web-based authentication, we can still levera
 
 To start using Auth0 with AuthSession we first need to setup a [Social Login](https://auth0.com/learn/social-login/) on the Auth0 dashboard. After that we need to start an authentication session pointing to `https://your-domain.auth0.com/authorize` with the [correct query parameters](https://auth0.com/docs/api/authentication#social):
 
-```tsx
+```typescript
 const returnUrl = AuthSession.makeRedirectUri()
 
 const queryParams = toQueryString({
