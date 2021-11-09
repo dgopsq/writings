@@ -39,7 +39,7 @@ Following the tutorial I linked before, and more specifically the [Github repo](
 
 The rest of the stuff in the tutorial are just changes to the `Info.plist` file, and they can be done easily without ejecting our application through the `app.config.ts` (or `app.json`) modifying the `ios.infoPlist` value:
 
-```tsx
+```typescript
 const appConfig: ExpoConfig = {
   // ...
 
@@ -61,7 +61,7 @@ const appConfig: ExpoConfig = {
 
 We **don't** really need to add these lines though because using the SDK without linking it with the React Native ecosystem through `pod install` will allow us to **only use the functions that do not need to open a browser window or handle deep links**, like `passwordRealm`:
 
-```tsx
+```typescript
 auth0.auth.passwordRealm({
   username: 'hello@email.com',
   password: 'best_password',

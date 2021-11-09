@@ -35,7 +35,7 @@ This simple procedure allow us to have a **versioned database** really easy to u
 
 Before writing the implementation of our migrations we need a bit of background! One of the many modules that Expo makes available to us is [expo-sqlite](https://docs.expo.io/versions/latest/sdk/sqlite/), which is a mobile implementation of an SQLite database. The usage is quite simple (although I struggled a bit to understand where actually was the database file created inside the simulator 😾) but I didn't like so much the APIs. For this reason I wrote a simple [_Algebra_](https://typelevel.org/blog/2019/02/06/algebraic-api-design.html) (which is an abstract collection of functions and values, if you are coming from the _Object Oriented Programming_ you can think of it as an _Interface_) to "wrap" them:
 
-```tsx
+```typescript
 interface IStorageAlgebra {
   /**
    * Execute a query to retrieve some value from
@@ -79,7 +79,7 @@ What we are going to do now is implement the `setup` function, which will be exe
 
 The `setup` function is what we precedently called "Migration manager". This function is divided into three main parts: **Bootstrap**, **Check**, and **Execution**. Before delving deeper we should point out how the list of migrations is implemented inside this project:
 
-```tsx
+```typescript
 const sqliteMigrations: ISQLiteMigrations = {
   0: `CREATE TABLE IF NOT EXISTS articles (
         id INTEGER PRIMARY KEY,
@@ -97,7 +97,7 @@ Now that we know how the migrations are structured, let's analyse the `setup` fu
 
 In the _Bootstrap_ we are merely creating the `__migration` table (the place in which we are going to store the executed migrations) if it's not already present, and we are retrieving the last executed migration. The code for this part is quite simple:
 
-```tsx
+```typescript
 this.executeQuery(`
   CREATE TABLE IF NOT EXISTS __migrations (
     id INTEGER PRIMARY KEY NOT NULL,
@@ -109,7 +109,7 @@ this.executeQuery(`
 
 This is going to create a `__migrations` table with an `id` column, a `version` (just a number to identify the migration) and the `executed_at` which is the migration's execution timestamp. Now that we are sure a table exists, we need to retrieve the last migration executed:
 
-```tsx
+```typescript
 // Decoder that represents a single migration
 migrationsDecoder = Decoder.type({
   id: Decoder.number,
@@ -128,7 +128,7 @@ this.retrieveQuery(this.migrationsDecoder)(`
 
 At this point we need to _Check_ the migrations to execute (if any) using the last migration retrieved. For this task we are going to create a specific helper function named `getUnexecutedMigrations` that takes all the migrations plus an optional last migration, and returns a list of unexecuted migrations:
 
-```tsx
+```typescript
 private getUnexecutedMigrations = (migrations: ISQLiteMigrations) => (
   maybeLastMigration: Option.Option<number>,
 ): Array<number> =>
@@ -155,7 +155,7 @@ It's worth noting that `Array`, `Option` and `pipe` are all modules / functions 
 
 The last section to analyse is the _Execution_. Here, as the name probably suggests, we are going to execute all the remaining migrations. For each migration executed we need to add a line into the `__migrations` table, so it's important to execute both queries in a single transaction, to assure the database consistency:
 
-```tsx
+```typescript
 // Here we are managing the array of non-executed
 // migrations inside a `pipe`, so the fist parameter
 // of this `Array.map` is an `Array<number>`
@@ -176,7 +176,7 @@ Taking a look at `IStorageAlgebra` we can see that `executeQueriesInTransaction`
 
 This is the final `setup` function:
 
-```tsx
+```typescript
 public setup = (): TaskEither.TaskEither<IDatabaseError, number> =>
   pipe(
     this.executeQuery(`
