@@ -51,6 +51,7 @@ const Markdown: React.FC<Props> = ({ source }) => {
         .hint {
           padding: 1em;
           margin-left: 0em;
+          margin-right: 0em;
         }
 
         blockquote,
