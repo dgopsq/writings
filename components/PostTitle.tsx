@@ -24,8 +24,10 @@ const PostTitle: React.FC<Props> = ({ value, date, big, tags }) => {
 
         {tags ? (
           <div className={`post-tags ${big ? 'big' : ''}`}>
-            {tags.map((tag) => (
-              <span className='post-tag'>{tag}</span>
+            {tags.map((tag, index) => (
+              <span key={`${tag}-${index}`} className='post-tag'>
+                {tag}
+              </span>
             ))}
           </div>
         ) : undefined}

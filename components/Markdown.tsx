@@ -1,7 +1,7 @@
 import ReactMarkdown from 'react-markdown'
-import RemarkHint from 'remark-hint'
+import remarkHint from 'remark-hint'
+import rehypeExternalLink from 'rehype-external-links'
 import { typography, colors } from '../theme'
-import { BASE_URL } from '../utils/configs'
 import Code from './Code'
 
 type Props = {
@@ -13,7 +13,8 @@ const Markdown: React.FC<Props> = ({ source }) => {
     <>
       <ReactMarkdown
         components={{ code: Code }}
-        remarkPlugins={[RemarkHint]}
+        remarkPlugins={[remarkHint]}
+        rehypePlugins={[rehypeExternalLink]}
         children={source}
       />
 
@@ -27,6 +28,11 @@ const Markdown: React.FC<Props> = ({ source }) => {
 
         a:hover {
           text-decoration: underline;
+        }
+
+        pre,
+        code {
+          font-variant-ligatures: none;
         }
 
         code {
