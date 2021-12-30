@@ -1,9 +1,9 @@
-import { CodeComponent } from 'react-markdown/src/ast-to-react'
 import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript'
 import objectivec from 'react-syntax-highlighter/dist/cjs/languages/prism/objectivec'
 import purescript from 'react-syntax-highlighter/dist/cjs/languages/prism/purescript'
 import theme from 'react-syntax-highlighter/dist/cjs/styles/prism/nord'
+import { CodeComponent } from 'react-markdown/lib/ast-to-react'
 
 SyntaxHighlighter.registerLanguage('typescript', typescript)
 SyntaxHighlighter.registerLanguage('objectivec', objectivec)
