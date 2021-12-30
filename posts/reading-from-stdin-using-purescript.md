@@ -4,6 +4,8 @@ description: How to read from the Standard Input (stdin) using PureScript.
 tags: 'purescript, functional, stdin, stream'
 published: true
 canonical_url: 'https://www.dgopsq.space/blog/reading-from-stdin-using-purescript'
+id: 940246
+date: '2021-12-30T10:19:19Z'
 ---
 
 These last few weeks I started learning PureScript again. I _love_ this language, it’s the quintessence of functional programming, but it lacks in community and libraries compared for example to TypeScript, and this sadly makes it really difficult for me to use in my side projects.
