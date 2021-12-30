@@ -14,7 +14,7 @@ While I was doing some challenges online, I had the need to retrieve an input st
 
 First of all, to read from the **Standard Input (stdin)** the library [purescript-node-process](https://github.com/purescript-node/purescript-node-process) is needed. This library exposes `stdin` which is a `Readable` (a simple readable stream) and it will be the key component around which we’ll create our function. Since we are dealing with a simple stream, what we want to create is a function that takes that same stream and return a new string:
 
-```purescript
+```haskell
 import Prelude
 import Control.Monad.ST.Class (liftST)
 import Control.Monad.ST.Ref as STRef
