@@ -4,6 +4,8 @@ description: How to use the fp-ts TaskEither monad with Redux-Saga without losin
 tags: 'functional, redux, typescript, saga'
 published: true
 canonical_url: 'https://www.dgopsq.space/blog/using-fp-ts-taskeither-with-redux-saga'
+id: 958626
+date: '2022-01-17T21:31:19Z'
 ---
 
 The [fp-ts `TaskEither<L, R>` monad](https://gcanti.github.io/fp-ts/modules/TaskEither.ts.html) is a powerful data structure representing an asynchronous computation returning a value of type `R` when successful or a value of type `L` on failure. It allows to handle errors in a more "functional" and transparent way instead of dealing with exceptions (😖).
