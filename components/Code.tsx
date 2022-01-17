@@ -16,13 +16,15 @@ const Code: CodeComponent = (props) => {
   const match = /language-(\w+)/.exec(className || '')
   const language = match ? match[1] : undefined
 
-  if (!inline && match)
+  if (!inline && match) {
+    const computedChildren = children.map(child => typeof child === 'string' ? child.trim() : child)
+
     return (
       <SyntaxHighlighter language={language} style={theme}>
-        {children}
+        {computedChildren}
       </SyntaxHighlighter>
     )
-  else
+    } else
     return (
       <code className={className} {...rest}>
         {children}
