@@ -36,6 +36,15 @@ const Footer: React.FC = () => {
               >
                 Github
               </a>
+
+              <a
+                href='https://dev.to/dgopsq'
+                target='_blank'
+                rel='noopener'
+                className='social'
+              >
+                DEV
+              </a>
             </div>
 
             <div className='flex-item'>

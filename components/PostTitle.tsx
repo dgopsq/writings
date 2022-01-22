@@ -1,14 +1,16 @@
 import { formatDate } from '../utils/formats'
 import { colors, getHeaderFontFamily } from '../theme'
+import { DevToLink } from './DevToLink'
 
 type Props = {
   value: string
   date: Date
   big?: boolean
   tags?: Array<string>
+  devToId?: string
 }
 
-const PostTitle: React.FC<Props> = ({ value, date, big, tags }) => {
+const PostTitle: React.FC<Props> = ({ value, date, big, tags, devToId }) => {
   const postDate = formatDate(date)
 
   return (
@@ -32,12 +34,20 @@ const PostTitle: React.FC<Props> = ({ value, date, big, tags }) => {
           </div>
         ) : undefined}
 
-        <time
-          className={`post-date ${big ? 'big' : ''}`}
-          dateTime={date.toISOString()}
-        >
-          {postDate}
-        </time>
+        <div className='post-meta-wrapper'>
+          <time
+            className={`post-date ${big ? 'big' : ''}`}
+            dateTime={date.toISOString()}
+          >
+            {postDate}
+          </time>
+
+          {typeof devToId !== 'undefined' ? (
+            <div className='post-devto'>
+              <DevToLink id={devToId} />
+            </div>
+          ) : undefined}
+        </div>
       </div>
 
       <style jsx>{`
@@ -61,12 +71,24 @@ const PostTitle: React.FC<Props> = ({ value, date, big, tags }) => {
           font-size: 1.6em;
         }
 
+        .post-meta-wrapper {
+          margin-top: 1em;
+
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+
         .post-date {
           color: ${colors.silver};
           font-size: 0.75em;
           font-family: ${getHeaderFontFamily()};
+        }
 
-          margin-top: 1em;
+        .post-devto {
+          margin-left: 1em;
+          font-size: 0.9em;
+          font-family: ${getHeaderFontFamily()};
         }
 
         .post-date.big {

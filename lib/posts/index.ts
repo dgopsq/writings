@@ -4,11 +4,13 @@ import matter from 'gray-matter'
 export type Post = {
   slug: string
   content: string | null
+
   frontmatter: {
     date: string
     title: string
     description: string
     tags: Array<string>
+    devToId: string | null
   }
 }
 
@@ -42,7 +44,7 @@ function parsePostFile(filename: string): Post {
     .toString()
 
   const { data, content } = matter(markdownWithMetadata)
-  const { title, description } = data
+  const { title, description, id } = data
 
   const postDate = data.date ? new Date(data.date) : new Date()
   const date = postDate.toISOString()
@@ -50,6 +52,8 @@ function parsePostFile(filename: string): Post {
   const slug = filenameToSlug(filename)
 
   const tags = parseTags(data.tags || '')
+
+  const devToId = id ? `${id}` : null
 
   return {
     slug,
@@ -60,6 +64,7 @@ function parsePostFile(filename: string): Post {
       title,
       description,
       tags,
+      devToId,
     },
   }
 }

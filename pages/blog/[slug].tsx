@@ -39,6 +39,7 @@ const SinglePost: React.FC<Props> = ({ post }) => {
             value={post.frontmatter.title}
             date={postDate}
             tags={post.frontmatter.tags}
+            devToId={post.frontmatter.devToId}
             big
           />
 

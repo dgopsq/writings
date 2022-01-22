@@ -20,7 +20,8 @@
     "rehype-external-links": "^1.0.1",
     "remark-hint": "^1.0.10",
     "schema-dts": "^1.0.0",
-    "typography": "^0.16.21"
+    "typography": "^0.16.21",
+    "use-http": "^1.0.26"
   },
   "devDependencies": {
     "@types/node": "^14.0.23",
