@@ -1,16 +1,15 @@
 import { formatDate } from '../utils/formats'
 import { colors, getHeaderFontFamily } from '../theme'
-import { DevToLink } from './DevToLink'
 
 type Props = {
   value: string
   date: Date
   big?: boolean
   tags?: Array<string>
-  devToId?: string
+  devToUrl?: string
 }
 
-const PostTitle: React.FC<Props> = ({ value, date, big, tags, devToId }) => {
+const PostTitle: React.FC<Props> = ({ value, date, big, tags, devToUrl }) => {
   const postDate = formatDate(date)
 
   return (
@@ -42,9 +41,12 @@ const PostTitle: React.FC<Props> = ({ value, date, big, tags, devToId }) => {
             {postDate}
           </time>
 
-          {typeof devToId !== 'undefined' ? (
+          {typeof devToUrl !== 'undefined' ? (
             <div className='post-devto'>
-              <DevToLink id={devToId} />
+              <span className='separator' />
+              <a href={devToUrl} target='_blank' rel='noopener'>
+                Read on DEV
+              </a>
             </div>
           ) : undefined}
         </div>
@@ -86,8 +88,7 @@ const PostTitle: React.FC<Props> = ({ value, date, big, tags, devToId }) => {
         }
 
         .post-devto {
-          margin-left: 1em;
-          font-size: 0.9em;
+          font-size: 0.8em;
           font-family: ${getHeaderFontFamily()};
         }
 
@@ -114,6 +115,16 @@ const PostTitle: React.FC<Props> = ({ value, date, big, tags, devToId }) => {
           border-radius: 0.3em;
 
           margin-right: 0.5em;
+        }
+
+        .separator {
+          margin-left: 0.7em;
+          margin-right: 0.7em;
+        }
+
+        .separator:before {
+          content: '•';
+          color: ${colors.silver};
         }
 
         @media all and (max-width: 42em) {

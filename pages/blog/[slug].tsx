@@ -4,16 +4,16 @@ import Layout from '../../components/Layout'
 import SmallHeader from '../../components/SmallHeader'
 import Footer from '../../components/Footer'
 import PostTitle from '../../components/PostTitle'
-import Head from 'next/head'
 import Seo from '../../components/Seo'
 import { generatePostUrl } from '../../utils/formats'
 import { DEFAULT_TITLE } from '../../utils/configs'
 
 type Props = {
   post?: Post
+  devToUrl?: string
 }
 
-const SinglePost: React.FC<Props> = ({ post }) => {
+const SinglePost: React.FC<Props> = ({ post, devToUrl }) => {
   if (!post) return null
 
   const postDate = new Date(post.frontmatter.date)
@@ -39,7 +39,7 @@ const SinglePost: React.FC<Props> = ({ post }) => {
             value={post.frontmatter.title}
             date={postDate}
             tags={post.frontmatter.tags}
-            devToId={post.frontmatter.devToId}
+            devToUrl={devToUrl}
             big
           />
 
@@ -81,10 +81,24 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { slug } }) {
   const post = getSinglePost(slug)
+  let devToUrl: string | undefined = undefined
+
+  try {
+    const devToArticleResponse = await fetch(
+      `https://dev.to/api/articles/${post.frontmatter.devToId}`,
+    )
+
+    const { url } = await devToArticleResponse.json()
+
+    devToUrl = typeof url === 'string' ? url : null
+  } catch (e) {
+    console.error('Could not fetch the dev.to url', e)
+  }
 
   return {
     props: {
       post,
+      devToUrl,
     },
   }
 }
