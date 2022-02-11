@@ -90,7 +90,7 @@ export async function getStaticProps({ params: { slug } }) {
 
     const { url } = await devToArticleResponse.json()
 
-    devToUrl = typeof url === 'string' ? url : null
+    devToUrl = typeof url === 'string' ? url : undefined
   } catch (e) {
     console.error('Could not fetch the dev.to url', e)
   }
