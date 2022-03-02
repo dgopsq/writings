@@ -10,4 +10,4 @@ You can find out more about what other technology I'm using by reading the [pack
 
 ## DevOps
 
-A GitHub Action is used to compile the project and deploy it to GitHub Pages. During this procedure each article will be sent to [dev.to](https://dev.to/dgopsq) too in order to have them always updated across multiple channels.
+This website is hosted through [Cloudflare Pages](https://pages.cloudflare.com/) and a deploy is triggered on every commit on the `master` branch. When this happens a GitHub action is dispatched too sending all the articles to [dev.to](https://dev.to/dgopsq) in order to have them always updated across multiple channels.
