@@ -1,4 +1,4 @@
-# 📜 Writings
+# 📚 Writings
 
 This is my personal 🪐 **s p a c e** ☄️, here I write stuff about technology (and maybe something else too in the future).
 
