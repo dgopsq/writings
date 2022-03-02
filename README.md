@@ -1,32 +1,13 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📜 Writings
 
-## Getting Started
+This is my personal 🪐 **s p a c e** ☄️, here I write stuff about technology (and maybe something else too in the future).
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+This space has been written using **Next.js** and **TypeScript**. It's just a static website based on a bunch of markdown files!
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You can find out more about what other technology I'm using by reading the [package.json](https://github.com/dgopsq/writings/blob/master/package.json#L12-L24) file.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## DevOps
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy
-
-To deploy on Github Pages just run
-
-```bash
-yarn deploy
-```
+A GitHub Action is used to compile the project and deploy it to GitHub Pages. During this procedure each article will be sent to [dev.to](https://dev.to/dgopsq) too in order to have them always updated across multiple channels.
