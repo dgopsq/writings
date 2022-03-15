@@ -6,7 +6,7 @@ type Props = {
   date: Date
   big?: boolean
   tags?: Array<string>
-  devToUrl?: string
+  devToUrl: string | null
 }
 
 const PostTitle: React.FC<Props> = ({ value, date, big, tags, devToUrl }) => {
@@ -41,7 +41,7 @@ const PostTitle: React.FC<Props> = ({ value, date, big, tags, devToUrl }) => {
             {postDate}
           </time>
 
-          {typeof devToUrl !== 'undefined' ? (
+          {devToUrl !== null ? (
             <div className='post-devto'>
               <span className='separator' />
               <a href={devToUrl} target='_blank' rel='noopener'>
