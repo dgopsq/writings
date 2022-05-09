@@ -15,7 +15,7 @@ So, I had a clear idea of what to create, and more importantly, a name! Time to 
 
 First of all I had to choose what to use to manage the User Interface. I narrowed down to two modules: [Halogen](https://github.com/purescript-halogen/purescript-halogen) and [react-basic-hooks](https://github.com/megamaddu/purescript-react-basic-hooks) (which is a “wrapper” of the unmaintained [react-basic](https://github.com/lumihq/purescript-react-basic)). I decided to go with **react-basic-hooks** just because I use **React** on a daily basis and I wanted to understand its interoperability with PureScript. I will 10/10 try **Halogen** too in the next future since as far as I can see is the most famous and maintained in the PureScript community.
 
-Another technology I use on a daily basis in **Redux**. But this time I wanted to manage the global state in a simpler and clearer way just using React hooks. I decided to go with a simple `useReducer` combined with the `[useContextSelector` hook](https://github.com/dai-shi/use-context-selector) which will avoid the whole application’s re-render caused by the native `useContext` hook.
+Another technology I use on a daily basis in **Redux**. But this time I wanted to manage the global state in a simpler and clearer way just using React hooks. I decided to go with a simple `useReducer` combined with the[`useContextSelector` hook](https://github.com/dai-shi/use-context-selector) which will avoid the whole application’s re-render caused by the native `useContext` hook.
 
 And finally, for the styles I opted for the most famous [Tailwind CSS](https://tailwindcss.com/).
 
