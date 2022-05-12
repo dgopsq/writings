@@ -1,16 +1,17 @@
 ---
 title: Inflist, an experiment using PureScript and React
-description: TBD
+description: The architecture, technologies and all the lessons learned while making a Todo List in Purescript and React.
 tags: 'purescript, functional, react, app'
 published: true
-canonical_url: 'https://www.dgopsq.space/blog/reading-from-stdin-using-purescript'
+canonical_url: 'https://www.dgopsq.space/blog/inflist-an-experiment-using-purescript-and-react'
 ---
 
-One of the resolutions for this year was to learn a bit more seriously PureScript (or at least die trying). I started writing small stuff like exercises and little scripts, and all went quite good. I felt like I had a tighter grasp on the language, I felt more confident. It was time to create something bigger, that I could actually compare with the code I write daily. And so I decided to create a whole (mini) application, and since it’s a bit of a tradition, why not a Todo List 🤓?
+One of the resolutions for this year was to learn a bit more seriously PureScript (or at least die trying). I started writing small stuff like exercises and little scripts, and all went quite good. I felt like I had a tighter grasp on the language, and with that I felt more confident. It was time to create something bigger that I could actually compare with the code I write daily. So I decided to create a whole (mini) web application, and since it’s a bit of a tradition, why not a Todo List 🤓?
 
-The Todo List I wanted to create had three main features: it should be infinitely nestable (or it should be possible to create a todo inside another todo without limitations), each todo should be freely editable without any friction and a todo should have optional notes.
+This Todo List has three main features: it should be infinitely nestable (or it should be possible to create a todo inside another todo without limitations), each todo should be freely editable without any friction and a todo should have optional notes.
 
-So, I had a clear idea of what to create, and more importantly, a name! Time to go a bit deeper ✌️.
+So, I had a clear idea of what to create, and more importantly a name! Time to go a bit deeper ✌️.
+
 # Technologies
 
 First of all I had to choose what to use to manage the User Interface. I narrowed down to two modules: [Halogen](https://github.com/purescript-halogen/purescript-halogen) and [react-basic-hooks](https://github.com/megamaddu/purescript-react-basic-hooks) (which is a “wrapper” of the unmaintained [react-basic](https://github.com/lumihq/purescript-react-basic)). I decided to go with **react-basic-hooks** just because I use **React** on a daily basis and I wanted to understand its interoperability with PureScript. I will 10/10 try **Halogen** too in the next future since as far as I can see is the most famous and maintained in the PureScript community.
@@ -61,3 +62,6 @@ As I said, this (really small) project was just an experiment to better understa
 1. A pure-FP language, and more in specific PureScript, **is a viable alternative for the most dangerous parts of an application**. When a specific component or micro frontend needs to be particularly “stable”, using PureScript would definitely save time dealing with common bugs or errors.
 2. **The learning curve for PureScript is *really step.*** Without the understanding of common FP concepts it can be really difficult to create even simple things. I’m *sure* there are errors in Inflist, specifically in the typization of foreign JavaScript code.
 3. **The developer experience is good but it's bad.** In a functional codebase everything must (should) be typed, the enormous quantity of errors catched at compile time is definitely a plus for the overall developer experience. The only downside, and this is something related directly to PureScript, it's that the IDE support is a bit weak. It's possible to get the compilation errors in real-time and there are tooltips to show description of types and functions, but for example something I missed a lot from Scala FP is the inferred types of computed values (for example, assignments inside a `do` block).
+4. **The community is still quite small** compared to other languages, and there is a lack of modules and tools. On the other side PureScript's interoperability is *✨ awesome ✨* making using third-party libraries from JavaScript a breeze. I would also like to point out that, as far as I can see, **all the mainteiners of the major modules are really present and active** inside the community, even in the official [Discord server](https://purescript.org/chat)!
+
+Well, that's all 🙏
