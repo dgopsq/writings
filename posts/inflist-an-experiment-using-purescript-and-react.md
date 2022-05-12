@@ -12,6 +12,8 @@ This Todo List has three main features: it should be infinitely nestable (or it 
 
 So, I had a clear idea of what to create, and more importantly a name! Time to go a bit deeper ✌️.
 
+> You can find the GitHub repo with a decently commented code here: [https://github.com/dgopsq/purescript-inflist](https://github.com/dgopsq/purescript-inflist).
+
 # Technologies
 
 First of all I had to choose what to use to manage the User Interface. I narrowed down to two modules: [Halogen](https://github.com/purescript-halogen/purescript-halogen) and [react-basic-hooks](https://github.com/megamaddu/purescript-react-basic-hooks) (which is a “wrapper” of the unmaintained [react-basic](https://github.com/lumihq/purescript-react-basic)). I decided to go with **react-basic-hooks** just because I use **React** on a daily basis and I wanted to understand its interoperability with PureScript. I will 10/10 try **Halogen** too in the next future since as far as I can see is the most famous and maintained in the PureScript community.
