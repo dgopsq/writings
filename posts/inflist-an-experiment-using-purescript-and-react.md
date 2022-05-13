@@ -14,7 +14,7 @@ This Todo List has three main features: it should be infinitely nestable (or it 
 
 So, I had a clear idea of what to create, and more importantly a name! Time to go a bit deeper ✌️.
 
-> If you are curious, there is a [GitHub repo with a decently commented code](https://github.com/dgopsq/purescript-inflist) and a [live example](https://www.inflist.xyz/) you can play with 😎.
+> If you are curious, there is a [GitHub repo with a decently commented code](https://github.com/dgopsq/purescript-inflist) and a [live example](https://www.inflist.xyz/) you can play with 🕹.
 
 # Technologies
 
