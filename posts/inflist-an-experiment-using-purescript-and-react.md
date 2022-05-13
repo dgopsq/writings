@@ -1,7 +1,7 @@
 ---
 title: Inflist, an experiment using PureScript and React
 description: The architecture, technologies and all the lessons learned while making a Todo List in Purescript and React.
-tags: 'purescript, functional, react, app'
+tags: 'purescript, functional, react, webdev'
 published: true
 canonical_url: 'https://www.dgopsq.space/blog/inflist-an-experiment-using-purescript-and-react'
 ---
