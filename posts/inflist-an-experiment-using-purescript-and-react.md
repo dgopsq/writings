@@ -50,6 +50,8 @@ This is obviously not perfect, there are problems which are solved using *User I
 The **navigation** is handled through [purescript-routing](https://github.com/purescript-contrib/purescript-routing) which provides an interface for the [PushState API](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState) and a convenient way to parse the routes starting from a simple ADT:
 
 ```haskell
+-- | This is the data structure that describes the
+-- | application's routes.
 data AppRoute
   = RootTodos
   | ChildrenTodos TodoId
