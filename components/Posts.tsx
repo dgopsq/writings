@@ -25,6 +25,7 @@ const Posts: React.FC<Props> = ({ posts }) => {
                       value={post.frontmatter.title}
                       date={new Date(post.frontmatter.date)}
                       tags={post.frontmatter.tags}
+                      devToUrl={null}
                     />
                   </a>
                 </Link>

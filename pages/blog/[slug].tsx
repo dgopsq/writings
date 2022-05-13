@@ -81,7 +81,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { slug } }) {
   const post = getSinglePost(slug)
-  let devToUrl: string | undefined = undefined
+  let devToUrl: string | null = null
 
   try {
     const devToArticleResponse = await fetch(
@@ -90,7 +90,7 @@ export async function getStaticProps({ params: { slug } }) {
 
     const { url } = await devToArticleResponse.json()
 
-    devToUrl = typeof url === 'string' ? url : undefined
+    devToUrl = typeof url === 'string' ? url : null
   } catch (e) {
     console.error('Could not fetch the dev.to url', e)
   }
