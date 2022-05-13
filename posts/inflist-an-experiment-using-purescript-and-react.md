@@ -1,9 +1,11 @@
 ---
-title: Inflist, an experiment using PureScript and React
-description: The architecture, technologies and all the lessons learned while making a Todo List in Purescript and React.
+title: 'Inflist, an experiment using PureScript and React'
+description: 'The architecture, technologies and all the lessons learned while making a Todo List in Purescript and React.'
 tags: 'purescript, functional, react, webdev'
 published: true
 canonical_url: 'https://www.dgopsq.space/blog/inflist-an-experiment-using-purescript-and-react'
+id: 1084263
+date: '2022-05-13T10:31:56Z'
 ---
 
 One of the resolutions for this year was to learn a bit more seriously PureScript (or at least die trying). I started writing small stuff like exercises and little scripts, and all went quite good. I felt like I had a tighter grasp on the language, and with that I felt more confident. It was time to create something bigger that I could actually compare with the code I write daily. So I decided to create a whole (mini) web application, and since it’s a bit of a tradition, why not a Todo List 🤓?
