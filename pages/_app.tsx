@@ -1,6 +1,5 @@
 import { AppProps } from 'next/app'
 import Head from 'next/head'
-import { FunctionComponent } from 'react'
 import Seo from '../components/Seo'
 
 function MyApp({ Component, pageProps }: AppProps) {
