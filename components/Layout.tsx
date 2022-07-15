@@ -1,4 +1,8 @@
-const Layout: React.FC = (props) => {
+type Props = {
+  children: React.ReactNode
+}
+
+const Layout = (props: Props) => {
   return (
     <>
       <div className='wrapper'>{props.children}</div>
