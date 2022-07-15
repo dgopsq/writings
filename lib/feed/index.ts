@@ -7,7 +7,7 @@ import { Post } from '../posts'
 /**
  * Generate the RSS feed.
  */
-function generateFeedContent(posts: Array<Post>): string {
+function generateFeedContent(posts: Array<Post>): Feed {
   const year = new Date().getFullYear()
 
   const feed = new Feed({
@@ -50,9 +50,7 @@ function generateFeedContent(posts: Array<Post>): string {
   feed.addCategory('Technology')
   feed.addCategory('Programming')
 
-  const computedFeed = feed.rss2()
-
-  return computedFeed
+  return feed
 }
 
 /**
@@ -61,5 +59,8 @@ function generateFeedContent(posts: Array<Post>): string {
 export function generateFeed(posts: Array<Post>): void {
   const feed = generateFeedContent(posts)
 
-  fs.writeFileSync('./public/feed', feed)
+  fs.mkdirSync('./public/rss', { recursive: true })
+  fs.writeFileSync('./public/rss/feed.xml', feed.rss2())
+  fs.writeFileSync('./public/rss/atom.xml', feed.atom1())
+  fs.writeFileSync('./public/rss/feed.json', feed.json1())
 }
