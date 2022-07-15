@@ -18,7 +18,6 @@
 # misc
 .DS_Store
 .vscode
-tsconfig.tsbuildinfo
 
 # debug
 npm-debug.log*

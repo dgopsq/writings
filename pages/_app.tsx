@@ -4,8 +4,6 @@ import { FunctionComponent } from 'react'
 import Seo from '../components/Seo'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const C = Component as FunctionComponent
-
   return (
     <>
       <Head>
@@ -14,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <Seo />
 
-      <C {...pageProps} />
+      <Component {...pageProps} />
     </>
   )
 }
