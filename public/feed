@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Diego Pasquali's writing 🪐 s p a c e ☄️</title>
+        <link>https://dgopsq.space</link>
+        <description>Writing about technology and stuff.</description>
+        <lastBuildDate>Fri, 15 Jul 2022 07:55:06 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <image>
+            <title>Diego Pasquali's writing 🪐 s p a c e ☄️</title>
+            <url>https://dgopsq.space/thumbnail.png</url>
+            <link>https://dgopsq.space</link>
+        </image>
+        <copyright>All rights reserved 2022, Diego Pasquali</copyright>
+        <category>Technology</category>
+        <category>Programming</category>
+        <item>
+            <title><![CDATA[Inflist, an experiment using PureScript and React]]></title>
+            <link>https://dgopsq.space/blog/inflist-an-experiment-using-purescript-and-react</link>
+            <guid>https://dgopsq.space/blog/inflist-an-experiment-using-purescript-and-react</guid>
+            <pubDate>Fri, 13 May 2022 10:31:56 GMT</pubDate>
+            <description><![CDATA[The architecture, technologies and all the lessons learned while making a Todo List in Purescript and React.]]></description>
+            <content:encoded><![CDATA[
+One of the resolutions for this year was to learn a bit more seriously PureScript (or at least die trying). I started writing small stuff like exercises and little scripts, and all went quite good. I felt like I had a tighter grasp on the language, and with that I felt more confident. It was time to create something bigger that I could actually compare with the code I write daily. So I decided to create a whole (mini) web application, and since it’s a bit of a tradition, why not a Todo List 🤓?
+
+This Todo List has three main features: it should be infinitely nestable (or it should be possible to create a todo inside another todo without limitations), each todo should be freely editable without any friction and a todo should have optional notes.
+
+So, I had a clear idea of what to create, and more importantly a name! Time to go a bit deeper ✌️.
+
+> If you are curious, there is a [GitHub repo with a decently commented code](https://github.com/dgopsq/purescript-inflist) and a [live example](https://www.inflist.xyz/) you can play with 🕹.
+
+# Technologies
+
+First of all I had to choose what to use to manage the User Interface. I narrowed down to two modules: [Halogen](https://github.com/purescript-halogen/purescript-halogen) and [react-basic-hooks](https://github.com/megamaddu/purescript-react-basic-hooks) (which is a “wrapper” of the unmaintained [react-basic](https://github.com/lumihq/purescript-react-basic)). I decided to go with **react-basic-hooks** just because I work with **React** on a daily basis and I wanted to understand its interoperability with PureScript. I will 10/10 try **Halogen** too in the next future since as far as I can see is the most famous and maintained in the PureScript community.
+
+Another technology I use regularly is **Redux**. But this time I wanted to manage the global state in a simpler and clearer way just using React hooks. I decided to go with a simple `useReducer` combined with the[`useContextSelector` hook](https://github.com/dai-shi/use-context-selector) which will avoid the whole application’s re-render caused by the native `useContext` hook.
+
+And finally, for the styles I opted for the most famous [Tailwind CSS](https://tailwindcss.com/).
+
+# Architecture
+
+The whole point of using PureScript is to adopt a pure FP architecture, having all the “side effect” moved at the very edge of the implementation. I really like this approach instead of a “partial” FP one given by non pure-functional languages. For example, when using TypeScript you might have various functional “bubbles” here and there in the code, but multiple “entry point” for side effects. This is not wrong but it’s not really leveraging the full power of functional programming which is: **Types**! Problems like *Dependency Injection* (take a look at [the Reader monad](https://mmhaskell.com/monads/reader-writer)) or executing operations in the right order (see the [Indexed Monad](https://qiita.com/kimagure/items/a0ee7313e8c7690bf3f5) generalisation, which is the core of *react-basic-hooks*) are magically solved right inside the language.
+
+Following this path and with the idea that Inflist is just a PoC, I decided to tackle the application’s architecture optimising the performances at the expenses of stability. A “todo” inside Inflist is just a branch in a tree with a unique id, a single parent and multiple children:
+
+```haskell
+-- | A data structure representing a Todo.
+type Todo
+  = { id :: TodoId
+    , checked :: Boolean
+    , text :: String
+    , note :: String
+    , children :: List TodoId
+    , parent :: TodoId
+    }
+```
+
+This is quite convenient for two reasons:
+
+1. It’s easy to persist. For example using the **Local Storage** we can store each todo as a single entity with an id and the JSON serialisation of the todo itself as the value. This allows us to have decent performances even using the simplest storage system.
+2. We can show every todo as a standalone entity. Since *everything* is a todo and each todo is linked with its parent, starting the application from the root todo or from a deep one is the same thing. This is really helpful for both development experience and features like the navigation (creating a permalink for a todo is basically automatically implemented).
+
+This is obviously not perfect, there are problems which are solved using *User Interface* tricks, like the `[...]` in the breadcrumb that saves us the hassle of traversing the whole tree.
+
+The **navigation** is handled through [purescript-routing](https://github.com/purescript-contrib/purescript-routing) which provides an interface for the [PushState API](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState) and a convenient way to parse the routes starting from a simple ADT:
+
+```haskell
+-- | This is the data structure that describes the
+-- | application's routes.
+data AppRoute
+  = RootTodos
+  | ChildrenTodos TodoId
+```
+
+The most “unstable” part is probably the logic dealing with the **storage**. There is a persistence layer inside Inflist passed around as a dependency, and its only implementation is using the **Local Storage** as anticipated. This layer is executed directly through the React components using native hooks like [useAff](https://github.com/megamaddu/purescript-react-basic-hooks/blob/57ecbe7478a0975783bdc0f0639a851329970947/src/React/Basic/Hooks/Aff.purs#L26-L63), and thus managed by the React lifecycle events. This can definitely be improved using a more solid approach from libraries like [Redux-Saga](https://redux-saga.js.org/).
+
+# What I learned
+
+As I said, this (really small) project was just an experiment to better understand PureScript and its advantages and disadvantages. These are the lessons I learned:
+
+1. A pure-FP language, and more in specific PureScript, **is a viable alternative for the most dangerous parts of an application**. When a specific component or micro frontend needs to be particularly “stable”, using PureScript would definitely save time dealing with common bugs or errors.
+2. **The learning curve for PureScript is *really steep.*** Without the understanding of common FP concepts it can be really difficult to create even simple things. I’m *sure* there are errors in Inflist, specifically in the typization of foreign JavaScript code.
+3. **The developer experience is good but it's bad.** In a functional codebase everything must (should) be typed, the enormous quantity of errors catched at compile time is definitely a plus for the overall developer experience. The only downside, and this is something related directly to PureScript, it's that the IDE support is a bit weak. It's possible to get the compilation errors in real-time and there are tooltips to show description of types and functions, but for example something I missed a lot from Scala FP is the inferred types of computed values (for example, assignments inside a `do` block).
+4. **The community is still quite small** compared to other languages, and there is a lack of modules and tools. On the other side PureScript's interoperability is *✨ awesome ✨* making using third-party libraries from JavaScript a breeze. I would also like to point out that, as far as I can see, **all the mainteiners of the major modules are really present and active** inside the community, even in the official [Discord server](https://purescript.org/chat)!
+
+Well, that's all 🙏
+]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Using the fp-ts TaskEither monad with Redux-Saga]]></title>
+            <link>https://dgopsq.space/blog/using-fp-ts-taskeither-with-redux-saga</link>
+            <guid>https://dgopsq.space/blog/using-fp-ts-taskeither-with-redux-saga</guid>
+            <pubDate>Mon, 17 Jan 2022 21:31:19 GMT</pubDate>
+            <description><![CDATA[How to use the fp-ts TaskEither monad with Redux-Saga without losing testability.]]></description>
+            <content:encoded><![CDATA[
+The [fp-ts `TaskEither<L, R>` monad](https://gcanti.github.io/fp-ts/modules/TaskEither.ts.html) is a powerful data structure representing an asynchronous computation returning a value of type `R` when successful or a value of type `L` on failure. It allows to handle errors in a more "functional" and transparent way instead of dealing with exceptions (😖).
+
+I recently found myself using it inside [Redux-Saga](https://redux-saga.js.org/), executing functions returning a `TaskEither` using the `call` effect. Now, it's actually quite easy to do so since `TaskEither` is just a function returning a `Promise`. At first glance we can just do something like:
+
+```typescript
+// The service returning a `TaskEither`.
+export function service(param: string): TE.TaskEither<Error, string> {
+  return TE.right(`Hello World, ${param}`)
+}
+
+// The saga executing the service.
+export function* saga() {
+  // Either<Error, string>
+  const result = yield* call(service('param')) 
+}
+```
+
+
+> The `yield*` operator here is used for [typed-redux-saga](https://github.com/agiledigital/typed-redux-saga), to obtain a better typing inside a _Saga_.
+
+In this way, `result` would actually be of type `Either<Error, string>`, but we are using `call` wrongly by calling the function directly instead of passing its arguments like `call(service, 'param')`. This will cause problems when writing unit tests for the _Saga_. So, what if we pass the service in the correct way? Then we would have to write:
+
+```typescript
+// TaskEither<Error, string>
+const unexecutedResult = yield* call(service, 'param')
+
+// Either<Error, string>
+const result = yield* call(unexecutedResult)
+```
+
+In this case, `unexecutedResult` is of type `TaskEither<Error, string>`, and we would still need to actually execute it to obtain the concrete result. This works, but we would have to test two `call` effects for a single "operation". Don't really like it 😾. With a bit of TypeScript magic though, we can improve it by writing a utility function that creates and executes the `TaskEither` in a single call:
+
+```typescript
+/**
+ * Utility to evaluate a function returning a `TaskEither`.
+ */
+function* callTaskEither<
+  L,
+  R,
+  Fn extends (...genericArgs: Array<any>) => TE.TaskEither<L, R>,
+>(fn: Fn, ...args: Parameters<Fn>): SagaGenerator<E.Either<L, R>> {
+  const task: TE.TaskEither<L, R> = yield* call(fn, ...args)
+  return yield* call(task)
+}
+
+/**
+ * Evaluate a one-argument function returning a TaskEither.
+ */
+export function callTaskEither1<L, R, P1>(
+  fn: (p1: P1) => TE.TaskEither<L, R>,
+  p1: P1,
+): SagaGenerator<E.Either<L, R>> {
+  return callTaskEither(fn, p1)
+}
+
+/**
+ * Helper type for `callTaskEither1`.
+ */
+export type TCallTaskEither1<L, R, P1> = (
+  fn: (p1: P1) => TE.TaskEither<L, R>,
+  p1: P1,
+) => SagaGenerator<E.Either<L, R>>
+```
+
+The function `callTaskEither` is just a generator that does the two `call` we described before. Since TypeScript would be in trouble inferring the function's parameters with the spread operator, we need to create helper functions and types manually for each number of parameters we need. It's not the best but it's a one-time only job! This hard work will allow us to have a working type-check using a single `call` effect, like this:
+
+```typescript
+// Either<Error, string>
+const result = yield* call<TCallTaskEither1<Error, string, string>>(
+  callTaskEither1,
+  service,
+  'param',
+)
+```
+
+Still a little verbose, but I actually prefer it to using two `call` effects everywhere!
+
+See ya 🤠
+]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Reading from the Standard Input (stdin) using PureScript]]></title>
+            <link>https://dgopsq.space/blog/reading-from-stdin-using-purescript</link>
+            <guid>https://dgopsq.space/blog/reading-from-stdin-using-purescript</guid>
+            <pubDate>Thu, 30 Dec 2021 10:19:19 GMT</pubDate>
+            <description><![CDATA[How to read from the Standard Input (stdin) using PureScript.]]></description>
+            <content:encoded><![CDATA[
+These last few weeks I started learning PureScript again. I _love_ this language, it’s the quintessence of functional programming, but it lacks in community and libraries compared for example to TypeScript, and this sadly makes it really difficult for me to use in my side projects.
+
+While I was doing some challenges online, I had the need to retrieve an input string from `stdin`. I found out that this case is not really well covered anywhere, so why not writing a new blog post? 🙃
+
+First of all, to read from the **Standard Input (stdin)** the library [purescript-node-process](https://github.com/purescript-node/purescript-node-process) is needed. This library exposes `stdin` which is a `Readable` (a simple readable stream) and it will be the key component around which we’ll create our function. Since we are dealing with a simple stream, what we want to create is a function that takes that same stream and return a new string:
+
+```haskell
+import Prelude
+import Control.Monad.ST.Class (liftST)
+import Control.Monad.ST.Ref as STRef
+import Data.Either (Either(..))
+import Effect (Effect)
+import Effect.Aff (effectCanceler, launchAff_, makeAff)
+import Effect.Aff.Class (class MonadAff, liftAff)
+import Effect.Class (liftEffect)
+import Effect.Console (log)
+import Node.Encoding (Encoding(..))
+import Node.Process (stdin)
+import Node.Stream (Readable, destroy, onDataString, onEnd, onError)
+
+-- Accumulate a readable stream inside a string.
+streamAccumulator :: forall m r. MonadAff m => Readable r -> m String
+streamAccumulator r =
+  liftAff <<< makeAff
+    $ \res -> do
+        -- Create a mutable reference using `purescript-st`.
+        inputRef <- liftST $ STRef.new ""
+
+        -- Handle the `onDataString` event using
+        -- the UTF8 encoding.
+        onDataString r UTF8 \chunk ->
+          void <<< liftST $ STRef.modify (_ <> chunk) inputRef
+
+        -- Handle the `onEnd` event.
+        onEnd r do
+          input <- liftST $ STRef.read inputRef
+          res $ Right input
+
+        -- Handle the `onError` event.
+        onError r $ Left >>> res
+
+        -- Return a `Canceler` effect that will
+        -- destroy the stream.
+        pure $ effectCanceler (destroy r)
+
+-- Execute the program.
+main :: Effect Unit
+main =
+  launchAff_ do
+    input <- streamAccumulator stdin
+    liftEffect $ log input
+```
+
+This looks a bit messy but it’s actually simple. Since the process of handling a stream is “event-driven” we are going to use a safe mutable string (from [purescript-st](https://github.com/purescript/purescript-st)) to accumulate our input every time the `onDataString` event will be triggered. This whole process is asynchronous, meaning that we have to wait for the `onEnd` event (or `onError` if something bad happened) to actually return the accumulated string. The effect monad `Aff` solves this through `makeAff`. The `res` callback has to be called with an `Either` parameter, and only when this callback will be triggered the program can continue its execution.
+
+Peace ✌️
+]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Using Auth0 with Expo in the Managed Workflow]]></title>
+            <link>https://dgopsq.space/blog/auth0-expo-integration</link>
+            <guid>https://dgopsq.space/blog/auth0-expo-integration</guid>
+            <pubDate>Fri, 09 Jul 2021 08:21:28 GMT</pubDate>
+            <description><![CDATA[How to use the Auth0 React Native SDK in a managed Expo application without ejecting from the Expo ecosystem.]]></description>
+            <content:encoded><![CDATA[
+Here I am, once again writing something about Expo! Today I want to cover an interesting argument, which is the integration with [Auth0](https://auth0.com/docs/connections/identity-providers-social).
+
+## What is Auth0
+
+Auth0 is an authentication (and authorization) platform providing a lot of very useful features to allow users to signup and login into your application. Whether you need a full oAuth2 authentication flow, or a simple username/password login with Auth0 you will have it implemented in just a few lines of code.
+
+Personally I'm quite positive using these technologies while building a new application, especially when you have very sensible data. Managing the users and their credentials is always a delicate subject and most of the time much more expensive than a monthly subscription.
+
+## Compatibility with Expo
+
+When in our team decided to use Auth0 and Expo the first thing I did was check for the compatibility. Expo is awesome to build applications using React Native, but it's a bit of a walled garden: features like the _Cloud Building_ and _over-the-air updates_ are specific for the **Managed Workflow** and will work out of the box just using supported Expo modules. When we need to _eject_ an Expo app to use a particular React Native library or because we need to go a bit more "low level" we are talking about the **Bare Workflow** ([here](https://docs.expo.io/introduction/managed-vs-bare/) you can find more details about this topic).
+
+> With the new [EAS Build](https://docs.expo.io/build/introduction/) this requirement has been removed. We can build a React Native application in the cloud and have over-the-air updates even in **Bare Workflows**, although it's still a preview feature.
+
+Turns out that Auth0 is not _effectively_ supported by Expo. When there's not an `expo-something` module and the library to integrate needs a `pod install` ([here the link](https://auth0.com/docs/quickstart/native/react-native/00-login) to the Auth0 React Native SDK) usually we can conclude that we'll have to eject our application from the magical Expo garden.
+
+Luckily this was not the case! 🥳
+
+## The integration
+
+Following the tutorial I linked before, and more specifically the [Github repo](https://github.com/auth0/react-native-auth0#ios) we can see that the Objective-C binding described is just needed to open a browser page:
+
+```objectivec
+#import <React/RCTLinkingManager.h>
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
+{
+  return [RCTLinkingManager application:app openURL:url options:options];
+}
+```
+
+The rest of the stuff in the tutorial are just changes to the `Info.plist` file, and they can be done easily without ejecting our application through the `app.config.ts` (or `app.json`) modifying the `ios.infoPlist` value:
+
+```typescript
+const appConfig: ExpoConfig = {
+  // ...
+
+  ios: {
+    infoPlist: {
+      CFBundleURLTypes: [
+        {
+          CFBundleTypeRole: 'None',
+          CFBundleURLName: 'auth0',
+          CFBundleURLSchemes: ['$(PRODUCT_BUNDLE_IDENTIFIER)'],
+        },
+      ],
+    },
+  },
+
+  // ...
+}
+```
+
+We **don't** really need to add these lines though because using the SDK without linking it with the React Native ecosystem through `pod install` will allow us to **only use the functions that do not need to open a browser window or handle deep links**, like `passwordRealm`:
+
+```typescript
+auth0.auth.passwordRealm({
+  username: 'hello@email.com',
+  password: 'best_password',
+  realm: 'UsernamePasswordConnection',
+})
+```
+
+## Using Auth0 web-based authentication
+
+Even if we can't use the SDK for a web-based authentication, we can still leverage the [Auth0 API](https://auth0.com/docs/api) and the [AuthSession](https://docs.expo.io/versions/latest/sdk/auth-session/) component from Expo. With AuthSession we can let the user do a complete authentication flow in the browser (such as oAuth). The module will start a browser session and will listen for the user to come back into the application through a [Deep Link](https://docs.expo.io/guides/linking/).
+
+To start using Auth0 with AuthSession we first need to setup a [Social Login](https://auth0.com/learn/social-login/) on the Auth0 dashboard. After that we need to start an authentication session pointing to `https://your-domain.auth0.com/authorize` with the [correct query parameters](https://auth0.com/docs/api/authentication#social):
+
+```typescript
+const returnUrl = AuthSession.makeRedirectUri()
+
+const queryParams = toQueryString({
+  response_type: 'token',
+  client_id: 'client_id',
+  connection: 'connection',
+  redirect_uri: returnUrl,
+})
+
+const authUrl = `https://${domain}/authorize?${queryParams}`
+
+AuthSession.startAsync({
+  returnUrl,
+  authUrl,
+})
+  .then(console.log)
+  .error(console.error)
+```
+
+This code will open a browser page to the Auth0 endpoint, redirecting the user to the specific authentication provider based on the `connection` parameter. The `returnUrl` variable contains the deep link URL of our application and AuthSession will be waiting for the user to be redirected back there signaling the authentication flow's end.
+
+That's all! ✌️
+]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Handling migrations in React Native with SQLite and fp-ts]]></title>
+            <link>https://dgopsq.space/blog/handling-migrations-rn-sqlite-fp-ts</link>
+            <guid>https://dgopsq.space/blog/handling-migrations-rn-sqlite-fp-ts</guid>
+            <pubDate>Tue, 15 Sep 2020 08:17:58 GMT</pubDate>
+            <description><![CDATA[Recently, in one of my side projects, I had to use expo-sqlite to manage a small client-side database in a React Native app, while using the awesome fp-ts. I don't know if I will ever be able to ship that app, but at least I'm gonna use the experience I earned in (I hope) a good way 🙂.]]></description>
+            <content:encoded><![CDATA[
+Recently, in one of my side projects, I had to use [expo-sqlite](https://docs.expo.io/versions/latest/sdk/sqlite/) to manage a small client-side database in a **React Native** app, while using the awesome [fp-ts](https://github.com/gcanti/fp-ts). I don't know if I will ever be able to ship that app, but at least I'm gonna use the experience I earned in (I hope) a good way 🙂.
+
+## React Native and Expo
+
+[React Native](https://reactnative.dev/) is a framework for mobile applications that uses [React](https://reactjs.org/) as its engine, compiling it into native (yeah, _native_) views. This means that you can write native mobile applications using JavaScript (🤢) and React (❤️). This is already awesome, but [Expo](https://expo.io/) will bring all of this to another level. Expo is a set of tools written upon React Native that simplifies the development of cross-platform mobile applications providing features like: universal APIs for native elements (push notifications, camera, accelerometer, ...), over-the-air updates, an in-cloud build infrastructure, and much more!
+
+## The awesome fp-ts
+
+This last year in my day job I had to use Scala in a purely functional way, and because of that I finally started to look at TypeScript with a bit of disdain and contempt. I tried a lot of different stuff (such as Reason, ScalaJS and PureScript) but I always found something I didn't like in each of them (although PureScript is still in my "evaluation list", since I'm not yet finished with it). The real game changer though was **fp-ts**, which allowed me to use TypeScript in a _functional_ and _strongly-typed_ way, and since it's just Typescript I can use all the JavaScript APIs without bindings (and that's really great!). Sadly there are downsides too, TypeScript is not really FP-oriented, and a lot of features are a bit hack-y or just weird (like the [ADTs](https://dev.to/gcanti/functional-design-algebraic-data-types-36kf)), but I have to say that giving it a bit of time it's still very enjoyable!
+
+## Why migrations
+
+My app is 100% client side, and has a relatively small database (around 4 tables with 2 relations) that needs to be managed in run time. Why so? Because since it's completely client-side, whenever we have to add a feature that needs a database modification, we have to execute a SQL query directly on the app itself.
+
+The _right thing to do™_ is to have migrations, and there are different libraries that will help with them even on React Native (take a look at [TypeORM](https://typeorm.io/)). A migration is a _tracked_ SQL query that will execute just one time on the target database. It's tracked because we have to know if the query has already been executed or not, and to do so we need a place to store the _current version_ of the database (or the already executed migrations).
+Let us begin with a small example to understand migrations: imagine to have an empty relational database, a little robot named Gigi with the job of _handling migrations_ and a list of SQL queries such as:
+
+- `V1__create_users_table.sql`
+- `V2__create_posts_table.sql`
+- `V3__create_comments_table.sql`
+
+When we call Gigi, he'll start handling these migrations by checking his notebook for the last migration he executed on the database. In this first case he will notice that his notebook is empty, thus he will start executing all the migrations one-by-one, and at the end he's going to write that the last executed migration is `V3__create_comments_table.sql`.
+The next day we add a `V4__delete_comments_table.sql` query into the list, we call Gigi and he'll start the usual procedure, but this time he knows that he does't have to execute all the migrations again, but just the ones after `V3__create_comments_table.sql`, so he starts executing the remaining SQL queries, and at the end he will replace the latest query in his notebook.
+
+This simple procedure allow us to have a **versioned database** really easy to update and manage even when we don't really have a direct access (and this is our case!). What we are going to do here is _implement this feature from scratch using fp-ts_ with the advantage of an FP implementation and a light codebase (libraries like TypeORM are quite big sometimes 😕).
+
+## Expo SQLite and the Storage algebra
+
+Before writing the implementation of our migrations we need a bit of background! One of the many modules that Expo makes available to us is [expo-sqlite](https://docs.expo.io/versions/latest/sdk/sqlite/), which is a mobile implementation of an SQLite database. The usage is quite simple (although I struggled a bit to understand where actually was the database file created inside the simulator 😾) but I didn't like so much the APIs. For this reason I wrote a simple [_Algebra_](https://typelevel.org/blog/2019/02/06/algebraic-api-design.html) (which is an abstract collection of functions and values, if you are coming from the _Object Oriented Programming_ you can think of it as an _Interface_) to "wrap" them:
+
+```typescript
+interface IStorageAlgebra {
+  /**
+   * Execute a query to retrieve some value from
+   * the db
+   */
+  retrieveQuery: <T>(
+    decoder: Decoder<T>,
+  ) => (
+    query: string,
+    args: Array<QueryArgument>,
+  ) => TaskEither<DatabaseError, Array<T>>
+
+  /**
+   * Execute a query which does not obtain values
+   */
+  executeQuery: (
+    query: string,
+    args: Array<QueryArgument>,
+  ) => TaskEither<DatabaseError, number>
+
+  /**
+   * Execute multiple queries in a single transaction
+   */
+  executeQueriesInTransaction: (
+    queries: Array<string>,
+    argsList: Array<Array<QueryArgument>>,
+  ) => TaskEither<DatabaseError, void>
+
+  /**
+   * Setup the database
+   */
+  setup: () => TaskEither<DatabaseError, void>
+}
+```
+
+Here we need to explain something! The first thing you can notice is that every function returns a [TaskEither](https://gcanti.github.io/fp-ts/modules/TaskEither.ts.html). In fp-ts a `TaskEither<E, A>` is a _Monad_ for handling asynchronous computations, it is the representation of a _Promise_ yielding `A` as the successful result, and `E` as the error. The second thing is the [Decoder](https://github.com/gcanti/io-ts/blob/master/Decoder.md) which is not inside fp-ts but in another library called [io-ts](https://gcanti.github.io/io-ts/), this is just a module that allows us to type-check and "decode" a normal (and unknown) JavaScript object into something we actually know (If we have a `const myDecoder = Decoder<IMyObject>`, we can do a `myDecoder.decode(unknownObj)` to obtain a valid `IMyObject` or an error otherwise).
+
+What we are going to do now is implement the `setup` function, which will be executed at every startup of the application and has the task of bootstrapping the database and/or apply eventual updates (migrations!).
+
+## The migrations manager
+
+The `setup` function is what we precedently called "Migration manager". This function is divided into three main parts: **Bootstrap**, **Check**, and **Execution**. Before delving deeper we should point out how the list of migrations is implemented inside this project:
+
+```typescript
+const sqliteMigrations: ISQLiteMigrations = {
+  0: `CREATE TABLE IF NOT EXISTS articles (
+        id INTEGER PRIMARY KEY,
+        title TEXT NOT NULL,
+        body TEXT NOT NULL
+      );`,
+}
+```
+
+Quite simple, isn't it? It's just a JavaScript object with the version number as the key, and the query to execute as the value.
+
+Now that we know how the migrations are structured, let's analyse the `setup` function!
+
+### Bootstrap
+
+In the _Bootstrap_ we are merely creating the `__migration` table (the place in which we are going to store the executed migrations) if it's not already present, and we are retrieving the last executed migration. The code for this part is quite simple:
+
+```typescript
+this.executeQuery(`
+  CREATE TABLE IF NOT EXISTS __migrations (
+    id INTEGER PRIMARY KEY NOT NULL,
+    version INTEGER NOT NULL,
+    executed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  )
+`),
+```
+
+This is going to create a `__migrations` table with an `id` column, a `version` (just a number to identify the migration) and the `executed_at` which is the migration's execution timestamp. Now that we are sure a table exists, we need to retrieve the last migration executed:
+
+```typescript
+// Decoder that represents a single migration
+migrationsDecoder = Decoder.type({
+  id: Decoder.number,
+  version: Decoder.number,
+  executed_at: Decoder.string,
+})
+
+// ...
+
+this.retrieveQuery(this.migrationsDecoder)(`
+  SELECT * FROM __migrations ORDER BY id DESC LIMIT 1;
+`),
+```
+
+### Check
+
+At this point we need to _Check_ the migrations to execute (if any) using the last migration retrieved. For this task we are going to create a specific helper function named `getUnexecutedMigrations` that takes all the migrations plus an optional last migration, and returns a list of unexecuted migrations:
+
+```typescript
+private getUnexecutedMigrations = (migrations: ISQLiteMigrations) => (
+  maybeLastMigration: Option.Option<number>,
+): Array<number> =>
+  pipe(
+    Array.map(Number)(Object.keys(migrations)),
+    Array.sort(ordNumber),
+    (migrationsVersions) =>
+      pipe(
+        maybeLastMigration,
+        Option.fold(
+          () => migrationsVersions,
+          (lastMigration) =>
+            Array.dropLeft(migrationsVersions.indexOf(lastMigration) + 1)(
+              migrationsVersions,
+            ),
+        ),
+      ),
+  )
+```
+
+It's worth noting that `Array`, `Option` and `pipe` are all modules / functions contained into fp-ts. `Array` is just a convenient FP way to handle native JavaScript arrays, `Option` is the monad that handle the effect of optionality (the `Maybe` in [Haskell](https://wiki.haskell.org/Maybe)) and `pipe` is just an helper to chain functions from left to right.
+
+### Execution
+
+The last section to analyse is the _Execution_. Here, as the name probably suggests, we are going to execute all the remaining migrations. For each migration executed we need to add a line into the `__migrations` table, so it's important to execute both queries in a single transaction, to assure the database consistency:
+
+```typescript
+// Here we are managing the array of non-executed
+// migrations inside a `pipe`, so the fist parameter
+// of this `Array.map` is an `Array<number>`
+Array.map((version) =>
+  this.executeQueriesInTransaction(
+    [
+      this.migrations[version],
+      `INSERT INTO __migrations (version, executed_at) VALUES (?, CURRENT_TIMESTAMP)`,
+    ],
+    [[], [version]],
+  ),
+),
+```
+
+Taking a look at `IStorageAlgebra` we can see that `executeQueriesInTransaction` returns a `TaskEither<DatabaseError, void>`, thus here we are just mapping an `Array<number>` into an `Array<TaskEither<DatabaseError, void>>`.
+
+### The complete function
+
+This is the final `setup` function:
+
+```typescript
+public setup = (): TaskEither.TaskEither<IDatabaseError, number> =>
+  pipe(
+    this.executeQuery(`
+      CREATE TABLE IF NOT EXISTS __migrations (
+        id INTEGER PRIMARY KEY NOT NULL,
+        version INTEGER NOT NULL,
+        executed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+      )
+    `),
+
+    TaskEither.chain(() =>
+      this.retrieveQuery(this.migrationsDecoder)(`
+        SELECT * FROM ${this.migrationsTable} ORDER BY id DESC LIMIT 1;
+      `),
+    ),
+
+    TaskEither.chain((executedMigrations) =>
+      pipe(
+        executedMigrations,
+        Array.map((m) => m.version),
+        Array.head,
+        this.getUnexecutedMigrations(this.migrations),
+        Array.map((version) =>
+          this.executeQueriesInTransaction(
+            [
+              this.migrations[version],
+              `INSERT INTO ${this.migrationsTable} (version, executed_at) VALUES (?, CURRENT_TIMESTAMP)`,
+            ],
+            [[], [version]],
+          ),
+        ),
+        Array.array.sequence(TaskEither.taskEither),
+        TaskEither.map(() => undefined),
+      ),
+    ),
+  )
+```
+
+All the explained parts are joined through a `pipe` with `TaskEither.chain` as the "link". Since `TaskEither` is a monad we can compose it using its `flatmap` function (which is just renamed here into `chain`). The last two functions are a bit obscure: `Array.array.sequence(TaskEither.taskEither)` takes an `Array<TaskEither<E, A>>` and returns a `TaskEither<E, Array<A>>`. We are using it to "merge" all the successful results of the various async computations into a single `TaskEither` that we are going to `map` into an `undefined` because we don't actually need any result.
+
+That's all! 🙋‍♂️
+]]></content:encoded>
+        </item>
+    </channel>
+</rss>

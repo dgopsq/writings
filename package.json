@@ -10,6 +10,7 @@
     "deploy": "NODE_ENV=production yarn build && gh-pages -d out -a"
   },
   "dependencies": {
+    "feed": "^4.2.2",
     "next": "^12.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
