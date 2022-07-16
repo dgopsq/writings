@@ -3,6 +3,7 @@ import Layout from '../components/Layout'
 import Footer from '../components/Footer'
 import BigHeader from '../components/BigHeader'
 import { getPosts, Post } from '../lib/posts'
+import { generateFeed } from '../lib/feed'
 
 type Props = {
   posts: Array<Post>
@@ -36,6 +37,9 @@ const Home: React.FC<Props> = ({ posts }) => {
 
 export async function getStaticProps() {
   const posts = getPosts()
+
+  // Generate the RSS feed.
+  generateFeed(posts)
 
   return {
     props: {

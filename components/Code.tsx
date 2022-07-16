@@ -5,11 +5,23 @@ import purescript from 'react-syntax-highlighter/dist/cjs/languages/prism/puresc
 import haskell from 'react-syntax-highlighter/dist/cjs/languages/prism/haskell'
 import theme from 'react-syntax-highlighter/dist/cjs/styles/prism/nord'
 import { CodeComponent } from 'react-markdown/lib/ast-to-react'
+import React from 'react'
 
 SyntaxHighlighter.registerLanguage('typescript', typescript)
 SyntaxHighlighter.registerLanguage('objectivec', objectivec)
 SyntaxHighlighter.registerLanguage('purescript', purescript)
 SyntaxHighlighter.registerLanguage('haskell', haskell)
+
+function sanitizeCodeChildren(children: Array<React.ReactNode>): Array<string> {
+  const res: Array<string> = []
+
+  children.forEach((child) => {
+    if (typeof child !== 'string') return
+    res.push(child.trim())
+  })
+
+  return res
+}
 
 const Code: CodeComponent = (props) => {
   const { children, inline, className, ...rest } = props
@@ -17,14 +29,14 @@ const Code: CodeComponent = (props) => {
   const language = match ? match[1] : undefined
 
   if (!inline && match) {
-    const computedChildren = children.map(child => typeof child === 'string' ? child.trim() : child)
+    const computedChildren = sanitizeCodeChildren(children)
 
     return (
       <SyntaxHighlighter language={language} style={theme}>
         {computedChildren}
       </SyntaxHighlighter>
     )
-    } else
+  } else
     return (
       <code className={className} {...rest}>
         {children}

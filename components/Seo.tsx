@@ -64,6 +64,12 @@ const Seo: React.FC<Props> = ({
       />
       <meta key='twImage' name='twitter:image' content={computedImage} />
 
+      <link
+        rel='alternate'
+        type='application/rss+xml'
+        href={`${BASE_URL}/rss/feed.xml`}
+      />
+
       {canonical ? (
         <link key='canonical' rel='canonical' href={canonical} />
       ) : undefined}
