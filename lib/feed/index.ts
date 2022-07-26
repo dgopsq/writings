@@ -21,8 +21,8 @@ function generateFeedContent(posts: Array<Post>): Feed {
       'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>',
     copyright: `All rights reserved ${year}, Diego Pasquali`,
     feedLinks: {
-      json: 'https://example.com/json',
-      atom: 'https://example.com/atom',
+      json: `${BASE_URL}/rss/feed.json`,
+      atom: `${BASE_URL}/rss/atom.xml`,
     },
     author: {
       name: 'Diego Pasquali',
