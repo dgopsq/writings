@@ -11,7 +11,7 @@ function generateFeedContent(posts: Array<Post>): Feed {
   const year = new Date().getFullYear()
 
   const feed = new Feed({
-    title: `Diego Pasquali's writing 🪐 s p a c e ☄️`,
+    title: `Diego Pasquali's writing space`,
     description: 'Writing about technology and stuff.',
     id: BASE_URL,
     link: BASE_URL,
