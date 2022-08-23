@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "feed": "^4.2.2",
-    "next": "^12.2.2",
+    "netgrep": "link:../netgrep/packages/netgrep/dist",
+    "next": "^12.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.3",
