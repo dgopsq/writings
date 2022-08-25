@@ -3,7 +3,7 @@ import Posts from '../components/Posts'
 import Layout from '../components/Layout'
 import Footer from '../components/Footer'
 import BigHeader from '../components/BigHeader'
-import { getPosts, Post } from '../lib/posts'
+import { generatePostsSearchTargets, getPosts, Post } from '../lib/posts'
 import { generateFeed } from '../lib/feed'
 import { useCallback, useEffect } from 'react'
 
@@ -27,8 +27,6 @@ const Home: React.FC<Props> = ({ posts }) => {
     <>
       <header className='header'>
         <BigHeader />
-
-        <button onClick={evt}>CLICK ME</button>
       </header>
 
       <div className='posts'>
@@ -55,6 +53,9 @@ export async function getStaticProps() {
 
   // Generate the RSS feed.
   generateFeed(posts)
+
+  // Generate search targets
+  generatePostsSearchTargets(posts)
 
   return {
     props: {

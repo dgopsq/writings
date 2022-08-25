@@ -1,5 +1,7 @@
 import fs from 'fs'
 import matter from 'gray-matter'
+import { remark } from 'remark'
+import strip from 'strip-markdown'
 
 export type Post = {
   slug: string
@@ -94,4 +96,20 @@ export function getPostsSlugs(): Array<string> {
   const paths = files.map(filenameToSlug)
 
   return paths
+}
+
+export function generatePostsSearchTargets(posts: Array<Post>): void {
+  const outputDir = './public/search'
+
+  fs.mkdirSync(outputDir, { recursive: true })
+
+  posts.forEach((post) => {
+    const computedContent = `${post.frontmatter.title}\n${post.content}`
+    const strippedContent = remark().use(strip).processSync(computedContent)
+    const compressedContent = strippedContent.value
+      .toString()
+      .replaceAll('\n', '')
+
+    fs.writeFileSync(`${outputDir}/${post.slug}.txt`, compressedContent)
+  })
 }

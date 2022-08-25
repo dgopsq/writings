@@ -20,8 +20,10 @@
     "react-syntax-highlighter": "^15.5.0",
     "react-typography": "^0.16.20",
     "rehype-external-links": "^1.0.1",
+    "remark": "^14.0.2",
     "remark-hint": "^1.0.10",
     "schema-dts": "^1.0.0",
+    "strip-markdown": "^5.0.0",
     "typography": "^0.16.21"
   },
   "devDependencies": {
