@@ -109,7 +109,7 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.184.tgz#23f96cd2a21a28e106dc24d825d4aa966de7a9fe"
   integrity sha512-RoZphVtHbxPZizt4IcILciSWiC6dcn+eZ8oX9IWEYfDMcocdd42f7NPI6fQj+6zI8y4E0L7gu2pcZKLGTRaV9Q==
 
-"@types/mdast@^3.0.0":
+"@types/mdast@*", "@types/mdast@^3.0.0":
   version "3.0.10"
   resolved "https://registry.yarnpkg.com/@types/mdast/-/mdast-3.0.10.tgz#4724244a82a4598884cbbe9bcfd73dff927ee8af"
   integrity sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==
@@ -156,6 +156,15 @@
     "@types/prop-types" "*"
     "@types/scheduler" "*"
     csstype "^3.0.2"
+
+"@types/remark-hint@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/remark-hint/-/remark-hint-1.0.1.tgz#b07f486e7c990a62c154f37d31849b3f99779aaa"
+  integrity sha512-xsasg19ysrnfVkPLZ7eTo6gyQiTkhG7VAad4OH4IaQ+8pAE2iS2smjiZae4PfVDJitwicYsgLGOFH7fA05aPRQ==
+  dependencies:
+    "@types/mdast" "*"
+    remark "^14.0.2"
+    unified "^10.1.2"
 
 "@types/sax@^1.2.1":
   version "1.2.4"
@@ -1423,7 +1432,7 @@ typography@^0.16.21:
     object-assign "^4.1.0"
     typography-normalize "^0.16.19"
 
-unified@^10.0.0:
+unified@^10.0.0, unified@^10.1.2:
   version "10.1.2"
   resolved "https://registry.yarnpkg.com/unified/-/unified-10.1.2.tgz#b1d64e55dafe1f0b98bb6c719881103ecf6c86df"
   integrity sha512-pUSWAi/RAnVy1Pif2kAoeWNBa3JVrx0MId2LASj8G+7AiHWoKZNTomq6LG326T68U7/e263X6fTdcXIy7XnF7Q==

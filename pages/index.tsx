@@ -8,6 +8,7 @@ import { generateFeed } from '../lib/feed'
 import debounce from 'lodash/debounce'
 import { useSearchPosts } from '../utils/hooks/useSearchPosts'
 import { ChangeEvent, useCallback } from 'react'
+import { SearchInput } from '../components/SearchInput'
 
 type Props = {
   posts: Array<Post>
@@ -20,11 +21,6 @@ const Home: React.FC<Props> = ({ posts }) => {
 
   const computedPosts = result !== null ? result : posts
 
-  const handleSearch = useCallback(
-    debounce((e: ChangeEvent<HTMLInputElement>) => search(e.target.value), 300),
-    [search],
-  )
-
   return (
     <>
       <header className='header'>
@@ -34,11 +30,7 @@ const Home: React.FC<Props> = ({ posts }) => {
       <div className='content'>
         <div className='search'>
           <Layout>
-            <input
-              type='text'
-              onChange={handleSearch}
-              placeholder='Search...'
-            />
+            <SearchInput onChangeText={search} />
           </Layout>
         </div>
 
