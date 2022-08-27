@@ -5,7 +5,9 @@ import Footer from '../components/Footer'
 import BigHeader from '../components/BigHeader'
 import { generatePostsSearchTargets, getPosts, Post } from '../lib/posts'
 import { generateFeed } from '../lib/feed'
-import { useCallback, useEffect } from 'react'
+import debounce from 'lodash/debounce'
+import { useSearchPosts } from '../utils/hooks/useSearchPosts'
+import { ChangeEvent, useCallback } from 'react'
 
 type Props = {
   posts: Array<Post>
@@ -14,13 +16,13 @@ type Props = {
 const NG = new Netgrep({})
 
 const Home: React.FC<Props> = ({ posts }) => {
-  const evt = useCallback(
-    () =>
-      NG.search(
-        'https://sherlock-holm.es/stories/plain-text/advs.txt',
-        'Sherlock',
-      ).then(console.log),
-    [],
+  const { search, result } = useSearchPosts(posts)
+
+  const computedPosts = result !== null ? result : posts
+
+  const handleSearch = useCallback(
+    debounce((e: ChangeEvent<HTMLInputElement>) => search(e.target.value), 300),
+    [search],
   )
 
   return (
@@ -29,10 +31,22 @@ const Home: React.FC<Props> = ({ posts }) => {
         <BigHeader />
       </header>
 
-      <div className='posts'>
-        <Layout>
-          <Posts posts={posts} />
-        </Layout>
+      <div className='content'>
+        <div className='search'>
+          <Layout>
+            <input
+              type='text'
+              onChange={handleSearch}
+              placeholder='Search...'
+            />
+          </Layout>
+        </div>
+
+        <div className='posts'>
+          <Layout>
+            <Posts posts={computedPosts} />
+          </Layout>
+        </div>
       </div>
 
       <footer className='footer'>
@@ -40,8 +54,13 @@ const Home: React.FC<Props> = ({ posts }) => {
       </footer>
 
       <style jsx>{`
-        .posts {
+        .content {
           padding: 7em 0em;
+          min-height: 60em;
+        }
+
+        .posts {
+          padding-top: 4em;
         }
       `}</style>
     </>

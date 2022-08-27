@@ -2,10 +2,12 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import strip from 'strip-markdown'
+import { BASE_URL, IS_DEV, SEARCH_TARGET_DIR } from '../../utils/configs'
 
 export type Post = {
   slug: string
   content: string | null
+  searchTarget: string
 
   frontmatter: {
     date: string
@@ -57,9 +59,12 @@ function parsePostFile(filename: string): Post {
 
   const devToId = id ? `${id}` : null
 
+  const searchTarget = `/${SEARCH_TARGET_DIR}/${slug}.txt`
+
   return {
     slug,
     content,
+    searchTarget,
 
     frontmatter: {
       date,

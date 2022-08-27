@@ -29,3 +29,9 @@ export const BASE_URL =
 
 export const INSIGHTS_TOKEN =
   process.env.NEXT_PUBLIC_INSIGHTS_TOKEN || 'opLWOailQyAMF0c4'
+
+/**
+ * Search
+ */
+
+export const SEARCH_TARGET_DIR = process.env.SEARCH_TARGET_DIR || 'search'
