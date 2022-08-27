@@ -29,19 +29,23 @@ export const SearchInput = ({ onChangeText }: Props) => {
   return (
     <>
       <div className='search-container'>
-        <input
-          ref={inputRef}
-          type='text'
-          className='search-input'
-          onChange={handleChange}
-          value={value}
-          placeholder='Search...'
-        />
+        <div className='search-input'>
+          <input
+            ref={inputRef}
+            type='text'
+            className='search-input-field'
+            onChange={handleChange}
+            value={value}
+            placeholder='Search...'
+          />
+        </div>
 
         {value !== '' ? (
-          <button className='search-clear' onClick={handleClear}>
-            Clear
-          </button>
+          <div className='search-clear'>
+            <button className='search-clear-btn' onClick={handleClear}>
+              Clear
+            </button>
+          </div>
         ) : undefined}
 
         <div className='search-line' />
@@ -55,7 +59,10 @@ export const SearchInput = ({ onChangeText }: Props) => {
 
         .search-input {
           flex: 1 1 85%;
-          padding: 0.8em 0em;
+          padding: 0.8em 0.5em;
+        }
+
+        .search-input-field {
           border: 0;
           outline: none;
           font-family: ${getHeaderFontFamily()};
@@ -64,11 +71,26 @@ export const SearchInput = ({ onChangeText }: Props) => {
 
         .search-clear {
           flex: 0 0 15%;
-          padding: 0.8em 2em;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          padding-right: 0.5em;
+          background: transparent;
+        }
+
+        .search-clear-btn {
+          padding: 0.1em 0.7em;
           border: 0;
           background: transparent;
-          font-family: ${getHeaderFontFamily()};
           cursor: pointer;
+
+          border: 1px solid ${colors.primary};
+          border-radius: 1em;
+
+          font-family: ${getHeaderFontFamily()};
+          font-size: 0.6em;
+          text-transform: uppercase;
+          color: ${colors.primary};
         }
 
         .search-line {
