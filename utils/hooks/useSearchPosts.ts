@@ -1,9 +1,9 @@
-import { Netgrep } from 'netgrep'
-import { NetgrepInput } from 'netgrep/src/lib/data/NetgrepInput'
+import { Netgrep } from '@netgrep/netgrep'
+import { NetgrepInput } from '@netgrep/netgrep/src/lib/data/NetgrepInput'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Post } from '../../lib/posts'
 
-const NG = new Netgrep({})
+const NG = new Netgrep()
 
 type UseSearchPostValue = {
   search: (input: string) => void

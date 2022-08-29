@@ -6,9 +6,13 @@ module.exports = {
   optimizeFonts: true,
   reactStrictMode: true,
   swcMinify: true,
+  cleanDistDir: false,
 
   webpack(config, { isServer }) {
-    config.experiments = { ...config.experiments, asyncWebAssembly: true }
+    config.experiments = {
+      ...config.experiments,
+      asyncWebAssembly: true,
+    }
 
     config.plugins.push(
       new (class {

@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS=--experimental-wasm-modules next dev",
     "compile": "tsc --noEmit",
     "build": "NODE_ENV=production yarn compile && next build && next export",
     "start": "next start",
     "deploy": "NODE_ENV=production yarn build && gh-pages -d out -a"
   },
   "dependencies": {
+    "@netgrep/netgrep": "^0.1.5",
     "feed": "^4.2.2",
     "lodash": "^4.17.21",
-    "netgrep": "link:../netgrep/packages/netgrep/dist",
     "next": "^12.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

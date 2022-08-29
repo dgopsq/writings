@@ -9,9 +9,17 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@netgrep/search@link:../netgrep/packages/search/pkg":
-  version "0.0.0"
-  uid ""
+"@netgrep/netgrep@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@netgrep/netgrep/-/netgrep-0.1.5.tgz#951024e59b8f2599f69123839aad338aec2fd755"
+  integrity sha512-PqJrFHHJEOazykJ56ljyvzi8srVx1h02sRzO2gySeayBgT20EH1Rjtb+HOBPDfuIxCrjxrzYhDpRBumWF9rKjg==
+  dependencies:
+    "@netgrep/search" "^0.1.5"
+
+"@netgrep/search@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@netgrep/search/-/search-0.1.5.tgz#66807a971c24ea59685bf48ed6b4f71c2b952d10"
+  integrity sha512-EGBRjKC5I9+QDPMsYx/ghy4kDBp2/QOHa5KHn6dj1NMbNfwcW1RnTuIJ0iFa8qTOgcCDJSi2ktPspukHpUIO/w==
 
 "@next/env@12.2.5":
   version "12.2.5"
@@ -966,10 +974,6 @@ nanoid@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
-
-"netgrep@link:../netgrep/packages/netgrep/dist":
-  version "0.0.0"
-  uid ""
 
 next@^12.2.5:
   version "12.2.5"

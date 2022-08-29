@@ -1,20 +1,15 @@
-import { Netgrep } from 'netgrep'
 import Posts from '../components/Posts'
 import Layout from '../components/Layout'
 import Footer from '../components/Footer'
 import BigHeader from '../components/BigHeader'
 import { generatePostsSearchTargets, getPosts, Post } from '../lib/posts'
 import { generateFeed } from '../lib/feed'
-import debounce from 'lodash/debounce'
 import { useSearchPosts } from '../utils/hooks/useSearchPosts'
-import { ChangeEvent, useCallback } from 'react'
 import { SearchInput } from '../components/SearchInput'
 
 type Props = {
   posts: Array<Post>
 }
-
-const NG = new Netgrep({})
 
 const Home: React.FC<Props> = ({ posts }) => {
   const { search, result } = useSearchPosts(posts)
