@@ -29,16 +29,14 @@ export const SearchInput = ({ onChangeText }: Props) => {
   return (
     <>
       <div className='search-container'>
-        <div className='search-input'>
-          <input
-            ref={inputRef}
-            type='text'
-            className='search-input-field'
-            onChange={handleChange}
-            value={value}
-            placeholder='Search...'
-          />
-        </div>
+        <input
+          ref={inputRef}
+          type='text'
+          className='search-input'
+          onChange={handleChange}
+          value={value}
+          placeholder='Search...'
+        />
 
         {value !== '' ? (
           <div className='search-clear'>
@@ -60,12 +58,10 @@ export const SearchInput = ({ onChangeText }: Props) => {
         .search-input {
           flex: 1 1 85%;
           padding: 0.8em 0.5em;
-        }
-
-        .search-input-field {
           border: 0;
           outline: none;
           font-family: ${getHeaderFontFamily()};
+          font-size: 1em;
           color: ${colors.black};
         }
 
