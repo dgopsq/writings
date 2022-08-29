@@ -37,6 +37,8 @@ export const SearchInput = ({ onChangeText }: Props) => {
             onChange={handleChange}
             value={value}
             placeholder='Search...'
+            autoCapitalize='off'
+            autoCorrect='off'
           />
 
           <div className='border-line' />
