@@ -15,6 +15,7 @@ const Home: React.FC<Props> = ({ posts }) => {
   const { search, result } = useSearchPosts(posts)
 
   const computedPosts = result !== null ? result : posts
+  const isSearching = result !== null
 
   return (
     <>
@@ -31,7 +32,7 @@ const Home: React.FC<Props> = ({ posts }) => {
 
         <div className='posts'>
           <Layout>
-            <Posts posts={computedPosts} />
+            <Posts posts={computedPosts} isSearching={isSearching} />
           </Layout>
         </div>
       </div>

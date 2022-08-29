@@ -5,16 +5,21 @@ import PostTitle from './PostTitle'
 
 type Props = {
   posts: Array<Post>
+  isSearching: boolean
 }
 
-const Posts: React.FC<Props> = ({ posts }) => {
+const Posts: React.FC<Props> = ({ posts, isSearching }) => {
+  const fallbackContent = !isSearching ? (
+    <div className='icon'>👨‍💻</div>
+  ) : (
+    <span>No posts found 🥺</span>
+  )
+
   return (
     <>
       <div className='wrapper'>
         {!posts.length ? (
-          <div className='fallback'>
-            <div className='icon'>👨‍💻</div>
-          </div>
+          <div className='fallback'>{fallbackContent}</div>
         ) : (
           <ul className='posts'>
             {posts.map((post) => (
