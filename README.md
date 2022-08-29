@@ -4,7 +4,7 @@ This is my personal 🪐 **s p a c e** ☄️, here I write stuff about technolo
 
 ## Stack
 
-This space has been written using **Next.js** and **TypeScript**. It's just a static website based on a bunch of markdown files!
+This space has been written using **Next.js** and **TypeScript**. It's just a static website based on a bunch of markdown files. The search field is currently using [`netgrep`](https://github.com/dgopsq/netgrep) under the hood!
 
 You can find out more about what other technology I'm using by reading the [package.json](https://github.com/dgopsq/writings/blob/master/package.json#L12-L24) file.
 
