@@ -7,6 +7,8 @@ import PostTitle from '../../components/PostTitle'
 import Seo from '../../components/Seo'
 import { generatePostUrl } from '../../utils/formats'
 import { DEFAULT_TITLE } from '../../utils/configs'
+import { GetStaticProps } from 'next'
+import { ParsedUrlQuery } from 'querystring'
 
 type Props = {
   post?: Post
@@ -39,12 +41,12 @@ const SinglePost: React.FC<Props> = ({ post, devToUrl }) => {
             value={post.frontmatter.title}
             date={postDate}
             tags={post.frontmatter.tags}
-            devToUrl={devToUrl}
+            devToUrl={devToUrl ?? null}
             big
           />
 
           <div className='post-content'>
-            <Markdown source={post.content} />
+            <Markdown source={post.content || ''} />
           </div>
         </Layout>
       </article>
@@ -79,7 +81,8 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params: { slug } }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const slug = typeof params?.slug === 'string' ? params.slug : ''
   const post = getSinglePost(slug)
   let devToUrl: string | null = null
 

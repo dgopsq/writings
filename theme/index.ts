@@ -20,5 +20,11 @@ export const typography = new Typography({
 })
 
 export function getHeaderFontFamily() {
-  return typography.options.headerFontFamily.join(', ')
+  const { headerFontFamily } = typography.options
+
+  const computedFamily = Array.isArray(headerFontFamily)
+    ? headerFontFamily.join(', ')
+    : headerFontFamily ?? ''
+
+  return computedFamily
 }

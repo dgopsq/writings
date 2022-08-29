@@ -36,7 +36,7 @@ function generateFeedContent(posts: Array<Post>): Feed {
       id: generatePostUrl(post.slug),
       link: generatePostUrl(post.slug),
       description: post.frontmatter.description,
-      content: post.content,
+      content: post.content ?? '',
       author: [
         {
           name: 'Diego Pasquali',

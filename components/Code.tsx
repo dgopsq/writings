@@ -1,7 +1,6 @@
 import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript'
 import objectivec from 'react-syntax-highlighter/dist/cjs/languages/prism/objectivec'
-import purescript from 'react-syntax-highlighter/dist/cjs/languages/prism/purescript'
 import haskell from 'react-syntax-highlighter/dist/cjs/languages/prism/haskell'
 import theme from 'react-syntax-highlighter/dist/cjs/styles/prism/nord'
 import { CodeComponent } from 'react-markdown/lib/ast-to-react'
@@ -9,7 +8,6 @@ import React from 'react'
 
 SyntaxHighlighter.registerLanguage('typescript', typescript)
 SyntaxHighlighter.registerLanguage('objectivec', objectivec)
-SyntaxHighlighter.registerLanguage('purescript', purescript)
 SyntaxHighlighter.registerLanguage('haskell', haskell)
 
 function sanitizeCodeChildren(children: Array<React.ReactNode>): Array<string> {
