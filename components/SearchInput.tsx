@@ -29,14 +29,18 @@ export const SearchInput = ({ onChangeText }: Props) => {
   return (
     <>
       <div className='search-container'>
-        <input
-          ref={inputRef}
-          type='text'
-          className='search-input'
-          onChange={handleChange}
-          value={value}
-          placeholder='Search...'
-        />
+        <div className='search-input'>
+          <input
+            ref={inputRef}
+            type='text'
+            className='search-input-field'
+            onChange={handleChange}
+            value={value}
+            placeholder='Search...'
+          />
+
+          <div className='border-line' />
+        </div>
 
         {value !== '' ? (
           <div className='search-clear'>
@@ -45,19 +49,21 @@ export const SearchInput = ({ onChangeText }: Props) => {
             </button>
           </div>
         ) : undefined}
-
-        <div className='search-line' />
       </div>
 
       <style jsx>{`
         .search-container {
           display: flex;
-          flex-wrap: wrap;
+          flex-wrap: nowrap;
+          position: relative;
         }
 
         .search-input {
-          flex: 1 1 85%;
+          flex: 1 1 100%;
           padding: 0.8em 0.5em;
+        }
+
+        .search-input-field {
           border: 0;
           outline: none;
           font-family: ${getHeaderFontFamily()};
@@ -65,8 +71,23 @@ export const SearchInput = ({ onChangeText }: Props) => {
           color: ${colors.black};
         }
 
+        .border-line {
+          content: '';
+          display: block;
+          position: absolute;
+          bottom: 0px;
+          left: 0px;
+          width: 100%;
+          height: 3px;
+          background-color: ${colors.lightGrey};
+        }
+
+        .search-input-field:focus + .border-line {
+          background-color: ${colors.primary};
+        }
+
         .search-clear {
-          flex: 0 0 15%;
+          flex: 0 0 auto;
           display: flex;
           align-items: center;
           justify-content: flex-end;
@@ -94,10 +115,6 @@ export const SearchInput = ({ onChangeText }: Props) => {
           width: 100%;
           flex: 0 0 100%;
           background-color: ${colors.lightGrey};
-        }
-
-        .search-input:focus ~ .search-line {
-          background-color: ${colors.primary};
         }
       `}</style>
     </>
