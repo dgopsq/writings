@@ -3,15 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS=--experimental-wasm-modules next dev",
     "compile": "tsc --noEmit",
-    "build": "NODE_ENV=production yarn compile && next build && next export",
-    "start": "next start",
-    "deploy": "NODE_ENV=production yarn build && gh-pages -d out -a"
+    "export": "NODE_OPTIONS=--experimental-wasm-modules next export",
+    "build": "NODE_OPTIONS=--experimental-wasm-modules next build",
+    "start": "NODE_OPTIONS=--experimental-wasm-modules next start",
+    "build-and-export": "yarn build && yarn export"
   },
   "dependencies": {
+    "@netgrep/netgrep": "^0.1.5",
     "feed": "^4.2.2",
-    "next": "^12.2.2",
+    "lodash": "^4.17.21",
+    "next": "^12.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.3",
@@ -19,14 +22,18 @@
     "react-syntax-highlighter": "^15.5.0",
     "react-typography": "^0.16.20",
     "rehype-external-links": "^1.0.1",
+    "remark": "^14.0.2",
     "remark-hint": "^1.0.10",
     "schema-dts": "^1.0.0",
+    "strip-markdown": "^5.0.0",
     "typography": "^0.16.21"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.184",
     "@types/node": "^14.0.23",
     "@types/react": "^18.0.15",
     "@types/react-syntax-highlighter": "^15.5.3",
+    "@types/remark-hint": "^1.0.1",
     "@types/typography": "^0.16.4",
     "gh-pages": "^3.1.0",
     "gray-matter": "^4.0.2",
