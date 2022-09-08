@@ -1,6 +1,6 @@
 ---
-title: My website's search is using ripgrep
-description: How I ported ripgrep to WASM in order to create a search engine for my blog.
+title: A ripgrep-powered Search Engine on the web
+description: How I ported ripgrep to WASM in order to create a Search Engine for my blog.
 tags: 'search, typescript, rust, grep'
 canonical_url: https://www.dgopsq.space/blog/my-website-search-is-using-ripgrep'
 ---
@@ -47,6 +47,6 @@ All the other methods like `searchBatch` and `searchBatchWithCallback` are utili
 
 # What about performance?
 
-Well, as I said this was just an experiment to test a bit WASM and the integration of a library that is completely outside the "web" scope. This means that even though I have written it with performance in mind, **it’s not the best way to do a [Full-Text Search](https://en.wikipedia.org/wiki/Full-text_search)**. It could be used for small files-based databases (like this blog) and possibly with a server [supporting HTTP/2 in order to leverage multiplexing](https://http2.github.io/faq/#why-is-http2-multiplexed). Anything bigger than that will probably require a more “scalable” approach like an index-based search engine.
+Well, as I said this was just an experiment to test a bit WASM and the integration of a library that is completely outside the "web" scope. This means that even though I have written it with performance in mind, **it’s not the best way to do a [Full-Text Search](https://en.wikipedia.org/wiki/Full-text_search)**. It could be used for small files-based databases (like this blog) and possibly with a server [supporting HTTP/2 in order to leverage multiplexing](https://http2.github.io/faq/#why-is-http2-multiplexed). Anything bigger than that will probably require a more “scalable” approach like an Index-Based Search Engine.
 
 See ya in the next article 👋
