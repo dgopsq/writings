@@ -5,7 +5,7 @@ tags: 'search, typescript, rust, grep'
 canonical_url: https://www.dgopsq.space/blog/my-website-search-is-using-ripgrep'
 ---
 
-Yep, you heard it right, my website’s search is using [**ripgrep**](https://github.com/BurntSushi/ripgrep) under the hood. This was mostly an experiment I wanted to do and it’s in no way a real alternative to do Full-Text search… but IT IS cool 😎✨
+My website’s search is using [**ripgrep**](https://github.com/BurntSushi/ripgrep) under the hood. You can try it out visiting the [homepage](https://www.dgopsq.space/) and typing a [simple regex](https://docs.rs/regex/1.6.0/regex/#syntax). As a disclaimer I just want to say that this is mostly an experiment and it’s in no way a real alternative to do Full-Text Search… but IT IS cool 😎✨
 
 > The result of this article is [*netgrep*](https://github.com/dgopsq/netgrep), a JavaScript module that provides an API to execute HTTP based search queries using most of all the *ripgrep*’s features. You can take a look at the code right away since it should be decently commented 🤓
 
