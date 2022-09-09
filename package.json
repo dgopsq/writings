@@ -23,6 +23,7 @@
     "react-typography": "^0.16.20",
     "rehype-external-links": "^1.0.1",
     "remark": "^14.0.2",
+    "remark-gfm": "^3.0.1",
     "remark-hint": "^1.0.10",
     "schema-dts": "^1.0.0",
     "strip-markdown": "^5.0.0",

@@ -3,6 +3,7 @@ import remarkHint from 'remark-hint'
 import rehypeExternalLink from 'rehype-external-links'
 import { typography, colors } from '../theme'
 import Code from './Code'
+import remarkGfm from 'remark-gfm'
 
 type Props = {
   source: string
@@ -13,7 +14,7 @@ const Markdown: React.FC<Props> = ({ source }) => {
     <>
       <ReactMarkdown
         components={{ code: Code }}
-        remarkPlugins={[remarkHint]}
+        remarkPlugins={[remarkHint, remarkGfm]}
         rehypePlugins={[rehypeExternalLink]}
         children={source}
       />
