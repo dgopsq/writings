@@ -5,6 +5,7 @@ tags: 'search, typescript, rust, grep'
 canonical_url: 'https://www.dgopsq.space/blog/ripgrep-powered-search-engine-on-the-web'
 published: true
 id: 1188910
+date: '2022-09-09T09:49:23Z'
 ---
 
 My website’s search is using [**ripgrep**](https://github.com/BurntSushi/ripgrep) under the hood. You can try it out visiting the [homepage](https://www.dgopsq.space/) and typing a [simple regex](https://docs.rs/regex/1.6.0/regex/#syntax). As a disclaimer I just want to say that this is mostly an experiment and it’s in no way a real alternative to do Full-Text Search… but IT IS cool 😎✨
