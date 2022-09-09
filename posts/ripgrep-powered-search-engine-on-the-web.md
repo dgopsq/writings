@@ -34,7 +34,7 @@ More specifically, the [`search_bytes`](https://github.com/dgopsq/netgrep/blob/m
 
 ## TypeScript library
 
-The [**netgrep** package](https://github.com/dgopsq/netgrep/tree/main/packages/netgrep) is the one responsible to expose the final API to the user, and the “core” function used to build all the others methods is [`Netgrep.search()`](https://github.com/dgopsq/netgrep/blob/main/packages/netgrep/src/lib/Netgrep.ts#L50). This just executes a `fetch` request toward an endpoint and triggers the `search_bytes` function for every batch of bytes downloaded until a match has been found. When this happens it will just resolve the returned `Promise` with a [`NetgrepResult`](https://github.com/dgopsq/netgrep/blob/main/packages/netgrep/src/lib/data/NetgrepResult.ts).
+The [**netgrep** package](https://github.com/dgopsq/netgrep/tree/main/packages/netgrep) is the one responsible to expose the final API to the user, and the “core” function used to build all the other methods is [`Netgrep.search()`](https://github.com/dgopsq/netgrep/blob/main/packages/netgrep/src/lib/Netgrep.ts#L50). This just executes a `fetch` request toward an endpoint and triggers the `search_bytes` function for every batch of bytes downloaded until a match has been found. When this happens it will just resolve the returned `Promise` with a [`NetgrepResult`](https://github.com/dgopsq/netgrep/blob/main/packages/netgrep/src/lib/data/NetgrepResult.ts).
 
 The curious part here is how to read-while-downloading using JavaScript. At first I just tried using an `XMLHttpRequest` with an `onprogress` event, but I noticed that I couldn’t actually read the _content_ being downloaded. Trying reading the response’s value was a dead end-ish too, since as stated in the official documentation:
 
