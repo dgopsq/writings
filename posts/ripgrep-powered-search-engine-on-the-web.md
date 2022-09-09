@@ -25,7 +25,7 @@ The [netgrep](https://github.com/dgopsq/netgrep) library is divided into two mac
 
 After dealing with the WASM compatibility issue, which was actually [quite simple to fix](https://github.com/BurntSushi/ripgrep/commit/645cb7e3baf7c2b286d652c3c960fcd45978c0fd), I had to choose the _architecture_ of the library. Analysing a bit _ripgrep_ we can summarise its work into two sections:
 
-1. **Discovery** which is the act of navigating inside a directory and list all the files inside recursively;
+1. **Discovery** which is the act of navigating inside a directory and list all the files recursively;
 2. **Search** or: “look for the given pattern inside that file”.
 
 At the moment I just wanted to release _netgrep_ with only the **Search** feature, leaving to the user the job of providing a list of files to analyse. Taking this into consideration and knowing that a WASM binary can only use the native browser APIs for networking (so [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) and [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)), I decided to handle just the **searching** function inside the binary.
