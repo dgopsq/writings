@@ -2,7 +2,8 @@
 title: A ripgrep-powered Search Engine on the web
 description: How I ported ripgrep to WASM in order to create a Search Engine for my blog.
 tags: 'search, typescript, rust, grep'
-canonical_url: 'https://www.dgopsq.space/blog/ripgrep-powered-search-engine-on-the-web'''
+canonical_url: 'https://www.dgopsq.space/blog/ripgrep-powered-search-engine-on-the-web'
+published: true
 id: 1188910
 ---
 
