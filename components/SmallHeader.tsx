@@ -8,9 +8,7 @@ const SmallHeader: React.FC = () => {
       <div className='wrapper'>
         <Layout>
           <Link href='/'>
-            <a>
-              <span>DGOPSQ</span>
-            </a>
+            <span>DGOPSQ</span>
           </Link>
         </Layout>
       </div>

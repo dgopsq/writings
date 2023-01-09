@@ -24,15 +24,17 @@ const Posts: React.FC<Props> = ({ posts, isSearching }) => {
           <ul className='posts'>
             {posts.map((post) => (
               <li className='posts-item' key={post.slug}>
-                <Link href={`/blog/[slug]`} as={`/blog/${post.slug}`}>
-                  <a>
-                    <PostTitle
-                      value={post.frontmatter.title}
-                      date={new Date(post.frontmatter.date)}
-                      tags={post.frontmatter.tags}
-                      devToUrl={null}
-                    />
-                  </a>
+                <Link
+                  href={`/blog/[slug]`}
+                  as={`/blog/${post.slug}`}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <PostTitle
+                    value={post.frontmatter.title}
+                    date={new Date(post.frontmatter.date)}
+                    tags={post.frontmatter.tags}
+                    devToUrl={null}
+                  />
                 </Link>
               </li>
             ))}
@@ -63,10 +65,6 @@ const Posts: React.FC<Props> = ({ posts, isSearching }) => {
 
         .posts .posts-item:not(:first-child) {
           margin-top: 3em;
-        }
-
-        .posts .posts-item a {
-          text-decoration: none;
         }
       `}</style>
     </>
