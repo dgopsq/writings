@@ -136,22 +136,28 @@ export const Resume = () => (
           <Timeline
             data={[
               {
-                timeframe: 'Jan 2022 - Present',
-                company: 'PAGOPA S.P.A',
+                timeframe: 'Sep 2022 - Present',
+                company: 'Heritage Holdings',
+                position: 'Senior Software Engineer',
+                description: 'Test test test',
+              },
+              {
+                timeframe: 'Jan 2022 - Sep 2022',
+                company: 'PagoPA S.P.A',
                 position: 'Mobile Software Engineer',
                 description:
-                  'In PagoPA I worked on IO, an open-source mobile application written in React Native with more than 20 million downloads and 6 million monthly active users.',
+                  'Worked on IO, an open-source mobile application written in React Native with more than 20 million downloads and 6 million monthly active users.',
               },
               {
                 timeframe: 'Sep 2018 - Dec 2021',
-                company: 'EFFICIAM',
+                company: 'Efficiam',
                 position: 'Software Engineer',
                 description:
                   'In Efficiam I created the Frontend Architecture of various fintech applications both on web and mobile, mostly using React and React Native. I dealt with a various range of problems: from Real Time Data Visualization to Authentication and Security. I had the opportunity to work on the Backend too using Scala in Functional Programming.',
               },
               {
                 timeframe: 'Apr 2015 - Aug 2018',
-                company: 'FREELANCE',
+                company: 'Freelance',
                 position: 'Front-end developer and designer',
                 description:
                   'I worked as a freelance front-end developer and designer, usually creating custom Bootstrap themes and React applications for different customers.',

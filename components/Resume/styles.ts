@@ -80,6 +80,14 @@ export const styles = StyleSheet.create({
     fontFamily: 'Lato',
     fontWeight: 700,
   },
+  textLink: {
+    fontFamily: 'Lato',
+    fontWeight: 400,
+    color: palette.primary,
+    fontSize: '10px',
+    textDecoration: 'underline',
+    lineHeight: 1.5,
+  },
   mainTitle: {
     fontSize: '18px',
     fontWeight: 900,
