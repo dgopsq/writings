@@ -127,8 +127,8 @@ const styles = StyleSheet.create({
     flexBasis: '100%',
   },
   experienceDot: {
-    height: '10px',
-    width: '10px',
+    height: '9px',
+    width: '9px',
     backgroundColor: palette.white,
     border: `1px solid ${palette.primary}`,
     borderRadius: '100%',
@@ -302,55 +302,86 @@ export const Resume = () => (
       <View style={styles.section}>
         <View style={styles.layout}>
           <Text style={styles.textCategoryTitle}>Experiences</Text>
-          {[
-            {
-              timeframe: 'Jan 2022 - Present',
-              company: 'PAGOPA S.P.A',
-              position: 'Mobile Software Engineer',
-              description:
-                'In PagoPA I worked on IO, an open-source mobile application written in React Native with more than 20 million downloads and 6 million monthly active users.',
-            },
-          ].map(({ timeframe, company, position, description }) => (
-            <View style={[styles.row, { marginTop: '15px' }]} break>
-              <View style={styles.experienceTimeline}>
-                <View style={styles.experienceDot} />
-                <View style={styles.experienceTrack} />
-              </View>
 
-              <View>
-                <Text
-                  style={[styles.textDate]}
-                  hyphenationCallback={(word) => [word]}
-                >
-                  {timeframe}
-                </Text>
+          <View style={{ marginTop: '15px' }}>
+            {[
+              {
+                timeframe: 'Jan 2022 - Present',
+                company: 'PAGOPA S.P.A',
+                position: 'Mobile Software Engineer',
+                description:
+                  'In PagoPA I worked on IO, an open-source mobile application written in React Native with more than 20 million downloads and 6 million monthly active users.',
+              },
+              {
+                timeframe: 'Sep 2018 - Dec 2021',
+                company: 'EFFICIAM',
+                position: 'Software Engineer',
+                description:
+                  'In Efficiam I created the Frontend Architecture of various fintech applications both on web and mobile, mostly using React and React Native. I dealt with a various range of problems: from Real Time Data Visualization to Authentication and Security. I had the opportunity to work on the Backend too using Scala in Functional Programming.',
+              },
+              {
+                timeframe: 'Apr 2015 - Aug 2018',
+                company: 'FREELANCE',
+                position: 'Front-end developer and designer',
+                description:
+                  'I worked as a freelance front-end developer and designer, usually creating custom Bootstrap themes and React applications for different customers.',
+              },
+            ].map(({ timeframe, company, position, description }, index) => (
+              <View
+                style={{
+                  paddingLeft: '20px',
+                  borderLeft: `1px solid ${palette.primary}`,
+                  paddingTop: index > 0 ? '15px' : undefined,
+                }}
+              >
+                <View wrap={false} style={{ paddingTop: '15px' }}>
+                  <View style={{ position: 'relative' }}>
+                    <View
+                      style={[
+                        styles.experienceDot,
+                        {
+                          position: 'absolute',
+                          left: '-25px',
+                          top: '2px',
+                        },
+                      ]}
+                    ></View>
 
-                <Text
-                  style={[styles.experienceTitle, { marginTop: '3px' }]}
-                  hyphenationCallback={(word) => [word]}
-                >
-                  {company}
-                </Text>
+                    <Text
+                      style={styles.textDate}
+                      hyphenationCallback={(word) => [word]}
+                    >
+                      {timeframe}
+                    </Text>
+                  </View>
 
-                <Text
-                  style={[styles.experiencePosition, { marginTop: '5px' }]}
-                  hyphenationCallback={(word) => [word]}
-                >
-                  {position}
-                </Text>
+                  <Text
+                    style={[styles.experienceTitle, { marginTop: '3px' }]}
+                    hyphenationCallback={(word) => [word]}
+                  >
+                    {company}
+                  </Text>
+
+                  <Text
+                    style={[styles.experiencePosition, { marginTop: '5px' }]}
+                    hyphenationCallback={(word) => [word]}
+                  >
+                    {position}
+                  </Text>
+                </View>
 
                 <Text
                   style={[
                     styles.textBody,
-                    { marginTop: '10px', maxWidth: '275px' },
+                    { marginTop: '10px', maxWidth: '320px' },
                   ]}
                   hyphenationCallback={(word) => [word]}
                 >
                   {description}
                 </Text>
               </View>
-            </View>
-          ))}
+            ))}
+          </View>
         </View>
       </View>
     </Page>
