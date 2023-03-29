@@ -32,6 +32,7 @@ const palette = {
   lightGray: '#F3F3F3',
   gray: '#B0B0B0',
   black: '#282828',
+  white: '#FFFFFF',
 }
 
 // Create styles
@@ -101,6 +102,38 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato',
     color: palette.gray,
   },
+  experienceTitle: {
+    fontSize: '10px',
+    fontWeight: 700,
+    fontFamily: 'Lato',
+    color: palette.primary,
+  },
+  experiencePosition: {
+    fontSize: '10px',
+    fontWeight: 400,
+    fontFamily: 'Lato',
+    color: palette.primary,
+  },
+  experienceTimeline: {
+    display: 'flex',
+    flexDirection: 'column',
+    maxHeight: '150px',
+    marginRight: '10px',
+  },
+  experienceTrack: {
+    width: '1px',
+    backgroundColor: palette.primary,
+    marginHorizontal: 'auto',
+    flexBasis: '100%',
+  },
+  experienceDot: {
+    height: '10px',
+    width: '10px',
+    backgroundColor: palette.white,
+    border: `1px solid ${palette.primary}`,
+    borderRadius: '100%',
+    flexBasis: 'auto',
+  },
   row: {
     display: 'flex',
     flexDirection: 'row',
@@ -111,7 +144,7 @@ const styles = StyleSheet.create({
 // Create Document Component
 export const Resume = () => (
   <Document>
-    <Page size='A4' style={styles.page}>
+    <Page size='A4' style={styles.page} wrap>
       <View style={styles.section}>
         <View style={styles.layout}>
           <View
@@ -235,24 +268,25 @@ export const Resume = () => (
             ].map(({ institute, timeframe, degree }) => (
               <View>
                 <Text
-                  style={[
-                    styles.textDate,
-                    { marginTop: '15px', maxWidth: '275px' },
-                  ]}
+                  style={[styles.textDate, { marginTop: '15px' }]}
                   hyphenationCallback={(word) => [word]}
                 >
                   {timeframe}
                 </Text>
 
                 <Text
-                  style={[styles.textBody, styles.textStrong]}
+                  style={[
+                    styles.textBody,
+                    styles.textStrong,
+                    { marginTop: '2px' },
+                  ]}
                   hyphenationCallback={(word) => [word]}
                 >
                   {institute}
                 </Text>
 
                 <Text
-                  style={[styles.textBody]}
+                  style={[styles.textBody, { marginTop: '2px' }]}
                   hyphenationCallback={(word) => [word]}
                 >
                   {degree}
@@ -264,6 +298,61 @@ export const Resume = () => (
       </View>
 
       <View style={styles.horizontalDivisor} />
+
+      <View style={styles.section}>
+        <View style={styles.layout}>
+          <Text style={styles.textCategoryTitle}>Experiences</Text>
+          {[
+            {
+              timeframe: 'Jan 2022 - Present',
+              company: 'PAGOPA S.P.A',
+              position: 'Mobile Software Engineer',
+              description:
+                'In PagoPA I worked on IO, an open-source mobile application written in React Native with more than 20 million downloads and 6 million monthly active users.',
+            },
+          ].map(({ timeframe, company, position, description }) => (
+            <View style={[styles.row, { marginTop: '15px' }]} break>
+              <View style={styles.experienceTimeline}>
+                <View style={styles.experienceDot} />
+                <View style={styles.experienceTrack} />
+              </View>
+
+              <View>
+                <Text
+                  style={[styles.textDate]}
+                  hyphenationCallback={(word) => [word]}
+                >
+                  {timeframe}
+                </Text>
+
+                <Text
+                  style={[styles.experienceTitle, { marginTop: '3px' }]}
+                  hyphenationCallback={(word) => [word]}
+                >
+                  {company}
+                </Text>
+
+                <Text
+                  style={[styles.experiencePosition, { marginTop: '5px' }]}
+                  hyphenationCallback={(word) => [word]}
+                >
+                  {position}
+                </Text>
+
+                <Text
+                  style={[
+                    styles.textBody,
+                    { marginTop: '10px', maxWidth: '275px' },
+                  ]}
+                  hyphenationCallback={(word) => [word]}
+                >
+                  {description}
+                </Text>
+              </View>
+            </View>
+          ))}
+        </View>
+      </View>
     </Page>
   </Document>
 )
