@@ -10,6 +10,8 @@ import {
 } from '@react-pdf/renderer'
 import { styles } from './styles'
 import { Timeline } from './Timeline'
+import { Education } from './Education'
+import { Skills } from './Skills'
 
 // Create Document Component
 export const Resume = () => (
@@ -50,35 +52,26 @@ export const Resume = () => (
           <View
             style={{ marginTop: '15px', display: 'flex', flexDirection: 'row' }}
           >
-            {[
-              {
-                title: 'Front-end',
-                content:
-                  'HTML5, CSS3, SASS, PostCSS, JavaScript, TypeScript, PureScript, React, React Native',
-                maxWidth: '175px',
-              },
-              {
-                title: 'Back-end',
-                content: 'Scala (FP), Node.js, Rust, PHP, C#, Unity',
-                maxWidth: '140px',
-              },
-              {
-                title: 'Tools',
-                content: 'Git, Docker, Kubernetes, GitHub Actions, Notion',
-                maxWidth: '120px',
-              },
-            ].map(({ title, content, maxWidth }, index) => (
-              <View style={{ marginLeft: index > 0 ? '30px' : undefined }}>
-                <Text style={styles.textSkillTitle}>{title}</Text>
-
-                <Text
-                  style={[styles.textBody, { marginTop: '5px', maxWidth }]}
-                  hyphenationCallback={(word) => [word]}
-                >
-                  {content}
-                </Text>
-              </View>
-            ))}
+            <Skills
+              data={[
+                {
+                  title: 'Front-end',
+                  content:
+                    'HTML5, CSS3, SASS, PostCSS, JavaScript, TypeScript, PureScript, React, React Native',
+                  maxWidth: '175px',
+                },
+                {
+                  title: 'Back-end',
+                  content: 'Scala (FP), Node.js, Rust, PHP, C#, Unity',
+                  maxWidth: '140px',
+                },
+                {
+                  title: 'Tools',
+                  content: 'Git, Docker, Kubernetes, GitHub Actions, Notion',
+                  maxWidth: '120px',
+                },
+              ]}
+            />
           </View>
         </View>
       </View>
@@ -124,45 +117,20 @@ export const Resume = () => (
           <View style={styles.layout}>
             <Text style={styles.textCategoryTitle}>Education</Text>
 
-            {[
-              {
-                institute: 'University of Camerino',
-                timeframe: 'Oct 2014 - Oct 2017',
-                degree: 'Bachelor Degree in Computer Science',
-              },
-              {
-                institute: 'I.T.C.G Filippo Corridoni',
-                timeframe: 'Pre-university',
-                degree: 'Commercial technical institute',
-              },
-            ].map(({ institute, timeframe, degree }) => (
-              <View>
-                <Text
-                  style={[styles.textDate, { marginTop: '15px' }]}
-                  hyphenationCallback={(word) => [word]}
-                >
-                  {timeframe}
-                </Text>
-
-                <Text
-                  style={[
-                    styles.textBody,
-                    styles.textStrong,
-                    { marginTop: '2px' },
-                  ]}
-                  hyphenationCallback={(word) => [word]}
-                >
-                  {institute}
-                </Text>
-
-                <Text
-                  style={[styles.textBody, { marginTop: '2px' }]}
-                  hyphenationCallback={(word) => [word]}
-                >
-                  {degree}
-                </Text>
-              </View>
-            ))}
+            <Education
+              data={[
+                {
+                  institute: 'University of Camerino',
+                  timeframe: 'Oct 2014 - Oct 2017',
+                  degree: 'Bachelor Degree in Computer Science',
+                },
+                {
+                  institute: 'I.T.C.G Filippo Corridoni',
+                  timeframe: 'Pre-university',
+                  degree: 'Commercial technical institute',
+                },
+              ]}
+            />
           </View>
         </View>
       </View>
