@@ -8,138 +8,8 @@ import {
   Font,
   Image,
 } from '@react-pdf/renderer'
-
-Font.register({
-  family: 'Lato',
-  fonts: [
-    {
-      src: 'https://fonts.gstatic.com/s/lato/v23/S6uyw4BMUTPHvxk6XweuBCY.ttf',
-      fontWeight: 400,
-    },
-    {
-      src: 'https://fonts.gstatic.com/s/lato/v23/S6u9w4BMUTPHh6UVew-FGC_p9dw.ttf',
-      fontWeight: 700,
-    },
-    {
-      src: 'http://fonts.gstatic.com/s/lato/v23/S6u9w4BMUTPHh50Xew-FGC_p9dw.ttf',
-      fontWeight: 900,
-    },
-  ],
-})
-
-const palette = {
-  primary: '#2DB1A2',
-  lightGray: '#F3F3F3',
-  gray: '#B0B0B0',
-  black: '#282828',
-  white: '#FFFFFF',
-}
-
-// Create styles
-const styles = StyleSheet.create({
-  page: {
-    backgroundColor: '#FFFFFF',
-  },
-  section: {
-    paddingVertical: '25px',
-  },
-  horizontalDivisor: {
-    backgroundColor: palette.lightGray,
-    width: '100%',
-    height: '1px',
-  },
-  verticalDivisor: {
-    backgroundColor: palette.lightGray,
-    width: '1px',
-    height: '100%',
-  },
-  layout: {
-    width: '100%',
-    paddingLeft: '40px',
-    paddingRight: '40px',
-  },
-  textBody: {
-    fontFamily: 'Lato',
-    fontWeight: 400,
-    color: palette.black,
-    fontSize: '10px',
-    lineHeight: 1.5,
-  },
-  textCategoryTitle: {
-    fontFamily: 'Lato',
-    fontWeight: 900,
-    color: palette.primary,
-    fontSize: '18px',
-  },
-  textSkillTitle: {
-    fontFamily: 'Lato',
-    fontWeight: 700,
-    color: palette.primary,
-    fontSize: '10px',
-    textTransform: 'uppercase',
-  },
-  textDate: {
-    fontFamily: 'Lato',
-    fontWeight: 400,
-    color: palette.gray,
-    fontSize: '9px',
-    lineHeight: 1.5,
-  },
-  textStrong: {
-    fontFamily: 'Lato',
-    fontWeight: 700,
-  },
-  mainTitle: {
-    fontSize: '18px',
-    fontWeight: 900,
-    fontFamily: 'Lato',
-    textTransform: 'uppercase',
-    color: palette.primary,
-  },
-  subTitle: {
-    fontSize: '12px',
-    fontWeight: 400,
-    fontFamily: 'Lato',
-    color: palette.gray,
-  },
-  experienceTitle: {
-    fontSize: '10px',
-    fontWeight: 700,
-    fontFamily: 'Lato',
-    color: palette.primary,
-  },
-  experiencePosition: {
-    fontSize: '10px',
-    fontWeight: 400,
-    fontFamily: 'Lato',
-    color: palette.primary,
-  },
-  experienceTimeline: {
-    display: 'flex',
-    flexDirection: 'column',
-    maxHeight: '150px',
-    marginRight: '10px',
-  },
-  experienceTrack: {
-    width: '1px',
-    backgroundColor: palette.primary,
-    marginHorizontal: 'auto',
-    flexBasis: '100%',
-  },
-  experienceDot: {
-    height: '9px',
-    width: '9px',
-    backgroundColor: palette.white,
-    border: `1px solid ${palette.primary}`,
-    borderRadius: '100%',
-    flexBasis: 'auto',
-  },
-  row: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: '100%',
-  },
-})
+import { styles } from './styles'
+import { Timeline } from './Timeline'
 
 // Create Document Component
 export const Resume = () => (
@@ -303,8 +173,8 @@ export const Resume = () => (
         <View style={styles.layout}>
           <Text style={styles.textCategoryTitle}>Experiences</Text>
 
-          <View style={{ marginTop: '15px' }}>
-            {[
+          <Timeline
+            data={[
               {
                 timeframe: 'Jan 2022 - Present',
                 company: 'PAGOPA S.P.A',
@@ -326,62 +196,8 @@ export const Resume = () => (
                 description:
                   'I worked as a freelance front-end developer and designer, usually creating custom Bootstrap themes and React applications for different customers.',
               },
-            ].map(({ timeframe, company, position, description }, index) => (
-              <View
-                style={{
-                  paddingLeft: '20px',
-                  borderLeft: `1px solid ${palette.primary}`,
-                  paddingTop: index > 0 ? '15px' : undefined,
-                }}
-              >
-                <View wrap={false} style={{ paddingTop: '15px' }}>
-                  <View style={{ position: 'relative' }}>
-                    <View
-                      style={[
-                        styles.experienceDot,
-                        {
-                          position: 'absolute',
-                          left: '-25px',
-                          top: '2px',
-                        },
-                      ]}
-                    ></View>
-
-                    <Text
-                      style={styles.textDate}
-                      hyphenationCallback={(word) => [word]}
-                    >
-                      {timeframe}
-                    </Text>
-                  </View>
-
-                  <Text
-                    style={[styles.experienceTitle, { marginTop: '3px' }]}
-                    hyphenationCallback={(word) => [word]}
-                  >
-                    {company}
-                  </Text>
-
-                  <Text
-                    style={[styles.experiencePosition, { marginTop: '5px' }]}
-                    hyphenationCallback={(word) => [word]}
-                  >
-                    {position}
-                  </Text>
-                </View>
-
-                <Text
-                  style={[
-                    styles.textBody,
-                    { marginTop: '10px', maxWidth: '320px' },
-                  ]}
-                  hyphenationCallback={(word) => [word]}
-                >
-                  {description}
-                </Text>
-              </View>
-            ))}
-          </View>
+            ]}
+          />
         </View>
       </View>
     </Page>
