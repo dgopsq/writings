@@ -1,13 +1,5 @@
 import React from 'react'
-import {
-  Page,
-  Text,
-  View,
-  Document,
-  StyleSheet,
-  Font,
-  Image,
-} from '@react-pdf/renderer'
+import { Page, Text, View, Document, Image } from '@react-pdf/renderer'
 import { styles } from './styles'
 import { Timeline } from './Timeline'
 import { Education } from './Education'
@@ -163,6 +155,26 @@ export const Resume = () => (
                 position: 'Front-end developer and designer',
                 description:
                   'I worked as a freelance front-end developer and designer, usually creating custom Bootstrap themes and React applications for different customers.',
+              },
+            ]}
+          />
+        </View>
+      </View>
+
+      <View style={styles.horizontalDivisor} />
+
+      <View style={styles.section}>
+        <View style={styles.layout}>
+          <Text style={styles.textCategoryTitle}>Side projects</Text>
+
+          <Timeline
+            data={[
+              {
+                timeframe: 'Mar 2019 - Apr 2021',
+                company: 'Towers of Minduir',
+                position: 'Co-founder and game developer',
+                description:
+                  'A 1vs1 multiplayer mobile game inspired by Clash Royale, DOTA and Gwent. I co-founded and worked on it part-time with a team of 8 skilled people. ToM has been built on Unity using a custom deterministic engine. The real-time backend server uses Scala with Http4s and Quill.',
               },
             ]}
           />
