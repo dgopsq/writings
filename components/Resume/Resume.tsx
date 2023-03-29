@@ -41,12 +41,21 @@ const styles = StyleSheet.create({
   },
   section: {
     paddingVertical: '25px',
-    borderBottom: `1px solid ${palette.lightGray}`,
+  },
+  horizontalDivisor: {
+    backgroundColor: palette.lightGray,
+    width: '100%',
+    height: '1px',
+  },
+  verticalDivisor: {
+    backgroundColor: palette.lightGray,
+    width: '1px',
+    height: '100%',
   },
   layout: {
-    width: '515px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    width: '100%',
+    paddingLeft: '40px',
+    paddingRight: '40px',
   },
   textBody: {
     fontFamily: 'Lato',
@@ -68,6 +77,17 @@ const styles = StyleSheet.create({
     fontSize: '10px',
     textTransform: 'uppercase',
   },
+  textDate: {
+    fontFamily: 'Lato',
+    fontWeight: 400,
+    color: palette.gray,
+    fontSize: '9px',
+    lineHeight: 1.5,
+  },
+  textStrong: {
+    fontFamily: 'Lato',
+    fontWeight: 700,
+  },
   mainTitle: {
     fontSize: '18px',
     fontWeight: 900,
@@ -80,6 +100,11 @@ const styles = StyleSheet.create({
     fontWeight: 400,
     fontFamily: 'Lato',
     color: palette.gray,
+  },
+  row: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
   },
 })
 
@@ -112,6 +137,8 @@ export const Resume = () => (
           </View>
         </View>
       </View>
+
+      <View style={styles.horizontalDivisor} />
 
       <View style={styles.section}>
         <View style={styles.layout}>
@@ -152,6 +179,91 @@ export const Resume = () => (
           </View>
         </View>
       </View>
+
+      <View style={styles.horizontalDivisor} />
+
+      <View style={styles.row}>
+        <View style={[styles.section]}>
+          <View style={styles.layout}>
+            <Text style={styles.textCategoryTitle}>Bio</Text>
+
+            <View>
+              <Text
+                style={[
+                  styles.textBody,
+                  { marginTop: '15px', maxWidth: '275px' },
+                ]}
+                hyphenationCallback={(word) => [word]}
+              >
+                I’m really passionate about everything related to technology and
+                design. I spend a lot of my free time learning and exploring the
+                latest trends in the programming world.
+              </Text>
+
+              <Text
+                style={[
+                  styles.textBody,
+                  { marginTop: '15px', maxWidth: '275px' },
+                ]}
+                hyphenationCallback={(word) => [word]}
+              >
+                I’m a books eater, always trying to discover some new exciting
+                fantasy universe. I also love to play videogames and sometimes
+                the acoustic guitar.
+              </Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.verticalDivisor} />
+
+        <View style={[styles.section]}>
+          <View style={styles.layout}>
+            <Text style={styles.textCategoryTitle}>Education</Text>
+
+            {[
+              {
+                institute: 'University of Camerino',
+                timeframe: 'Oct 2014 - Oct 2017',
+                degree: 'Bachelor Degree in Computer Science',
+              },
+              {
+                institute: 'I.T.C.G Filippo Corridoni',
+                timeframe: 'Pre-university',
+                degree: 'Commercial technical institute',
+              },
+            ].map(({ institute, timeframe, degree }) => (
+              <View>
+                <Text
+                  style={[
+                    styles.textDate,
+                    { marginTop: '15px', maxWidth: '275px' },
+                  ]}
+                  hyphenationCallback={(word) => [word]}
+                >
+                  {timeframe}
+                </Text>
+
+                <Text
+                  style={[styles.textBody, styles.textStrong]}
+                  hyphenationCallback={(word) => [word]}
+                >
+                  {institute}
+                </Text>
+
+                <Text
+                  style={[styles.textBody]}
+                  hyphenationCallback={(word) => [word]}
+                >
+                  {degree}
+                </Text>
+              </View>
+            ))}
+          </View>
+        </View>
+      </View>
+
+      <View style={styles.horizontalDivisor} />
     </Page>
   </Document>
 )
