@@ -35,9 +35,11 @@ class MyDocument extends Document {
 
           <style>{`
           html,
-          body {
+          body,
+          #__next {
             padding: 0em;
             margin: 0em;
+            height: 100%;
           }
 
           @media all and (max-width: 42em) {
