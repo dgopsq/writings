@@ -15,13 +15,6 @@ export default () => (
     </div>
 
     <style jsx>{`
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-      }
-
       .container {
         width: 100%;
         height: 100%;

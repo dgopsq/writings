@@ -4,6 +4,9 @@ import { styles } from './styles'
 import { Timeline } from './Timeline'
 import { Education } from './Education'
 import { Skills } from './Skills'
+import { BASE_URL } from '../../utils/configs'
+import { LinkIcon, MailIcon, PhoneIcon, PinIcon } from './Icon'
+import { MetaInfo } from './MetaInfo'
 
 // Create Document Component
 export const Resume = () => (
@@ -18,18 +21,42 @@ export const Resume = () => (
               alignItems: 'center',
             }}
           >
-            <View>
-              <Image
-                source='/me.jpg'
-                style={{ height: '80px', width: '80px', borderRadius: '100%' }}
-              />
+            <View
+              style={{
+                flex: '1 1 100%',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+            >
+              <View>
+                <Image
+                  source={`${BASE_URL}/me.jpg`}
+                  style={{
+                    height: '80px',
+                    width: '80px',
+                    borderRadius: '100%',
+                  }}
+                />
+              </View>
+
+              <View style={{ paddingLeft: '20px' }}>
+                <Text style={styles.mainTitle}>Diego Pasquali</Text>
+                <Text style={[styles.subTitle, { marginTop: '5px' }]}>
+                  Software Engineer and tech enthusiast
+                </Text>
+              </View>
             </View>
 
-            <View style={{ paddingLeft: '20px' }}>
-              <Text style={styles.mainTitle}>Diego Pasquali</Text>
-              <Text style={[styles.subTitle, { marginTop: '5px' }]}>
-                Software Engineer and tech enthusiast
-              </Text>
+            <View style={{ flex: '0 0 auto' }}>
+              <MetaInfo
+                data={[
+                  { Icon: PinIcon, text: 'Italy' },
+                  { Icon: LinkIcon, text: 'https://dgopsq.space' },
+                  { Icon: MailIcon, text: 'hello@dgopsq.space' },
+                  { Icon: PhoneIcon, text: '+39 328 4414 223' },
+                ]}
+              />
             </View>
           </View>
         </View>
