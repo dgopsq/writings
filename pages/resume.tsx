@@ -10,18 +10,14 @@ const ResumeWeb = dynamic(
 
 export default () => (
   <>
-    <div className='container'>
-      <ResumeWeb />
-    </div>
+    <ResumeWeb />
 
-    <style jsx>{`
-      .container {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
+    <style global jsx>{`
+      body,
+      html {
+        overflow: hidden !important;
+        padding: 0 !important;
+        margin: 0 !important;
       }
     `}</style>
   </>
