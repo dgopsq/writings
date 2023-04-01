@@ -48,7 +48,7 @@ export const Resume = () => (
               </View>
             </View>
 
-            <View style={{ flex: '0 0 auto' }}>
+            <View style={{ flex: '0 0 auto', paddingRight: '50px' }}>
               <MetaInfo
                 data={[
                   { Icon: PinIcon, text: 'Italy' },
