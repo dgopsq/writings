@@ -73,7 +73,12 @@ export const Timeline: React.FC<Props> = ({ data }) => {
             >
               <LinkIcon />
 
-              <Text style={[styles.textLink, { marginLeft: '3px' }]}>
+              <Text
+                style={[
+                  styles.textLink,
+                  { marginLeft: '3px', marginTop: '2px' },
+                ]}
+              >
                 {link}
               </Text>
             </View>

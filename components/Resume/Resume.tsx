@@ -167,7 +167,7 @@ export const Resume = () => (
                 company: 'Heritage Holdings',
                 position: 'Senior Software Engineer',
                 description:
-                  'Heritage is a family backed investment platform partnering with carefully selected alternative asset managers with a long-term mindset. Here I worked on the React and GraphQL-based web application, as well as the NodeJS backend, while also contributing to the mobile app and other internal tools.',
+                  'Heritage is a family backed investment platform partnering with carefully selected alternative asset managers with a long-term mindset. Here I contributed to the web application built with React and GraphQL, and on the backend using NodeJS. I also had the opportunity to improve the mobile application, as well as other in-house tools used by the company.',
               },
               {
                 timeframe: 'Jan 2022 - Sep 2022',
@@ -181,7 +181,7 @@ export const Resume = () => (
                 company: 'Efficiam',
                 position: 'Software Engineer',
                 description:
-                  'At Efficiam, I took on a leadership role in creating the frontend architecture for a multitude of fintech applications spanning both web and mobile platforms. Utilizing React and React Native technologies, I tackled a broad range of complex issues, including real-time data visualization, authentication, and security. I was also fortunate enough to expand my skills by contributing to backend development using functional programming with Scala.',
+                  'At Efficiam, I took on a leadership role in creating the frontend architecture for various fintech applications, both on web and mobile. Using React and React Native, I tackled a broad range of complex issues, including real-time data visualization, authentication, and security. I was also fortunate enough to expand my skills by contributing to the backend using Scala in Functional Programming.',
               },
               {
                 timeframe: 'Apr 2015 - Aug 2018',
@@ -203,6 +203,14 @@ export const Resume = () => (
 
           <Timeline
             data={[
+              {
+                timeframe: 'Oct 2022 - Present',
+                company: 'BCKT',
+                position: 'Founder',
+                description:
+                  'I developed a budgeting application that utilizes an opinionated system to track expenses and incomes in a unique "email-like" interface. The app syncs with users\' bank accounts, allowing for seamless transaction tracking and management.',
+                link: 'https://www.bckt.app',
+              },
               {
                 timeframe: 'Mar 2019 - Apr 2021',
                 company: 'Towers of Minduir',

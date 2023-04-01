@@ -25,7 +25,7 @@ export const MetaInfo: React.FC<Props> = ({ data }) => (
           <Icon />
         </View>
 
-        <View style={{ marginTop: '1px', marginLeft: '5px' }}>
+        <View style={{ marginTop: '2px', marginLeft: '5px' }}>
           <Text style={styles.textBody}>{text}</Text>
         </View>
       </View>
