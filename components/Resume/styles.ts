@@ -12,7 +12,7 @@ Font.register({
       fontWeight: 700,
     },
     {
-      src: 'http://fonts.gstatic.com/s/lato/v23/S6u9w4BMUTPHh50Xew-FGC_p9dw.ttf',
+      src: 'https://fonts.gstatic.com/s/lato/v23/S6u9w4BMUTPHh50Xew-FGC_p9dw.ttf',
       fontWeight: 900,
     },
   ],
