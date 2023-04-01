@@ -166,28 +166,29 @@ export const Resume = () => (
                 timeframe: 'Sep 2022 - Present',
                 company: 'Heritage Holdings',
                 position: 'Senior Software Engineer',
-                description: 'Test test test',
+                description:
+                  'Heritage is a family backed investment platform partnering with carefully selected alternative asset managers with a long-term mindset. Here I worked on the React and GraphQL-based web application, as well as the NodeJS backend, while also contributing to the mobile app and other internal tools.',
               },
               {
                 timeframe: 'Jan 2022 - Sep 2022',
                 company: 'PagoPA S.P.A',
                 position: 'Mobile Software Engineer',
                 description:
-                  'Worked on IO, an open-source mobile application written in React Native with more than 20 million downloads and 6 million monthly active users.',
+                  'I contributed to the development of IO, an open-source mobile application built with React Native for the Italian Government. The app has been downloaded more than 20 million times and boasts a monthly active user base of 6 million. During my time on the project, I played an active role in enhancing the developer experience across the entire codebase. In addition, I had the opportunity to develop multiple features that are currently in production.',
               },
               {
                 timeframe: 'Sep 2018 - Dec 2021',
                 company: 'Efficiam',
                 position: 'Software Engineer',
                 description:
-                  'In Efficiam I created the Frontend Architecture of various fintech applications both on web and mobile, mostly using React and React Native. I dealt with a various range of problems: from Real Time Data Visualization to Authentication and Security. I had the opportunity to work on the Backend too using Scala in Functional Programming.',
+                  'At Efficiam, I took on a leadership role in creating the frontend architecture for a multitude of fintech applications spanning both web and mobile platforms. Utilizing React and React Native technologies, I tackled a broad range of complex issues, including real-time data visualization, authentication, and security. I was also fortunate enough to expand my skills by contributing to backend development using functional programming with Scala.',
               },
               {
                 timeframe: 'Apr 2015 - Aug 2018',
                 company: 'Freelance',
                 position: 'Front-end developer and designer',
                 description:
-                  'I worked as a freelance front-end developer and designer, usually creating custom Bootstrap themes and React applications for different customers.',
+                  'I freelanced as a front-end developer and designer, creating customized Bootstrap themes and React applications for various clients. My main goal was always to deliver high-quality products with a focus on both aesthetics and functionality.',
               },
             ]}
           />

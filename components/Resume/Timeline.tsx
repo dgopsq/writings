@@ -56,7 +56,7 @@ export const Timeline: React.FC<Props> = ({ data }) => {
           </View>
 
           <Text
-            style={[styles.textBody, { marginTop: '10px', maxWidth: '320px' }]}
+            style={[styles.textBody, { marginTop: '10px', maxWidth: '400px' }]}
             hyphenationCallback={(word) => [word]}
           >
             {description}
