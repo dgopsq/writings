@@ -76,17 +76,18 @@ export const Resume = () => (
                 {
                   title: 'Front-end',
                   content:
-                    'HTML5, CSS3, SASS, PostCSS, JavaScript, TypeScript, PureScript, React, React Native',
+                    'HTML5, CSS3, SASS, PostCSS, JavaScript, TypeScript, PureScript, React, React Native, Next.js',
                   maxWidth: '175px',
                 },
                 {
                   title: 'Back-end',
-                  content: 'Scala (FP), Node.js, Rust, PHP, C#, Unity',
+                  content: 'Node.js, Scala (FP), Rust, PHP, C#, Unity',
                   maxWidth: '140px',
                 },
                 {
                   title: 'Tools',
-                  content: 'Git, Docker, Kubernetes, GitHub Actions, Notion',
+                  content:
+                    'Git, Docker, Kubernetes, GitHub Actions, Supabase, AWS, Vercel',
                   maxWidth: '120px',
                 },
               ]}
