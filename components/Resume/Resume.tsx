@@ -209,7 +209,7 @@ export const Resume = () => (
                 company: 'BCKT',
                 position: 'Founder',
                 description:
-                  'I developed a budgeting application that utilizes an opinionated system to track expenses and incomes in a unique "email-like" interface. The app syncs with users\' bank accounts, allowing for seamless transaction tracking and management.',
+                  'I developed a budgeting application that utilizes an opinionated system to track expenses and incomes in a unique "email-like" interface. The app syncs with the users\' bank accounts, allowing for seamless transaction tracking and management.',
                 link: 'https://www.bckt.app',
               },
               {
