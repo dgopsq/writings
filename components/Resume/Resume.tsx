@@ -111,9 +111,10 @@ export const Resume = () => (
                 ]}
                 hyphenationCallback={(word) => [word]}
               >
-                I’m really passionate about everything related to technology and
-                design. I spend a lot of my free time learning and exploring the
-                latest trends in the programming world.
+                Dedicated Senior Software Engineer with extensive expertise in
+                React, GraphQL, and NodeJS. Proven track record of leading
+                frontend development, contributing to high-profile projects, and
+                consistently delivering exceptional results.
               </Text>
 
               <Text
@@ -123,9 +124,8 @@ export const Resume = () => (
                 ]}
                 hyphenationCallback={(word) => [word]}
               >
-                I’m a books eater, always trying to discover some new exciting
-                fantasy universe. I also love to play videogames and sometimes
-                the acoustic guitar.
+                I am enthusiastic about continuous learning, passionate about
+                gaming, and expressing creativity through playing the guitar.
               </Text>
             </View>
           </View>
@@ -159,7 +159,7 @@ export const Resume = () => (
 
       <View style={styles.section}>
         <View style={styles.layout}>
-          <Text style={styles.textCategoryTitle}>Experiences</Text>
+          <Text style={styles.textCategoryTitle}>Experience</Text>
 
           <Timeline
             data={[
