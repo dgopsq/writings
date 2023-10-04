@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+export default {
   trailingSlash: false,
   optimizeFonts: true,
   reactStrictMode: true,
@@ -7,6 +7,7 @@ module.exports = {
 
   experimental: {
     typedRoutes: true,
+    mdxRs: false,
   },
 
   webpack(config) {

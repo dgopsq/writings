@@ -29,10 +29,12 @@
     "react-spinners": "^0.13.8",
     "react-syntax-highlighter": "^15.5.0",
     "rehype-external-links": "^1.0.1",
+    "rehype-pretty-code": "^0.10.1",
     "remark": "^14.0.2",
     "remark-gfm": "^3.0.1",
     "remark-hint": "^1.0.10",
     "schema-dts": "^1.0.0",
+    "shiki": "^0.14.4",
     "strip-markdown": "^5.0.0"
   },
   "devDependencies": {

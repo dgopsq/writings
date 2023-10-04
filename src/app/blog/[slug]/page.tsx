@@ -3,6 +3,7 @@ import './style.css'
 import { notFound } from 'next/navigation'
 import { getSinglePost } from '../../../lib/posts'
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import rehypePrettyCode from 'rehype-pretty-code'
 
 type Params = {
   slug: string
@@ -21,7 +22,19 @@ export default function Page({ params: { slug } }: { params: Params }) {
         </h2>
 
         <div className='post-content mt-10'>
-          <MDXRemote source={post.content} />
+          <MDXRemote
+            options={{
+              mdxOptions: {
+                rehypePlugins: [
+                  [
+                    rehypePrettyCode,
+                    { theme: 'github-light', keepBackground: false },
+                  ],
+                ],
+              },
+            }}
+            source={post.content}
+          />
         </div>
       </div>
     </div>
