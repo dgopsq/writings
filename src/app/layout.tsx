@@ -18,7 +18,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en' className={inter.className}>
       <body>
-        <div className='mx-auto max-w-4xl px-4 py-28'>{children}</div>
+        <div className='mx-auto max-w-4xl px-4 pt-28 pb-48'>{children}</div>
       </body>
     </html>
   )

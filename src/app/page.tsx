@@ -9,16 +9,10 @@ export default function Page() {
   return (
     <div>
       <div>
-        <h1>
-          <Logo />
-        </h1>
-
-        <div className='mt-2'>
-          <span className='font-lg'>Software engineer and tech entusiast</span>
-        </div>
+        <Logo />
       </div>
 
-      <ul className='divide-gray-50 divide-y my-10'>
+      <ul className='divide-gray-50 divide-y mt-12'>
         {posts.map((post) => (
           <li className='py-8'>
             <Link href={`/blog/${post.slug}`}>

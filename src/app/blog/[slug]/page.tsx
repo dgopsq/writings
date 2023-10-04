@@ -17,27 +17,25 @@ export default function Page({ params: { slug } }: { params: Params }) {
 
   return (
     <div>
-      <div className='mt-12'>
-        <h2 className='text-6xl font-medium leading-snug'>
-          {post.frontmatter.title}
-        </h2>
+      <h2 className='text-6xl font-medium leading-snug'>
+        {post.frontmatter.title}
+      </h2>
 
-        <div className='post-content mt-10'>
-          <MDXRemote
-            options={{
-              mdxOptions: {
-                rehypePlugins: [
-                  [
-                    rehypePrettyCode,
-                    { theme: 'github-light', keepBackground: false },
-                  ],
-                  rehypeExternalLinks,
+      <div className='post-content mt-10'>
+        <MDXRemote
+          options={{
+            mdxOptions: {
+              rehypePlugins: [
+                [
+                  rehypePrettyCode,
+                  { theme: 'github-light', keepBackground: false },
                 ],
-              },
-            }}
-            source={post.content}
-          />
-        </div>
+                rehypeExternalLinks,
+              ],
+            },
+          }}
+          source={post.content}
+        />
       </div>
     </div>
   )
