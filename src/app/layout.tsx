@@ -20,7 +20,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className='mx-auto max-w-4xl px-4'>
           <div className='mt-28'>
             <Link href='/'>
-              <h1 className='font-black text-2xl uppercase tracking-widest inline-block'>
+              <h1 className='font-black text-xl uppercase tracking-widest inline-block'>
                 Diego Pasquali
               </h1>
             </Link>
