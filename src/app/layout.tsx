@@ -18,9 +18,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <html lang='en' className={inter.className}>
       <body>
         <div className='mx-auto max-w-4xl px-4'>
-          <div className='mt-12'>
+          <div className='mt-28'>
             <Link href='/'>
-              <h1 className='font-bold text-3xl uppercase tracking-widest'>
+              <h1 className='font-black text-2xl uppercase tracking-widest inline-block'>
                 Diego Pasquali
               </h1>
             </Link>

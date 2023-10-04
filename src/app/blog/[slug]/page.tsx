@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { getSinglePost } from '../../../lib/posts'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import rehypePrettyCode from 'rehype-pretty-code'
+import rehypeExternalLinks from 'rehype-external-links'
 
 type Params = {
   slug: string
@@ -30,6 +31,7 @@ export default function Page({ params: { slug } }: { params: Params }) {
                     rehypePrettyCode,
                     { theme: 'github-light', keepBackground: false },
                   ],
+                  rehypeExternalLinks,
                 ],
               },
             }}

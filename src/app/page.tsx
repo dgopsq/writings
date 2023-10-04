@@ -12,7 +12,7 @@ export default function Page() {
           <li className='py-8'>
             <Link href={`/blog/${post.slug}`}>
               <article>
-                <h3 className='text-lg font-medium'>
+                <h3 className='text-xl font-medium'>
                   {post.frontmatter.title}
                 </h3>
 
