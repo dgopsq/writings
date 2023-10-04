@@ -1,11 +1,13 @@
-const path = require('path')
-const fs = require('fs')
-
+/** @type {import('next').NextConfig} */
 module.exports = {
   trailingSlash: false,
   optimizeFonts: true,
   reactStrictMode: true,
   swcMinify: true,
+
+  experimental: {
+    typedRoutes: true,
+  },
 
   webpack(config) {
     config.experiments = {

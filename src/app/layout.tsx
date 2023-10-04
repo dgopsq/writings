@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import './global.css'
 
 import { Inter } from 'next/font/google'
@@ -18,9 +19,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <div className='mx-auto max-w-4xl px-4'>
           <div className='mt-12'>
-            <h1 className='font-bold text-3xl uppercase tracking-widest'>
-              Diego Pasquali
-            </h1>
+            <Link href='/'>
+              <h1 className='font-bold text-3xl uppercase tracking-widest'>
+                Diego Pasquali
+              </h1>
+            </Link>
           </div>
 
           <div className='mt-6'>{children}</div>
