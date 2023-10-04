@@ -5,6 +5,7 @@ import { getSinglePost } from '../../../lib/posts'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeExternalLinks from 'rehype-external-links'
+import { formatDate } from '../../../utils/formats'
 
 type Params = {
   slug: string
@@ -17,11 +18,19 @@ export default function Page({ params: { slug } }: { params: Params }) {
 
   return (
     <div>
-      <h2 className='text-6xl font-medium leading-snug'>
-        {post.frontmatter.title}
-      </h2>
+      <div className='mt-4'>
+        <h2 className='text-4xl font-medium leading-normal md:text-6xl md:leading-snug'>
+          {post.frontmatter.title}
+        </h2>
+      </div>
 
-      <div className='post-content mt-10'>
+      <div className='mt-6'>
+        <time className='text-base text-gray-400'>
+          {formatDate(new Date(post.frontmatter.date))}
+        </time>
+      </div>
+
+      <div className='post-content mt-16'>
         <MDXRemote
           options={{
             mdxOptions: {
