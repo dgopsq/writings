@@ -1,4 +1,6 @@
+import { notFound } from 'next/navigation'
 import { getSinglePost } from '../../../lib/posts'
+import { MDXRemote } from 'next-mdx-remote/rsc'
 
 type Params = {
   slug: string
@@ -7,6 +9,8 @@ type Params = {
 export default function Page({ params: { slug } }: { params: Params }) {
   const post = getSinglePost(slug)
 
+  if (!post.content) return notFound()
+
   return (
     <div>
       <div className='mt-12'>
@@ -14,7 +18,9 @@ export default function Page({ params: { slug } }: { params: Params }) {
           {post.frontmatter.title}
         </h2>
 
-        <div className='mt-10'>{post.content}</div>
+        <div className='mt-10'>
+          <MDXRemote source={post.content} />
+        </div>
       </div>
     </div>
   )
