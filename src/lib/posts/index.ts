@@ -1,8 +1,8 @@
 import fs from 'fs'
-import matter from 'gray-matter'
 import { remark } from 'remark'
 import strip from 'strip-markdown'
-import { BASE_URL, IS_DEV, SEARCH_TARGET_DIR } from '../../utils/configs'
+import { SEARCH_TARGET_DIR } from '../../utils/configs'
+import matter from 'gray-matter'
 
 export type Post = {
   slug: string

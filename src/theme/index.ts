@@ -1,5 +1,3 @@
-import Typography from 'typography'
-
 export const colors = {
   primary: '#0d7e83',
   lightPrimary: '#a7e4e621',
@@ -7,24 +5,4 @@ export const colors = {
   lightGrey: '#f2f2f2',
   silver: '#bbb',
   black: '#444',
-}
-
-export const typography = new Typography({
-  baseFontSize: '20px',
-  baseLineHeight: 1.8,
-  headerFontFamily: ['Open Sans', 'sans-serif'],
-  bodyFontFamily: ['Georgia', 'serif'],
-  includeNormalize: true,
-  headerColor: colors.primary,
-  bodyColor: colors.black,
-})
-
-export function getHeaderFontFamily() {
-  const { headerFontFamily } = typography.options
-
-  const computedFamily = Array.isArray(headerFontFamily)
-    ? headerFontFamily.join(', ')
-    : headerFontFamily ?? ''
-
-  return computedFamily
 }
