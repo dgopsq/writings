@@ -1,4 +1,5 @@
 import fs from 'fs'
+import path from 'path'
 import { remark } from 'remark'
 import strip from 'strip-markdown'
 import { SEARCH_TARGET_DIR } from '../../utils/configs'
@@ -19,14 +20,14 @@ export type Post = {
 }
 
 const rootDir = process.cwd()
-const contentDir = 'posts'
+const contentDir = path.join('src', 'posts')
 
 function fileIsPost(filename: string) {
   return filename.endsWith('.md')
 }
 
 function getPostsFiles() {
-  return fs.readdirSync(`${rootDir}/${contentDir}`).filter(fileIsPost)
+  return fs.readdirSync(path.join(rootDir, contentDir)).filter(fileIsPost)
 }
 
 function filenameToSlug(filename: string) {
@@ -44,7 +45,7 @@ function parseTags(tags: string, divisor: string = ',') {
 
 function parsePostFile(filename: string): Post {
   const markdownWithMetadata = fs
-    .readFileSync(`${contentDir}/${filename}`)
+    .readFileSync(path.join(contentDir, filename))
     .toString()
 
   const { data, content } = matter(markdownWithMetadata)
@@ -115,6 +116,9 @@ export function generatePostsSearchTargets(posts: Array<Post>): void {
       .toString()
       .replaceAll('\n', '')
 
-    fs.writeFileSync(`${outputDir}/${post.slug}.txt`, compressedContent)
+    fs.writeFileSync(
+      path.join(outputDir, `${post.slug}.txt`),
+      compressedContent,
+    )
   })
 }

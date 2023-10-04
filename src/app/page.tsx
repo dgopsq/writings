@@ -1,3 +1,15 @@
+import { getPosts } from '../lib/posts'
+
 export default function Page() {
-  return <div>Hello World</div>
+  const posts = getPosts()
+
+  return (
+    <div>
+      <ul>
+        {posts.map((post) => (
+          <li>{post.frontmatter.title}</li>
+        ))}
+      </ul>
+    </div>
+  )
 }
