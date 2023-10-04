@@ -1,7 +1,9 @@
 .post-content {
+  font-size: theme(fontSize.lg);
+  line-height: theme(lineHeight.relaxed);
+
   * {
-    margin-top: theme(spacing.8);
-    line-height: theme(lineHeight.relaxed);
+    margin-top: theme(spacing.6);
   }
 
   h1,
@@ -10,7 +12,7 @@
   h4,
   h5 {
     font-weight: theme(fontWeight.semibold);
-    margin-top: theme(spacing.16);
+    margin-top: theme(spacing.14);
   }
 
   h1 {
