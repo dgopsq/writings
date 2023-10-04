@@ -1,5 +1,5 @@
 .post-content {
-  font-size: theme(fontSize.lg);
+  font-size: theme(fontSize.base);
   line-height: theme(lineHeight.relaxed);
 
   * {
@@ -53,7 +53,7 @@
   li code {
     font-size: theme(fontSize.sm);
     background-color: theme(colors.gray.100);
-    padding: theme(spacing.1) theme(spacing[1.5]);
+    padding: theme(spacing[0.5]) theme(spacing[1.5]);
     border-radius: theme(borderRadius.md);
   }
 
