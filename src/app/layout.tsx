@@ -2,6 +2,7 @@ import Link from 'next/link'
 import './global.css'
 
 import { Inter } from 'next/font/google'
+import { Logo } from '../components/Logo'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -17,17 +18,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en' className={inter.className}>
       <body>
-        <div className='mx-auto max-w-4xl px-4'>
-          <div className='mt-28'>
-            <Link href='/'>
-              <h1 className='font-black text-xl uppercase tracking-widest inline-block'>
-                Diego Pasquali
-              </h1>
-            </Link>
-          </div>
-
-          <div className='mt-6'>{children}</div>
-        </div>
+        <div className='mx-auto max-w-4xl px-4 py-28'>{children}</div>
       </body>
     </html>
   )
