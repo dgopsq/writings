@@ -5,9 +5,9 @@ export default function Page() {
 
   return (
     <div>
-      <ul>
+      <ul className='divide-gray-50 divide-y'>
         {posts.map((post) => (
-          <li>{post.frontmatter.title}</li>
+          <li className='py-8'>{post.frontmatter.title}</li>
         ))}
       </ul>
     </div>

@@ -16,7 +16,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en' className={inter.className}>
       <body>
-        <div className='mx-auto max-w-4xl'>
+        <div className='mx-auto max-w-4xl px-4'>
           <div className='mt-12'>
             <h1 className='font-bold text-3xl uppercase tracking-widest'>
               Diego Pasquali
