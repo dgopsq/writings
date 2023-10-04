@@ -35,9 +35,12 @@
     "@types/react": "^18.0.15",
     "@types/react-syntax-highlighter": "^15.5.6",
     "@types/remark-hint": "^1.0.1",
+    "autoprefixer": "^10.4.16",
     "gh-pages": "^3.1.0",
     "gray-matter": "^4.0.2",
+    "postcss": "^8.4.31",
     "sitemap": "^6.3.0",
+    "tailwindcss": "^3.3.3",
     "ts-node": "^9.1.1",
     "typescript": "^5.2.2"
   }
