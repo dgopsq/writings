@@ -2,10 +2,11 @@ import './style.css'
 
 import { notFound } from 'next/navigation'
 import { getSinglePost } from '../../../lib/posts'
+import { formatDate } from '../../../utils/formats'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeExternalLinks from 'rehype-external-links'
-import { formatDate } from '../../../utils/formats'
+import remarkGfm from 'remark-gfm'
 
 type Params = {
   slug: string
@@ -34,6 +35,7 @@ export default function Page({ params: { slug } }: { params: Params }) {
         <MDXRemote
           options={{
             mdxOptions: {
+              remarkPlugins: [remarkGfm],
               rehypePlugins: [
                 [
                   rehypePrettyCode,
