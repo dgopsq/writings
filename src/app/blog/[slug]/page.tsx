@@ -7,9 +7,23 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeExternalLinks from 'rehype-external-links'
 import remarkGfm from 'remark-gfm'
+import { Metadata } from 'next'
 
 type Params = {
   slug: string
+}
+
+export async function generateMetadata({
+  params: { slug },
+}: {
+  params: Params
+}): Promise<Metadata> {
+  const post = getSinglePost(slug)
+
+  return {
+    title: post.frontmatter.title,
+    description: post.frontmatter.description,
+  }
 }
 
 export default function Page({ params: { slug } }: { params: Params }) {

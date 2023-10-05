@@ -3,6 +3,12 @@ import { getPosts } from '../lib/posts'
 import { formatDate } from '../utils/formats'
 import { Logo } from '../components/Logo'
 import { SectionTitle } from '../components/SectionTitle'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Diego Pasquali',
+  description: 'Software Engineer and tech entusiast.',
+}
 
 export default function Page() {
   const posts = getPosts()
