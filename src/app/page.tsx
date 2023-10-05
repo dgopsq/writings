@@ -30,7 +30,7 @@ export default function Page() {
 
         <ul className='divide-gray-50 divide-y'>
           {posts.map((post) => (
-            <li className='py-8'>
+            <li className='py-8' key={post.slug}>
               <Link href={`/blog/${post.slug}`}>
                 <article>
                   <h3 className='text-xl font-medium'>
