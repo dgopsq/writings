@@ -35,7 +35,9 @@
     "remark-hint": "^1.0.10",
     "schema-dts": "^1.0.0",
     "shiki": "^0.14.4",
-    "strip-markdown": "^5.0.0"
+    "simple-icons": "^9.16.1",
+    "strip-markdown": "^5.0.0",
+    "ts-pattern": "^5.0.5"
   },
   "devDependencies": {
     "@types/node": "^14.0.23",

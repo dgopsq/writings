@@ -1,3 +1,4 @@
+import { Footer } from '../components/Footer'
 import './global.css'
 
 import { Inter } from 'next/font/google'
@@ -16,7 +17,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en' className={inter.className}>
       <body>
-        <div className='mx-auto max-w-3xl px-4 pt-28 pb-48'>{children}</div>
+        <div className='mx-auto max-w-3xl px-4 pt-28 pb-48'>
+          <div>{children}</div>
+
+          <div className='mt-16'>
+            <Footer />
+          </div>
+        </div>
       </body>
     </html>
   )

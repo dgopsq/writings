@@ -32,7 +32,7 @@ export default function Page({ params: { slug } }: { params: Params }) {
   if (!post.content) return notFound()
 
   return (
-    <div>
+    <article>
       <div className='mt-4'>
         <h2 className='text-4xl font-medium leading-normal md:text-6xl md:leading-snug'>
           {post.frontmatter.title}
@@ -62,6 +62,6 @@ export default function Page({ params: { slug } }: { params: Params }) {
           source={post.content}
         />
       </div>
-    </div>
+    </article>
   )
 }
