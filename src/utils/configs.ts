@@ -34,4 +34,4 @@ export const INSIGHTS_TOKEN =
  * Search
  */
 
-export const SEARCH_TARGET_DIR = process.env.SEARCH_TARGET_DIR || 'search'
+export const SEARCH_TARGET_DIR = process.env.SEARCH_TARGET_DIR || 'posts-meta'

@@ -1,9 +1,9 @@
-import { Netgrep } from '@netgrep/netgrep'
+'use client'
+
 import { NetgrepInput } from '@netgrep/netgrep/src/lib/data/NetgrepInput'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Post } from '../../lib/posts'
-
-const NG = new Netgrep()
+import type { Netgrep } from '@netgrep/netgrep'
 
 type UseSearchPostValue = {
   search: (input: string) => void
@@ -14,8 +14,13 @@ type UseSearchPostValue = {
  * Hook that manages the search logic. This is
  * using `Netgrep` under the hood in order to perform
  * a `ripgrep` search on every post.
+ *
+ * Disclaimer: This is just an example of how to use Ripgrep. It doesn't
+ * actually make sense to load each post in order to perform a search, instead
+ * you should just use posts metadata from somewhere else.
  */
 export function useSearchPosts(posts: Array<Post>): UseSearchPostValue {
+  const [ng, setNg] = useState<Netgrep | null>(null)
   const [pattern, setPattern] = useState('')
   const [result, setResult] = useState<Array<Post> | null>(null)
 
@@ -30,15 +35,24 @@ export function useSearchPosts(posts: Array<Post>): UseSearchPostValue {
     [posts],
   )
 
+  useEffect(() => {
+    const load = async () => {
+      const Netgrep = (await import('@netgrep/netgrep')).Netgrep
+      setNg(new Netgrep())
+    }
+
+    load()
+  }, [])
+
   // Execute the search logic using the `searchBatch`
   // function from `Netgrep`.
   useEffect(() => {
-    if (!pattern) {
+    if (!pattern || !ng) {
       setResult(null)
       return
     }
 
-    NG.searchBatch(inputs, pattern).then((res) => {
+    ng.searchBatch(inputs, pattern).then((res) => {
       const filtered: Array<Post> = []
 
       res.forEach((single) =>

@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "dev": "NODE_OPTIONS=--experimental-wasm-modules next dev",
+    "dev": "next dev",
     "compile": "tsc --noEmit",
-    "export": "NODE_OPTIONS=--experimental-wasm-modules next export",
-    "build": "NODE_OPTIONS=--experimental-wasm-modules next build",
-    "start": "NODE_OPTIONS=--experimental-wasm-modules next start",
+    "export": "next export",
+    "build": "next build",
+    "start": "next start",
     "build-and-export": "pnpm build && pnpm export"
   },
   "dependencies": {
