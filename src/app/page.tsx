@@ -4,6 +4,7 @@ import { formatDate } from '../utils/formats'
 import { Logo } from '../components/Logo'
 import { SectionTitle } from '../components/SectionTitle'
 import { Metadata } from 'next'
+import { PostsList } from '../components/PostsList'
 
 export const metadata: Metadata = {
   title: 'Diego Pasquali',
@@ -33,26 +34,7 @@ export default function Page() {
 
       <div className='mt-20'>
         <SectionTitle>Writings</SectionTitle>
-
-        <ul className='divide-gray-50 divide-y'>
-          {posts.map((post) => (
-            <li className='py-8' key={post.slug}>
-              <Link href={`/blog/${post.slug}`}>
-                <article>
-                  <h3 className='text-xl font-medium'>
-                    {post.frontmatter.title}
-                  </h3>
-
-                  <div className='mt-2'>
-                    <time className='text-sm text-gray-400'>
-                      {formatDate(new Date(post.frontmatter.date))}
-                    </time>
-                  </div>
-                </article>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <PostsList posts={posts} />
       </div>
     </div>
   )
