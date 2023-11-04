@@ -4,6 +4,7 @@ export default {
   optimizeFonts: true,
   reactStrictMode: true,
   swcMinify: true,
+  output: 'export',
 
   experimental: {
     typedRoutes: true,

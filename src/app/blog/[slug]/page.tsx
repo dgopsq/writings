@@ -1,7 +1,7 @@
 import './style.css'
 
 import { notFound } from 'next/navigation'
-import { getSinglePost } from '../../../lib/posts'
+import { getPosts, getSinglePost } from '../../../lib/posts'
 import { formatDate } from '../../../utils/formats'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import rehypePrettyCode from 'rehype-pretty-code'
@@ -24,6 +24,11 @@ export async function generateMetadata({
     title: post.frontmatter.title,
     description: post.frontmatter.description,
   }
+}
+
+export async function generateStaticParams(): Promise<Params[]> {
+  const posts = getPosts()
+  return posts.map((post) => ({ slug: post.slug }))
 }
 
 export default function Page({ params: { slug } }: { params: Params }) {
