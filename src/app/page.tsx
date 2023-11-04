@@ -24,11 +24,11 @@ export default function Page() {
         <SectionTitle>About me</SectionTitle>
 
         <p className='mt-6 text-base leading-relaxed'>
-          Ehi 👋 I'm an experienced Software Engineer with a strong knowledge in
-          React / React Native and NodeJS. I also played with almost every other
-          language out there including TypeScript, Scala, Rust and PureScript.
-          Functional programming is my go-to paradigm when possible and I had
-          the opportunity to use it extensively in my career.
+          Hi 👋 I'm an experienced Software Engineer with a strong knowledge of
+          React / React Native and NodeJS. I've also played with almost every
+          other language out there, including TypeScript, Scala, Rust, and
+          PureScript. Functional programming is my go-to paradigm when possible,
+          and I've had the opportunity to use it extensively in my career.
         </p>
       </div>
 
