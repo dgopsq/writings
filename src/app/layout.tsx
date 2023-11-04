@@ -17,6 +17,15 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en' className={inter.className}>
+      <head>
+        <link
+          rel='icon'
+          href='/icon?<generated>'
+          type='image/<generated>'
+          sizes='<generated>'
+        />
+      </head>
+
       <body>
         <div className='mx-auto max-w-3xl px-4 pt-28 pb-48'>
           <div>{children}</div>
