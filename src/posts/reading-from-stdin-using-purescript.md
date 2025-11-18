@@ -3,7 +3,7 @@ title: Reading from the Standard Input (stdin) using PureScript
 description: How to read from the Standard Input (stdin) using PureScript.
 tags: 'purescript, functional, stdin, stream'
 published: true
-canonical_url: 'https://www.dgopsq.space/blog/reading-from-stdin-using-purescript'
+canonical_url: 'https://www.diegopasquali.com/blog/reading-from-stdin-using-purescript'
 id: 940246
 date: '2021-12-30T10:19:19Z'
 ---
