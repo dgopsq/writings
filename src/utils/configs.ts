@@ -21,7 +21,7 @@ export const DEFAULT_DESCRIPTION =
  */
 
 export const BASE_URL =
-  process.env.NEXT_PUBLIC_BASE_URL || 'https://dgopsq.space'
+  process.env.NEXT_PUBLIC_BASE_URL || 'https://diegopasquali.com'
 
 /**
  * Insights (https://getinsights.io/)

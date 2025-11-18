@@ -4,7 +4,7 @@ description: How to use the Auth0 React Native SDK in a managed Expo application
 date: '2021-07-09T08:21:28Z'
 tags: 'expo, reactnative, auth0, authentication'
 published: true
-canonical_url: 'https://www.dgopsq.space/blog/auth0-expo-integration'
+canonical_url: 'https://www.diegopasquali.com/blog/auth0-expo-integration'
 id: 892793
 ---
 
