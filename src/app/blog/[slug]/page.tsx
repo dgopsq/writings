@@ -7,17 +7,22 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeExternalLinks from 'rehype-external-links'
 import remarkGfm from 'remark-gfm'
-import { Metadata } from 'next'
+import type { Metadata } from 'next/types'
 
 type Params = {
   slug: string
 }
 
+// Next 16 always passes `params` as a Promise; the sync-access shim added in
+// 15 was removed.
+type PageProps = {
+  params: Promise<Params>
+}
+
 export async function generateMetadata({
-  params: { slug },
-}: {
-  params: Params
-}): Promise<Metadata> {
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params
   const post = getSinglePost(slug)
 
   return {
@@ -31,7 +36,8 @@ export async function generateStaticParams(): Promise<Params[]> {
   return posts.map((post) => ({ slug: post.slug }))
 }
 
-export default function Page({ params: { slug } }: { params: Params }) {
+export default async function Page({ params }: PageProps) {
+  const { slug } = await params
   const post = getSinglePost(slug)
 
   if (!post.content) return notFound()

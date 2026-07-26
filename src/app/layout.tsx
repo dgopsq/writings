@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next/types'
 import { Footer } from '../components/Footer'
 import './global.css'
 
