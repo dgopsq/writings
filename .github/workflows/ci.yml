@@ -33,6 +33,10 @@ jobs:
       - name: Lint and format check
         run: pnpm lint
 
+      # Fails if a route exists that docs/architecture.md does not mention.
+      - name: Docs freshness
+        run: pnpm docs:check
+
       # Also exercises the prebuild hook, which regenerates the feeds and the
       # search index from src/posts.
       - name: Build

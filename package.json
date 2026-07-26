@@ -11,6 +11,7 @@
     "dev": "next dev",
     "compile": "tsc --noEmit",
     "lint": "biome check .",
+    "docs:check": "bash scripts/check-docs.sh",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
     "prebuild": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/prebuild.mts",

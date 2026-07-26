@@ -3,6 +3,10 @@
     "allow": [
       "Bash(pnpm compile)",
       "Bash(pnpm build)",
+      "Bash(pnpm lint)",
+      "Bash(pnpm lint:fix)",
+      "Bash(pnpm format)",
+      "Bash(pnpm docs:check)",
       "Bash(pnpm install)",
       "Bash(pnpm why:*)",
       "Bash(pnpm outdated:*)",
@@ -36,6 +40,44 @@
       "Read(./.next/**)",
       "Read(./.env)",
       "Read(./.env.*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/log-bash-noise.sh\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/stop-reflect.sh\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/lessons-size-alarm.sh\"",
+            "timeout": 5
+          }
+        ]
+      }
     ]
   }
 }
