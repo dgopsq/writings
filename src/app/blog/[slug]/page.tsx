@@ -7,6 +7,7 @@ import rehypeExternalLinks from 'rehype-external-links'
 import rehypePrettyCode from 'rehype-pretty-code'
 import remarkGfm from 'remark-gfm'
 import { getPosts, getSinglePost } from '../../../lib/posts'
+import { SITE_NAME } from '../../../utils/configs'
 import { formatDate } from '../../../utils/formats'
 
 type Params = {
@@ -24,10 +25,34 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const post = getSinglePost(slug)
+  const { title, description, date, tags } = post.frontmatter
+  const path = `/blog/${slug}`
 
   return {
-    title: post.frontmatter.title,
-    description: post.frontmatter.description,
+    title,
+    description,
+
+    alternates: { canonical: path },
+    keywords: tags,
+
+    openGraph: {
+      type: 'article',
+      title,
+      description,
+      url: path,
+      siteName: SITE_NAME,
+      publishedTime: date,
+      authors: [SITE_NAME],
+      tags,
+      images: [{ url: '/thumbnail.png', width: 1200, height: 630, alt: title }],
+    },
+
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/thumbnail.png'],
+    },
   }
 }
 

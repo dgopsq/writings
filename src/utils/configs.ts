@@ -9,6 +9,14 @@ export const BASE_URL =
   process.env.NEXT_PUBLIC_BASE_URL || 'https://diegopasquali.com'
 
 /**
+ * Site identity, shared by page metadata and the generated feeds.
+ */
+
+export const SITE_NAME = 'Diego Pasquali'
+
+export const DEFAULT_DESCRIPTION = 'Software Engineer and tech enthusiast.'
+
+/**
  * Directory under `public/` holding the plaintext search index, one file per
  * post. Written by scripts/prebuild.mts, fetched at runtime by the search
  * widget via `Post.searchTarget`.
