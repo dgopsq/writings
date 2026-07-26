@@ -16,6 +16,7 @@ export type Post = {
     description: string
     tags: Array<string>
     devToId: string | null
+    published: boolean
   }
 }
 
@@ -60,6 +61,10 @@ function parsePostFile(filename: string): Post {
 
   const devToId = id ? `${id}` : null
 
+  // Absent `published` means published: the flag only ever appears on drafts,
+  // and dev.to reads it the same way.
+  const published = data.published !== false
+
   const searchTarget = `/${SEARCH_TARGET_DIR}/${slug}.txt`
 
   return {
@@ -73,6 +78,7 @@ function parsePostFile(filename: string): Post {
       description,
       tags,
       devToId,
+      published,
     },
   }
 }
@@ -81,6 +87,7 @@ export function getPosts(): Array<Post> {
   const files = getPostsFiles()
   const posts: Array<Post> = files
     .map(parsePostFile)
+    .filter((post) => post.frontmatter.published)
     .sort(
       (a, b) =>
         new Date(b.frontmatter.date).getTime() -

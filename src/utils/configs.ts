@@ -1,37 +1,17 @@
 /**
- * Misc
- */
-
-export const IS_DEV = process.env.NODE_ENV === 'development'
-export const IS_PROD = process.env.NODE_ENV === 'production'
-export const IS_TEST = process.env.NODE_ENV === 'test'
-
-/**
- * Meta configs
- */
-
-export const DEFAULT_TITLE = process.env.NEXT_PUBLIC_DEFAULT_TITLE || 'dgopsq'
-
-export const DEFAULT_DESCRIPTION =
-  process.env.NEXT_PUBLIC_DEFAULT_DESCRIPTION ||
-  'Diego Pasquali, full stack engineer and tech enthusiast.'
-
-/**
- * App base url
+ * App base url.
+ *
+ * The apex is canonical: www.diegopasquali.com 301s here, so every generated
+ * URL (feeds, canonical tags, sitemap) must use this form.
  */
 
 export const BASE_URL =
   process.env.NEXT_PUBLIC_BASE_URL || 'https://diegopasquali.com'
 
 /**
- * Insights (https://getinsights.io/)
- */
-
-export const INSIGHTS_TOKEN =
-  process.env.NEXT_PUBLIC_INSIGHTS_TOKEN || 'opLWOailQyAMF0c4'
-
-/**
- * Search
+ * Directory under `public/` holding the plaintext search index, one file per
+ * post. Written by scripts/prebuild.mts, fetched at runtime by the search
+ * widget via `Post.searchTarget`.
  */
 
 export const SEARCH_TARGET_DIR = process.env.SEARCH_TARGET_DIR || 'posts-meta'
