@@ -1,5 +1,4 @@
-import Link from 'next/link'
-import { siX, siGithub, siLinkedin, siDevdotto } from 'simple-icons'
+import { siDevdotto, siGithub, siLinkedin, siX } from 'simple-icons'
 import { match } from 'ts-pattern'
 
 const baseIconSize = 25
@@ -30,7 +29,9 @@ export const SocialIcon: React.FC<Props> = ({ url, kind }) => {
         viewBox='0 0 24 24'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
+        role='img'
       >
+        <title>{kind}</title>
         <path d={svgPath} fill='currentColor' />
       </svg>
     </a>

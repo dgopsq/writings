@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import { Feed } from 'feed'
 import { BASE_URL } from '../../utils/configs.ts'
 import { generatePostUrl } from '../../utils/formats.ts'

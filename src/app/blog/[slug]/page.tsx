@@ -1,13 +1,13 @@
 import './style.css'
 
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next/types'
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import rehypeExternalLinks from 'rehype-external-links'
+import rehypePrettyCode from 'rehype-pretty-code'
+import remarkGfm from 'remark-gfm'
 import { getPosts, getSinglePost } from '../../../lib/posts'
 import { formatDate } from '../../../utils/formats'
-import { MDXRemote } from 'next-mdx-remote/rsc'
-import rehypePrettyCode from 'rehype-pretty-code'
-import rehypeExternalLinks from 'rehype-external-links'
-import remarkGfm from 'remark-gfm'
-import type { Metadata } from 'next/types'
 
 type Params = {
   slug: string

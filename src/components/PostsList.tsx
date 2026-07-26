@@ -1,6 +1,6 @@
-import React from 'react'
-import { Post } from '../lib/posts'
 import Link from 'next/link'
+import type React from 'react'
+import type { Post } from '../lib/posts'
 import { formatDate } from '../utils/formats'
 
 type Props = {

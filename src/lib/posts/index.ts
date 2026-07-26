@@ -1,9 +1,9 @@
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
+import matter from 'gray-matter'
 import { remark } from 'remark'
 import strip from 'strip-markdown'
 import { SEARCH_TARGET_DIR } from '../../utils/configs.ts'
-import matter from 'gray-matter'
 
 export type Post = {
   slug: string

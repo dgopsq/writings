@@ -10,6 +10,9 @@
     "preinstall": "npx only-allow pnpm",
     "dev": "next dev",
     "compile": "tsc --noEmit",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
     "prebuild": "node scripts/prebuild.mts",
     "build": "next build",
     "start": "next start"
@@ -31,6 +34,7 @@
     "ts-pattern": "^5.0.5"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.5.5",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.17",

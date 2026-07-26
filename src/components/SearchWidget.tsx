@@ -1,11 +1,10 @@
 'use client'
 
-import { ChangeEventHandler, useCallback, useMemo, useRef } from 'react'
-import { Post } from '../lib/posts'
-import { useSearchPosts } from '../utils/hooks/useSearchPosts'
+import { type ChangeEventHandler, useMemo, useRef } from 'react'
+import type { Post } from '../lib/posts'
 import { debounce } from '../utils/debounce'
+import { useSearchPosts } from '../utils/hooks/useSearchPosts'
 import { A } from './A'
-import Link from 'next/link'
 import { PostsList } from './PostsList'
 
 const disclaimerLinkClasses = 'underline font-medium'

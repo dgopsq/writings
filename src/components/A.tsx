@@ -1,4 +1,4 @@
-import { AnchorHTMLAttributes, PropsWithChildren } from 'react'
+import type { AnchorHTMLAttributes, PropsWithChildren } from 'react'
 
 type Props = PropsWithChildren<
   Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'className' | 'href'>
