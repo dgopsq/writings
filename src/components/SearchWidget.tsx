@@ -60,7 +60,7 @@ export const SearchWidget: React.FC<Props> = ({ posts }) => {
           type='text'
           placeholder='Search...'
           onChange={handleSearchQueryChange}
-          className='p-4 border border-gray-100 rounded-md w-full bg-gray-50 focus:border-gray-200 outline-none'
+          className='p-4 border border-gray-100 rounded-md w-full bg-gray-50 focus:border-gray-200 outline-hidden'
         />
       </div>
 
