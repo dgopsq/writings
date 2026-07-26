@@ -1,0 +1,2 @@
+minimumReleaseAgeExclude:
+  - rehype-pretty-code@0.14.5

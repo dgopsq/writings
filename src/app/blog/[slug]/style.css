@@ -57,7 +57,7 @@
     border-radius: theme(borderRadius.md);
   }
 
-  div[data-rehype-pretty-code-fragment] {
+  figure[data-rehype-pretty-code-figure] {
     * {
       margin-top: initial;
       line-height: theme(lineHeight.normal);
