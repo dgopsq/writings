@@ -36,3 +36,7 @@ public/rss
 
 # search
 public/search
+
+# agent scratch state (per-session, never commit)
+.claude/state/
+.claude/settings.local.json
