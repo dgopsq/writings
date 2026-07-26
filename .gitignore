@@ -20,6 +20,9 @@
 .vscode
 .env
 
+# typescript incremental build cache
+tsconfig.tsbuildinfo
+
 # debug
 npm-debug.log*
 yarn-debug.log*
