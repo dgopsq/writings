@@ -12,8 +12,8 @@ importers:
         specifier: ^0.1.5
         version: 0.1.5(tslib@2.8.1)
       feed:
-        specifier: ^4.2.2
-        version: 4.2.2
+        specifier: ^6.0.0
+        version: 6.0.0
       next:
         specifier: ^16.2.12
         version: 16.2.12(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -48,7 +48,7 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       ts-pattern:
-        specifier: ^5.0.5
+        specifier: ^5.9.0
         version: 5.9.0
     devDependencies:
       '@biomejs/biome':
@@ -70,7 +70,7 @@ importers:
         specifier: ^4.0.3
         version: 4.0.3
       postcss:
-        specifier: ^8.4.31
+        specifier: ^8.5.23
         version: 8.5.23
       tailwindcss:
         specifier: ^4.3.3
@@ -810,9 +810,9 @@ packages:
   extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
 
-  feed@4.2.2:
-    resolution: {integrity: sha512-u5/sxGfiMfZNtJ3OvQpXcvotFpYkL0n9u9mM2vkui2nGo8b4wvDkJ8gAkYqbA8QpGyFCv3RK0Z+Iv+9veCS9bQ==}
-    engines: {node: '>=0.4.0'}
+  feed@6.0.0:
+    resolution: {integrity: sha512-rvFOF1POce0ijAKy3tZN5T8PuprgIit/VbMyXJWcoYwcMOTSIJ7NqZb8DTLPJr77yiEO27kidm/fw0kcSIV+ww==}
+    engines: {node: '>=20', pnpm: '>=10'}
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
@@ -1980,7 +1980,7 @@ snapshots:
 
   extend@3.0.2: {}
 
-  feed@4.2.2:
+  feed@6.0.0:
     dependencies:
       xml-js: 1.6.11
 
