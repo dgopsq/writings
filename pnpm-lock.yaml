@@ -42,8 +42,8 @@ importers:
         specifier: ^4.3.1
         version: 4.3.1
       simple-icons:
-        specifier: ^9.19.0
-        version: 9.21.0
+        specifier: ^16.27.1
+        version: 16.27.1
       strip-markdown:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1289,8 +1289,8 @@ packages:
     resolution: {integrity: sha512-oR+qDVi2OjX1tmDpyv+3KviX01KzO6Af+0NNnKnsp9491UEGz2YpxTuJboS/6VhYpTdqzmuJBuiTlrAWWJAssw==}
     engines: {node: '>=20'}
 
-  simple-icons@9.21.0:
-    resolution: {integrity: sha512-yxjs49nKwff5ozRwPCBVcGG4Ehlg5YiR1g4EJ83zmqc0hYhYb6UQJqiy2WOga2OJ1/qVHaej7q762hYZX/mavA==}
+  simple-icons@16.27.1:
+    resolution: {integrity: sha512-slZF8iKxkv7Lb9SF3L1AcIl5iYLNvDrKKm8yV69cG66XvxJ12SX+bYTgxRwCY4bXSmklGXoXaKEyVmEypOCeqw==}
     engines: {node: '>=0.12.18'}
 
   source-map-js@1.2.1:
@@ -2876,7 +2876,7 @@ snapshots:
       '@shikijs/vscode-textmate': 10.0.2
       '@types/hast': 3.0.5
 
-  simple-icons@9.21.0: {}
+  simple-icons@16.27.1: {}
 
   source-map-js@1.2.1: {}
 
