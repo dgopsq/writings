@@ -34,11 +34,9 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# feed
+# build-time generated artifacts (see scripts/prebuild.ts)
 public/rss
-
-# search
-public/search
+public/posts-meta
 
 # agent scratch state (per-session, never commit)
 .claude/state/

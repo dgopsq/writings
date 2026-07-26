@@ -10,6 +10,7 @@
     "preinstall": "npx only-allow pnpm",
     "dev": "next dev",
     "compile": "tsc --noEmit",
+    "prebuild": "node scripts/prebuild.mts",
     "build": "next build",
     "start": "next start"
   },

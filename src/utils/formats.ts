@@ -1,4 +1,4 @@
-import { BASE_URL } from './configs'
+import { BASE_URL } from './configs.ts'
 
 export function formatDate(d: Date): string {
   const formatted = d.toLocaleDateString('en-US', {

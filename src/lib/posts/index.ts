@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { remark } from 'remark'
 import strip from 'strip-markdown'
-import { SEARCH_TARGET_DIR } from '../../utils/configs'
+import { SEARCH_TARGET_DIR } from '../../utils/configs.ts'
 import matter from 'gray-matter'
 
 export type Post = {
@@ -105,7 +105,10 @@ export function getPostsSlugs(): Array<string> {
 }
 
 export function generatePostsSearchTargets(posts: Array<Post>): void {
-  const outputDir = './public/search'
+  // Must match SEARCH_TARGET_DIR: `Post.searchTarget` points the search widget
+  // at `/${SEARCH_TARGET_DIR}/<slug>.txt`, so writing anywhere else produces an
+  // index nothing can fetch.
+  const outputDir = path.join('./public', SEARCH_TARGET_DIR)
 
   fs.mkdirSync(outputDir, { recursive: true })
 
