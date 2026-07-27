@@ -34,9 +34,9 @@ When a change is meant to alter rendering, also read the built output in
   stale.
 - **Do not hand-edit the `id:` field in post frontmatter.** dev.to assigns it
   and the publish Action commits it back.
-- **Do not replace the netgrep search.** It is abandoned upstream, but it is
-  also the subject of a published post. If it breaks, say so rather than
-  swapping it out.
+- **Do not replace the netgrep search.** It has had no release since 2022, but
+  it is the subject of a published post and the reason the search works the way
+  it does. If it breaks, say so rather than swapping it out.
 - Do not add a dependency, linter or test runner without being asked. This repo
   is deliberately small.
 

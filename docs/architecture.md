@@ -64,8 +64,9 @@ queries against the `posts-meta` text files over HTTP. Nothing is indexed
 server-side.
 
 `@netgrep/netgrep` has had no release since 2022. It works under Turbopack —
-verified — but it is the most likely thing to break in a future Next upgrade.
-The subject of one of the posts, so do not quietly replace it.
+verified against the built output — but it is the most likely thing to break in
+a future Next upgrade. It is also the subject of one of the posts, so it should
+not be quietly replaced with something more conventional.
 
 ## Configuration
 
