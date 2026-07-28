@@ -3,7 +3,7 @@ title: Using the fp-ts TaskEither monad with Redux-Saga
 description: How to use the fp-ts TaskEither monad with Redux-Saga without losing testability.
 tags: 'functional, redux, typescript, saga'
 published: true
-canonical_url: 'https://www.diegopasquali.com/blog/using-fp-ts-taskeither-with-redux-saga'
+canonical_url: 'https://diegopasquali.com/blog/using-fp-ts-taskeither-with-redux-saga'
 id: 958626
 date: '2022-01-17T21:31:19Z'
 ---

@@ -1,7 +1,7 @@
-import { getPosts } from '../lib/posts'
 import { Logo } from '../components/Logo'
-import { SectionTitle } from '../components/SectionTitle'
 import { PostsList } from '../components/PostsList'
+import { SectionTitle } from '../components/SectionTitle'
+import { getPosts } from '../lib/posts'
 
 export default function Page() {
   const posts = getPosts()

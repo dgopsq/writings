@@ -1,8 +1,8 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import { Feed } from 'feed'
-import { BASE_URL } from '../../utils/configs'
-import { generatePostUrl } from '../../utils/formats'
-import { Post } from '../posts'
+import { BASE_URL } from '../../utils/configs.ts'
+import { generatePostUrl } from '../../utils/formats.ts'
+import type { Post } from '../posts/index.ts'
 
 /**
  * Generate the RSS feed.

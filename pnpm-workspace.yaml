@@ -1,0 +1,11 @@
+# pnpm 11 blocks dependency install scripts unless they are explicitly allowed
+# here. Leaving an entry unset makes `pnpm install` -- and therefore every
+# `pnpm <script>`, which pre-checks dependency status -- exit non-zero.
+allowBuilds:
+  # Next's optional image-optimisation codec. This site is a static export and
+  # uses no next/image, so the native binary is never loaded.
+  sharp: false
+
+minimumReleaseAgeExclude:
+  - rehype-pretty-code@0.14.5
+  - simple-icons@16.27.1

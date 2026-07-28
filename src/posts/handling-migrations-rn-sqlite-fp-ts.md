@@ -4,7 +4,7 @@ description: "Recently, in one of my side projects, I had to use expo-sqlite to 
 date: '2020-09-15T08:17:58Z'
 tags: 'functional, reactnative, expo, typescript'
 published: true
-canonical_url: 'https://www.diegopasquali.com/blog/handling-migrations-rn-sqlite-fp-ts'
+canonical_url: 'https://diegopasquali.com/blog/handling-migrations-rn-sqlite-fp-ts'
 id: 892797
 ---
 

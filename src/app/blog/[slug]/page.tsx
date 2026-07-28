@@ -1,28 +1,58 @@
 import './style.css'
 
 import { notFound } from 'next/navigation'
-import { getPosts, getSinglePost } from '../../../lib/posts'
-import { formatDate } from '../../../utils/formats'
+import type { Metadata } from 'next/types'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeExternalLinks from 'rehype-external-links'
+import rehypePrettyCode from 'rehype-pretty-code'
 import remarkGfm from 'remark-gfm'
-import { Metadata } from 'next'
+import { getPosts, getSinglePost } from '../../../lib/posts'
+import { SITE_NAME } from '../../../utils/configs'
+import { formatDate } from '../../../utils/formats'
 
 type Params = {
   slug: string
 }
 
+// Next 16 always passes `params` as a Promise; the sync-access shim added in
+// 15 was removed.
+type PageProps = {
+  params: Promise<Params>
+}
+
 export async function generateMetadata({
-  params: { slug },
-}: {
-  params: Params
-}): Promise<Metadata> {
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params
   const post = getSinglePost(slug)
+  const { title, description, date, tags } = post.frontmatter
+  const path = `/blog/${slug}`
 
   return {
-    title: post.frontmatter.title,
-    description: post.frontmatter.description,
+    title,
+    description,
+
+    alternates: { canonical: path },
+    keywords: tags,
+
+    openGraph: {
+      type: 'article',
+      title,
+      description,
+      url: path,
+      siteName: SITE_NAME,
+      publishedTime: date,
+      authors: [SITE_NAME],
+      tags,
+      images: [{ url: '/thumbnail.png', width: 1200, height: 630, alt: title }],
+    },
+
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/thumbnail.png'],
+    },
   }
 }
 
@@ -31,7 +61,8 @@ export async function generateStaticParams(): Promise<Params[]> {
   return posts.map((post) => ({ slug: post.slug }))
 }
 
-export default function Page({ params: { slug } }: { params: Params }) {
+export default async function Page({ params }: PageProps) {
+  const { slug } = await params
   const post = getSinglePost(slug)
 
   if (!post.content) return notFound()

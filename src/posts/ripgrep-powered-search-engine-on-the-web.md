@@ -2,13 +2,13 @@
 title: A ripgrep-powered Search Engine on the web
 description: How I ported ripgrep to WASM in order to create a Search Engine for my blog.
 tags: 'search, typescript, rust, grep'
-canonical_url: 'https://www.diegopasquali.com/blog/ripgrep-powered-search-engine-on-the-web'
+canonical_url: 'https://diegopasquali.com/blog/ripgrep-powered-search-engine-on-the-web'
 published: true
 id: 1188910
 date: '2022-09-09T09:49:23Z'
 ---
 
-My [website’s search](https://diegopasquali.com/search) is using [**ripgrep**](https://github.com/BurntSushi/ripgrep) under the hood. You can try it out visiting the [search page](https://www.diegopasquali.com/search) and typing a [simple regex](https://docs.rs/regex/1.6.0/regex/#syntax). As a disclaimer I just want to say that this is mostly an experiment and it’s in no way a real alternative to do Full-Text Search… but IT IS cool 😎✨
+My [website’s search](https://diegopasquali.com/search) is using [**ripgrep**](https://github.com/BurntSushi/ripgrep) under the hood. You can try it out visiting the [search page](https://diegopasquali.com/search) and typing a [simple regex](https://docs.rs/regex/1.6.0/regex/#syntax). As a disclaimer I just want to say that this is mostly an experiment and it’s in no way a real alternative to do Full-Text Search… but IT IS cool 😎✨
 
 > The result of this article is [_netgrep_](https://github.com/dgopsq/netgrep), a JavaScript module that provides an API to execute HTTP based search queries using most of the _ripgrep_’s features. You can take a look at the code right away since it should be decently commented 🤓
 

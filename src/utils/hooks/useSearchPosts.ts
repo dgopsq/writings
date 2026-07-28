@@ -1,9 +1,9 @@
 'use client'
 
-import { NetgrepInput } from '@netgrep/netgrep/src/lib/data/NetgrepInput'
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Post } from '../../lib/posts'
 import type { Netgrep } from '@netgrep/netgrep'
+import type { NetgrepInput } from '@netgrep/netgrep/src/lib/data/NetgrepInput'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import type { Post } from '../../lib/posts'
 
 type UseSearchPostValue = {
   search: (input: string) => void
@@ -53,20 +53,19 @@ export function useSearchPosts(posts: Array<Post>): UseSearchPostValue {
     }
 
     ng.searchBatch(inputs, pattern).then((res) => {
-      const filtered: Array<Post> = []
-
-      res.forEach((single) =>
-        single.result && single.metadata
-          ? filtered.push(single.metadata.post)
-          : undefined,
-      )
+      const filtered = res
+        .filter((single) => single.result && single.metadata)
+        .map((single) => (single.metadata as { post: Post }).post)
 
       setResult(filtered)
     })
-  }, [pattern, inputs, setResult])
+    // `ng` belongs here: it starts null and is set once the netgrep WASM
+    // module finishes loading. Without it a pattern typed before that point
+    // would never be searched.
+  }, [pattern, inputs, ng])
 
   // Create a search method.
-  const search = useCallback((input: string) => setPattern(input), [setPattern])
+  const search = useCallback((input: string) => setPattern(input), [])
 
   return {
     search,

@@ -20,6 +20,9 @@
 .vscode
 .env
 
+# typescript incremental build cache
+tsconfig.tsbuildinfo
+
 # debug
 npm-debug.log*
 yarn-debug.log*
@@ -31,8 +34,10 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# feed
+# build-time generated artifacts (see scripts/prebuild.ts)
 public/rss
+public/posts-meta
 
-# search
-public/search
+# agent scratch state (per-session, never commit)
+.claude/state/
+.claude/settings.local.json
