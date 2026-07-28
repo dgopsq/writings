@@ -83,14 +83,14 @@ pnpm dev            # http://localhost:3000
 | Script | What it does |
 | --- | --- |
 | `pnpm dev` | Dev server with hot reload |
-| `pnpm build` | Runs `prebuild`, then builds the static site into `out/` |
+| `pnpm build` | Runs `generate`, then builds the static site into `out/` |
 | `pnpm start` | Serves a production build |
 | `pnpm compile` | `tsc --noEmit` |
 | `pnpm lint` | Biome lint + format check |
 | `pnpm lint:fix` | Biome, applying safe fixes |
 | `pnpm format` | Format only |
 | `pnpm docs:check` | Fails if a route is missing from `docs/architecture.md` |
-| `pnpm prebuild` | Regenerates the feeds and the search index |
+| `pnpm generate` | Regenerates the feeds and the search index |
 
 There are no tests. `pnpm compile && pnpm lint && pnpm build` is the bar, and
 CI runs exactly that on every pull request.

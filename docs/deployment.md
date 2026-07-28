@@ -16,9 +16,15 @@ lives in the Cloudflare dashboard, not in this repository** — there is no
 | Node version | from `.node-version` (currently 24.18.0) |
 | Production branch | `master` |
 
-`pnpm build` runs the `prebuild` hook first, so the feeds and the search index
-are regenerated from `src/posts` on every deploy. They are gitignored and
-never committed.
+The build command must be **`pnpm build`**, not `next build` or `npx next
+build`. `pnpm build` runs `pnpm generate` first, which regenerates the feeds
+and the search index from `src/posts`. They are gitignored and never
+committed, so a build that skips the generator deploys a site whose feeds and
+whose every search result 404 — and it deploys green, because nothing in the
+build fails when they are absent.
+
+After a deploy, `curl -I https://diegopasquali.com/rss/feed.xml` is the
+cheapest check that the generator ran.
 
 The apex `diegopasquali.com` is canonical; `www` 301s to it.
 

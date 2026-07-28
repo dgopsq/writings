@@ -63,9 +63,9 @@ Markdown, but compiled through MDX:
 pnpm build
 ```
 
-Confirm `out/blog/<slug>.html` exists and reads correctly. The build's prebuild
-hook also regenerates the feeds and the search index, so the post becomes
-searchable with no extra step.
+Confirm `out/blog/<slug>.html` exists and reads correctly. `pnpm build` also
+runs `pnpm generate`, which regenerates the feeds and the search index, so the
+post becomes searchable with no extra step.
 
 ## 5. Stop there
 

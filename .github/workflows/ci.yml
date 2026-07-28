@@ -37,7 +37,7 @@ jobs:
       - name: Docs freshness
         run: pnpm docs:check
 
-      # Also exercises the prebuild hook, which regenerates the feeds and the
+      # Also exercises `pnpm generate`, which regenerates the feeds and the
       # search index from src/posts.
       - name: Build
         run: pnpm build
