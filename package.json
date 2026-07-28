@@ -14,8 +14,8 @@
     "docs:check": "bash scripts/check-docs.sh",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
-    "prebuild": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/prebuild.mts",
-    "build": "next build",
+    "generate": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/prebuild.mts",
+    "build": "pnpm generate && next build",
     "start": "next start"
   },
   "dependencies": {

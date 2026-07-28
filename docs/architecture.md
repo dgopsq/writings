@@ -41,14 +41,18 @@ prose is parsed as JSX and breaks the build.
 
 ## Build-time artifacts
 
-`scripts/prebuild.mts` runs from the `prebuild` npm hook, before `next build`,
-and writes into `public/` so Next copies the results into `out/`:
+`scripts/prebuild.mts` runs as the first half of `pnpm build` (the `generate`
+script), before `next build`, and writes into `public/` so Next copies the
+results into `out/`:
 
 - `public/rss/{feed.xml,atom.xml,feed.json}` — from `src/lib/feed/index.ts`
 - `public/posts-meta/<slug>.txt` — plaintext post bodies (remark +
   strip-markdown) that the search widget fetches
 
-Both directories are gitignored. They are build output, not source.
+Both directories are gitignored. They are build output, not source. Nothing
+fails when they are missing — the feeds and every search result simply 404 —
+so `pnpm build` calls the generator explicitly rather than relying on an
+implicit `prebuild` hook the package manager may decline to run.
 
 The script runs under Node's native TypeScript support. That is why the
 handful of modules it pulls in import each other with explicit `.ts`

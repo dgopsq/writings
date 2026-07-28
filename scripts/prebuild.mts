@@ -7,8 +7,13 @@
  *
  * Both generators existed already but had been orphaned since the App Router
  * migration, when their call sites in `pages/index.tsx`'s getStaticProps were
- * dropped. This script is the replacement call site; it runs from the
- * `prebuild` npm hook so `public/` is populated before Next copies it.
+ * dropped. This script is the replacement call site; `pnpm build` invokes it
+ * as `pnpm generate` so `public/` is populated before Next copies it.
+ *
+ * It is deliberately NOT named `prebuild`: as an implicit npm pre-hook it
+ * depended on the package manager choosing to run pre/post scripts, and a
+ * deploy that skipped it produced a site with no feeds and a search index that
+ * 404s — with a green build, because nothing fails when the files are absent.
  */
 
 import { generateFeed } from '../src/lib/feed/index.ts'
