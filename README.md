@@ -105,7 +105,7 @@ so for the record: build command `pnpm build`, output directory `out`, Node
 version from `.node-version`, production branch `master`.
 
 **2. The dev.to sync** (`.github/workflows/main.yml`) pushes every post to
-[dev.to](https://dev.to/dgopsq) via `sinedied/publish-devto`, matching articles
+[dev.to](https://dev.to/dixpas) via `sinedied/publish-devto`, matching articles
 on the `id` frontmatter field and writing it back as a bot commit. The
 `canonical_url` field tells dev.to that this site is the original, so the
 syndicated copy does not compete with it in search results.
